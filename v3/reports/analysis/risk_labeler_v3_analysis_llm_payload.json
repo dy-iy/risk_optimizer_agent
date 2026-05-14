@@ -1,0 +1,1800 @@
+{
+  "summary": {
+    "false_positive_rows": 188,
+    "false_negative_rows": 13,
+    "type_mismatch_rows": 199,
+    "score_diff_top_rows": 200
+  },
+  "statistics": {
+    "false_positive_analysis": {
+      "rule_primary_type_top": [
+        {
+          "name": "监管与法律风险",
+          "count": 64
+        },
+        {
+          "name": "异常行情波动风险",
+          "count": 55
+        },
+        {
+          "name": "大额转账 / 巨鲸行为风险",
+          "count": 37
+        },
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 9
+        },
+        {
+          "name": "爆仓 / 清算风险",
+          "count": 8
+        },
+        {
+          "name": "诈骗 / 跑路 / Rug Pull 风险",
+          "count": 6
+        },
+        {
+          "name": "交易所与系统运维风险",
+          "count": 4
+        },
+        {
+          "name": "偿付能力 / 储备 / 流动性风险",
+          "count": 3
+        },
+        {
+          "name": "稳定币异常风险",
+          "count": 1
+        },
+        {
+          "name": "宏观 / 政策冲击风险",
+          "count": 1
+        }
+      ],
+      "gold_primary_type_top": [
+        {
+          "name": "无明显风险",
+          "count": 80
+        },
+        {
+          "name": "监管与法律风险",
+          "count": 52
+        },
+        {
+          "name": "大额转账 / 巨鲸行为风险",
+          "count": 19
+        },
+        {
+          "name": "异常行情波动风险",
+          "count": 10
+        },
+        {
+          "name": "爆仓 / 清算风险",
+          "count": 6
+        },
+        {
+          "name": "项目治理 / 团队异常风险",
+          "count": 5
+        },
+        {
+          "name": "诈骗 / 跑路 / Rug Pull 风险",
+          "count": 5
+        },
+        {
+          "name": "宏观 / 政策冲击风险",
+          "count": 4
+        },
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 2
+        },
+        {
+          "name": "交易所与系统运维风险",
+          "count": 2
+        },
+        {
+          "name": "稳定币异常风险",
+          "count": 1
+        },
+        {
+          "name": "基础设施 / 协议层异常风险",
+          "count": 1
+        },
+        {
+          "name": "偿付能力 / 储备 / 流动性风险",
+          "count": 1
+        }
+      ],
+      "trigger_scores_top": [
+        {
+          "score_col": "score_regulatory",
+          "trigger_count": 79,
+          "mean_value": 0.2098,
+          "max_value": 0.8
+        },
+        {
+          "score_col": "score_volatility",
+          "trigger_count": 61,
+          "mean_value": 0.1975,
+          "max_value": 0.7461
+        },
+        {
+          "score_col": "score_whale",
+          "trigger_count": 42,
+          "mean_value": 0.1745,
+          "max_value": 0.75
+        },
+        {
+          "score_col": "score_hack",
+          "trigger_count": 13,
+          "mean_value": 0.0503,
+          "max_value": 0.98
+        },
+        {
+          "score_col": "score_liquidation",
+          "trigger_count": 10,
+          "mean_value": 0.0328,
+          "max_value": 0.85
+        },
+        {
+          "score_col": "score_fraud",
+          "trigger_count": 7,
+          "mean_value": 0.0275,
+          "max_value": 0.88
+        },
+        {
+          "score_col": "score_outage",
+          "trigger_count": 4,
+          "mean_value": 0.0124,
+          "max_value": 0.68
+        },
+        {
+          "score_col": "score_solvency",
+          "trigger_count": 3,
+          "mean_value": 0.013,
+          "max_value": 0.88
+        },
+        {
+          "score_col": "score_macro",
+          "trigger_count": 3,
+          "mean_value": 0.0066,
+          "max_value": 0.5366
+        },
+        {
+          "score_col": "score_stablecoin",
+          "trigger_count": 1,
+          "mean_value": 0.0045,
+          "max_value": 0.85
+        },
+        {
+          "score_col": "score_team",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_infra",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        }
+      ]
+    },
+    "false_negative_analysis": {
+      "gold_primary_type_top": [
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 13
+        }
+      ],
+      "rule_primary_type_top": [
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 10
+        },
+        {
+          "name": "无明显风险",
+          "count": 2
+        },
+        {
+          "name": "大额转账 / 巨鲸行为风险",
+          "count": 1
+        }
+      ],
+      "trigger_scores_top": [
+        {
+          "score_col": "score_hack",
+          "trigger_count": 10,
+          "mean_value": 0.2308,
+          "max_value": 0.3
+        },
+        {
+          "score_col": "score_whale",
+          "trigger_count": 1,
+          "mean_value": 0.0462,
+          "max_value": 0.35
+        },
+        {
+          "score_col": "score_fraud",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_regulatory",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_outage",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_stablecoin",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_liquidation",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_volatility",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_team",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_solvency",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_infra",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_macro",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        }
+      ]
+    },
+    "type_mismatch_analysis": {
+      "gold_primary_type_top": [
+        {
+          "name": "异常行情波动风险",
+          "count": 58
+        },
+        {
+          "name": "无明显风险",
+          "count": 53
+        },
+        {
+          "name": "大额转账 / 巨鲸行为风险",
+          "count": 19
+        },
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 15
+        },
+        {
+          "name": "监管与法律风险",
+          "count": 14
+        },
+        {
+          "name": "宏观 / 政策冲击风险",
+          "count": 13
+        },
+        {
+          "name": "基础设施 / 协议层异常风险",
+          "count": 7
+        },
+        {
+          "name": "项目治理 / 团队异常风险",
+          "count": 6
+        },
+        {
+          "name": "诈骗 / 跑路 / Rug Pull 风险",
+          "count": 4
+        },
+        {
+          "name": "交易所与系统运维风险",
+          "count": 3
+        },
+        {
+          "name": "稳定币异常风险",
+          "count": 3
+        },
+        {
+          "name": "爆仓 / 清算风险",
+          "count": 2
+        },
+        {
+          "name": "偿付能力 / 储备 / 流动性风险",
+          "count": 2
+        }
+      ],
+      "rule_primary_type_top": [
+        {
+          "name": "无明显风险",
+          "count": 119
+        },
+        {
+          "name": "大额转账 / 巨鲸行为风险",
+          "count": 52
+        },
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 13
+        },
+        {
+          "name": "异常行情波动风险",
+          "count": 9
+        },
+        {
+          "name": "监管与法律风险",
+          "count": 4
+        },
+        {
+          "name": "诈骗 / 跑路 / Rug Pull 风险",
+          "count": 1
+        },
+        {
+          "name": "爆仓 / 清算风险",
+          "count": 1
+        }
+      ],
+      "top_mismatch_pairs": [
+        {
+          "gold_primary_risk_type": "异常行情波动风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 56
+        },
+        {
+          "gold_primary_risk_type": "无明显风险",
+          "rule_primary_risk_type": "大额转账 / 巨鲸行为风险",
+          "count": 42
+        },
+        {
+          "gold_primary_risk_type": "大额转账 / 巨鲸行为风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 18
+        },
+        {
+          "gold_primary_risk_type": "宏观 / 政策冲击风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 12
+        },
+        {
+          "gold_primary_risk_type": "监管与法律风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 10
+        },
+        {
+          "gold_primary_risk_type": "无明显风险",
+          "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+          "count": 6
+        },
+        {
+          "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+          "rule_primary_risk_type": "大额转账 / 巨鲸行为风险",
+          "count": 5
+        },
+        {
+          "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 5
+        },
+        {
+          "gold_primary_risk_type": "项目治理 / 团队异常风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 4
+        },
+        {
+          "gold_primary_risk_type": "基础设施 / 协议层异常风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 4
+        },
+        {
+          "gold_primary_risk_type": "交易所与系统运维风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 3
+        },
+        {
+          "gold_primary_risk_type": "无明显风险",
+          "rule_primary_risk_type": "异常行情波动风险",
+          "count": 3
+        },
+        {
+          "gold_primary_risk_type": "监管与法律风险",
+          "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+          "count": 3
+        },
+        {
+          "gold_primary_risk_type": "基础设施 / 协议层异常风险",
+          "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+          "count": 3
+        },
+        {
+          "gold_primary_risk_type": "无明显风险",
+          "rule_primary_risk_type": "监管与法律风险",
+          "count": 2
+        },
+        {
+          "gold_primary_risk_type": "偿付能力 / 储备 / 流动性风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 2
+        },
+        {
+          "gold_primary_risk_type": "异常行情波动风险",
+          "rule_primary_risk_type": "大额转账 / 巨鲸行为风险",
+          "count": 2
+        },
+        {
+          "gold_primary_risk_type": "诈骗 / 跑路 / Rug Pull 风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 2
+        },
+        {
+          "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+          "rule_primary_risk_type": "异常行情波动风险",
+          "count": 2
+        },
+        {
+          "gold_primary_risk_type": "稳定币异常风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 2
+        }
+      ]
+    },
+    "score_diff_analysis": {
+      "trigger_scores_top": [
+        {
+          "score_col": "score_volatility",
+          "trigger_count": 50,
+          "mean_value": 0.1555,
+          "max_value": 0.7461
+        },
+        {
+          "score_col": "score_whale",
+          "trigger_count": 41,
+          "mean_value": 0.161,
+          "max_value": 0.75
+        },
+        {
+          "score_col": "score_liquidation",
+          "trigger_count": 33,
+          "mean_value": 0.1341,
+          "max_value": 0.85
+        },
+        {
+          "score_col": "score_hack",
+          "trigger_count": 27,
+          "mean_value": 0.0791,
+          "max_value": 0.98
+        },
+        {
+          "score_col": "score_regulatory",
+          "trigger_count": 27,
+          "mean_value": 0.0875,
+          "max_value": 0.8
+        },
+        {
+          "score_col": "score_fraud",
+          "trigger_count": 7,
+          "mean_value": 0.0258,
+          "max_value": 0.88
+        },
+        {
+          "score_col": "score_outage",
+          "trigger_count": 3,
+          "mean_value": 0.0089,
+          "max_value": 0.68
+        },
+        {
+          "score_col": "score_solvency",
+          "trigger_count": 3,
+          "mean_value": 0.0122,
+          "max_value": 0.88
+        },
+        {
+          "score_col": "score_stablecoin",
+          "trigger_count": 1,
+          "mean_value": 0.0043,
+          "max_value": 0.85
+        },
+        {
+          "score_col": "score_macro",
+          "trigger_count": 1,
+          "mean_value": 0.0017,
+          "max_value": 0.35
+        },
+        {
+          "score_col": "score_team",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_infra",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        }
+      ],
+      "rule_primary_type_top": [
+        {
+          "name": "异常行情波动风险",
+          "count": 43
+        },
+        {
+          "name": "大额转账 / 巨鲸行为风险",
+          "count": 37
+        },
+        {
+          "name": "无明显风险",
+          "count": 35
+        },
+        {
+          "name": "爆仓 / 清算风险",
+          "count": 32
+        },
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 25
+        },
+        {
+          "name": "监管与法律风险",
+          "count": 15
+        },
+        {
+          "name": "诈骗 / 跑路 / Rug Pull 风险",
+          "count": 6
+        },
+        {
+          "name": "偿付能力 / 储备 / 流动性风险",
+          "count": 3
+        },
+        {
+          "name": "交易所与系统运维风险",
+          "count": 3
+        },
+        {
+          "name": "稳定币异常风险",
+          "count": 1
+        }
+      ],
+      "gold_primary_type_top": [
+        {
+          "name": "无明显风险",
+          "count": 63
+        },
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 26
+        },
+        {
+          "name": "爆仓 / 清算风险",
+          "count": 25
+        },
+        {
+          "name": "监管与法律风险",
+          "count": 23
+        },
+        {
+          "name": "大额转账 / 巨鲸行为风险",
+          "count": 17
+        },
+        {
+          "name": "项目治理 / 团队异常风险",
+          "count": 11
+        },
+        {
+          "name": "异常行情波动风险",
+          "count": 10
+        },
+        {
+          "name": "诈骗 / 跑路 / Rug Pull 风险",
+          "count": 8
+        },
+        {
+          "name": "宏观 / 政策冲击风险",
+          "count": 6
+        },
+        {
+          "name": "偿付能力 / 储备 / 流动性风险",
+          "count": 4
+        },
+        {
+          "name": "稳定币异常风险",
+          "count": 3
+        },
+        {
+          "name": "基础设施 / 协议层异常风险",
+          "count": 3
+        },
+        {
+          "name": "交易所与系统运维风险",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "findings_non_llm": [
+    {
+      "name": "top_false_positive_rule_types",
+      "category": "false_positive",
+      "description": "误报样本中最常见的规则主类别",
+      "evidence": [
+        {
+          "name": "监管与法律风险",
+          "count": 64
+        },
+        {
+          "name": "异常行情波动风险",
+          "count": 55
+        },
+        {
+          "name": "大额转账 / 巨鲸行为风险",
+          "count": 37
+        },
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 9
+        },
+        {
+          "name": "爆仓 / 清算风险",
+          "count": 8
+        }
+      ],
+      "suggestion": "优先检查这些类别对应的 scorer 是否触发条件过宽。",
+      "priority": "high"
+    },
+    {
+      "name": "top_false_negative_gold_types",
+      "category": "false_negative",
+      "description": "漏报样本中最常见的金标主类别",
+      "evidence": [
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 13
+        }
+      ],
+      "suggestion": "优先补充这些类别的关键词、弱触发分支或语义模式。",
+      "priority": "high"
+    },
+    {
+      "name": "top_type_mismatch_pairs",
+      "category": "type_mismatch",
+      "description": "主类别最常见的错配方向",
+      "evidence": [
+        {
+          "gold_primary_risk_type": "异常行情波动风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 56
+        },
+        {
+          "gold_primary_risk_type": "无明显风险",
+          "rule_primary_risk_type": "大额转账 / 巨鲸行为风险",
+          "count": 42
+        },
+        {
+          "gold_primary_risk_type": "大额转账 / 巨鲸行为风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 18
+        },
+        {
+          "gold_primary_risk_type": "宏观 / 政策冲击风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 12
+        },
+        {
+          "gold_primary_risk_type": "监管与法律风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 10
+        },
+        {
+          "gold_primary_risk_type": "无明显风险",
+          "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+          "count": 6
+        },
+        {
+          "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+          "rule_primary_risk_type": "大额转账 / 巨鲸行为风险",
+          "count": 5
+        },
+        {
+          "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 5
+        },
+        {
+          "gold_primary_risk_type": "项目治理 / 团队异常风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 4
+        },
+        {
+          "gold_primary_risk_type": "基础设施 / 协议层异常风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 4
+        }
+      ],
+      "suggestion": "重点检查这些类别之间的边界定义和主类别选取逻辑。",
+      "priority": "high"
+    },
+    {
+      "name": "top_false_positive_trigger_scores",
+      "category": "false_positive",
+      "description": "误报样本中最常被触发的风险分数列",
+      "evidence": [
+        {
+          "score_col": "score_regulatory",
+          "trigger_count": 79,
+          "mean_value": 0.2098,
+          "max_value": 0.8
+        },
+        {
+          "score_col": "score_volatility",
+          "trigger_count": 61,
+          "mean_value": 0.1975,
+          "max_value": 0.7461
+        },
+        {
+          "score_col": "score_whale",
+          "trigger_count": 42,
+          "mean_value": 0.1745,
+          "max_value": 0.75
+        },
+        {
+          "score_col": "score_hack",
+          "trigger_count": 13,
+          "mean_value": 0.0503,
+          "max_value": 0.98
+        },
+        {
+          "score_col": "score_liquidation",
+          "trigger_count": 10,
+          "mean_value": 0.0328,
+          "max_value": 0.85
+        },
+        {
+          "score_col": "score_fraud",
+          "trigger_count": 7,
+          "mean_value": 0.0275,
+          "max_value": 0.88
+        }
+      ],
+      "suggestion": "这些 scorer 很可能过于激进，建议优先收紧触发条件。",
+      "priority": "high"
+    },
+    {
+      "name": "false_negative_trigger_scores",
+      "category": "false_negative",
+      "description": "漏报样本中的风险分数列触发情况",
+      "evidence": [
+        {
+          "score_col": "score_hack",
+          "trigger_count": 10,
+          "mean_value": 0.2308,
+          "max_value": 0.3
+        },
+        {
+          "score_col": "score_whale",
+          "trigger_count": 1,
+          "mean_value": 0.0462,
+          "max_value": 0.35
+        },
+        {
+          "score_col": "score_fraud",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_regulatory",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_outage",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_stablecoin",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        }
+      ],
+      "suggestion": "若关键类别长期不触发，说明对应规则存在盲区。",
+      "priority": "medium"
+    },
+    {
+      "name": "top_score_diff_trigger_scores",
+      "category": "score_diff",
+      "description": "分数偏差最大的样本中，最常被触发的风险分数列",
+      "evidence": [
+        {
+          "score_col": "score_volatility",
+          "trigger_count": 50,
+          "mean_value": 0.1555,
+          "max_value": 0.7461
+        },
+        {
+          "score_col": "score_whale",
+          "trigger_count": 41,
+          "mean_value": 0.161,
+          "max_value": 0.75
+        },
+        {
+          "score_col": "score_liquidation",
+          "trigger_count": 33,
+          "mean_value": 0.1341,
+          "max_value": 0.85
+        },
+        {
+          "score_col": "score_hack",
+          "trigger_count": 27,
+          "mean_value": 0.0791,
+          "max_value": 0.98
+        },
+        {
+          "score_col": "score_regulatory",
+          "trigger_count": 27,
+          "mean_value": 0.0875,
+          "max_value": 0.8
+        },
+        {
+          "score_col": "score_fraud",
+          "trigger_count": 7,
+          "mean_value": 0.0258,
+          "max_value": 0.88
+        }
+      ],
+      "suggestion": "这些 scorer 的强度映射或阈值可能需要重新校准。",
+      "priority": "medium"
+    }
+  ],
+  "sample_cases": {
+    "false_positive": [
+      {
+        "news_id": "675",
+        "title": "nan",
+        "content": "巴基斯坦国家银行解除禁令，允许开设虚拟资产账户 巴基斯坦国家银行终止了 2018 年的禁令，允许银行为获得巴基斯坦虚拟资产监管局许可的实体开设隔离的、无息的巴基斯坦卢比账户。据 Foresight News 报道，银行必须进行尽职调查。",
+        "gold_risk_score": 10.0,
+        "rule_risk_score": 80.0,
+        "score_diff": 70.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "high",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "监管与法律风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "监管与法律风险|宏观 / 政策冲击风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_regulatory",
+            "value": 0.8
+          },
+          {
+            "score_col": "score_macro",
+            "value": 0.35
+          }
+        ]
+      },
+      {
+        "news_id": "235",
+        "title": "nan",
+        "content": "JENNER Meme 币不被视为证券，加州法官裁定 加州法官裁定，Caitlyn Jenner 的 JENNER Meme 币不属于证券。据 NS3 报道，此裁定是在 Lee Greenfield 提起的集体诉讼中做出的，Greenfield 声称他损失了超过 4 万美元。美国地方法官 Stanley Blumenfeld Jr. 表示，Greenfield 未能根据 Howey 测试合理指控存在共同企业。Blumenfeld 还表示...",
+        "gold_risk_score": 20.0,
+        "rule_risk_score": 80.0,
+        "score_diff": 60.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "high",
+        "gold_primary_risk_type": "监管与法律风险",
+        "rule_primary_risk_type": "监管与法律风险",
+        "gold_risk_types": "[\"监管与法律风险\"]",
+        "rule_risk_types": "监管与法律风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_regulatory",
+            "value": 0.8
+          }
+        ]
+      },
+      {
+        "news_id": "613",
+        "title": "nan",
+        "content": "特朗普：鲍威尔若不离职将被解雇 美国总统特朗普在接受福克斯商业频道采访时表示，如果美联储主席鲍威尔不及时离职，他将遭到解雇。据Odaily星球日报报道，特朗普补充说不会放弃司法部对鲍威尔的调查。特朗普强调：“如果他不按时离开，我就得解雇他。我一直忍着没解雇他。我想解雇他，但我讨厌引起争议。” 鲍威尔的美联储主席任期将于5月届满，但理事任期至2028年。鲍威尔表示，若继任者未在5月前确认，他将担任临时主席。特朗普盟友曾希望鲍威尔届时也辞去...",
+        "gold_risk_score": 20.0,
+        "rule_risk_score": 80.0,
+        "score_diff": 60.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "high",
+        "gold_primary_risk_type": "监管与法律风险",
+        "rule_primary_risk_type": "监管与法律风险",
+        "gold_risk_types": "[\"监管与法律风险\"]",
+        "rule_risk_types": "监管与法律风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_regulatory",
+            "value": 0.8
+          }
+        ]
+      },
+      {
+        "news_id": "220",
+        "title": "nan",
+        "content": "专家语录 | Arthur Hayes：90%净资产投资于比特币 Arthur Hayes表示，他的净资产中超过90%投资于比特币。据NS3报道，Hayes目前最看好Zcash和Hyperliquid。",
+        "gold_risk_score": 0.0,
+        "rule_risk_score": 67.0,
+        "score_diff": 67.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "medium",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "异常行情波动风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "异常行情波动风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_volatility",
+            "value": 0.6672
+          }
+        ]
+      },
+      {
+        "news_id": "6",
+        "title": "nan",
+        "content": "加密货币总市值逾2.53万亿美元，比特币占有率为59.3% 据CoinMarketCap显示，今日加密货币总市值25323.86亿美元，24小时交易量1328.71亿美元，其中BTC占有率达59.3%。",
+        "gold_risk_score": 0.0,
+        "rule_risk_score": 66.0,
+        "score_diff": 66.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "medium",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "异常行情波动风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "异常行情波动风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_volatility",
+            "value": 0.6586
+          }
+        ]
+      },
+      {
+        "news_id": "133",
+        "title": "nan",
+        "content": "加密货币总市值逾2.53万亿美元，比特币占有率为59.4% 据CoinMarketCap显示，今日加密货币总市值25300.10亿美元，24小时交易量1153.36亿美元，其中BTC占有率达59.4%。",
+        "gold_risk_score": 0.0,
+        "rule_risk_score": 66.0,
+        "score_diff": 66.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "medium",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "异常行情波动风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "异常行情波动风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_volatility",
+            "value": 0.6589
+          }
+        ]
+      },
+      {
+        "news_id": "820",
+        "title": "nan",
+        "content": "股票市场 | 闪迪将纳入纳斯达克 100 指数，股价创历史新高 BlockBeats 消息，4 月 14 日，上周五纳斯达克宣布闪迪（SNDK）将于 2026 年 4 月 20 日开盘前正式纳入纳斯达克 100 指数成分股。 据 BlockBeats 报道，受此消息影响，SNDK 股价在周一盘中及今日夜盘累计上涨超 14%，创历史新高。Hyperliquid 平台 SNDK 合约24小时涨幅达 13.8%。 据 Hyperinsight...",
+        "gold_risk_score": 0.0,
+        "rule_risk_score": 75.0,
+        "score_diff": 75.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "high",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "大额转账 / 巨鲸行为风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "大额转账 / 巨鲸行为风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_whale",
+            "value": 0.7468
+          }
+        ]
+      },
+      {
+        "news_id": "670",
+        "title": "nan",
+        "content": "摩根士丹利相关ETF购入8360万美元BTC 据Odaily星球日报报道，Arkham监测显示，摩根士丹利相关的MSBT ETF自本周成立以来已购入8360万美元BTC。目前，其链上地址持有约6440万美元BTC。",
+        "gold_risk_score": 5.0,
+        "rule_risk_score": 75.0,
+        "score_diff": 70.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "high",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "大额转账 / 巨鲸行为风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "大额转账 / 巨鲸行为风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_whale",
+            "value": 0.75
+          }
+        ]
+      },
+      {
+        "news_id": "268",
+        "title": "nan",
+        "content": "黄立成地址持有多单浮盈超286万美元 据 BlockBeats 报道，Hyperinsight 监测显示，「麻吉」黄立成地址内持有的多单累计浮盈超 286 万美元。其中，以太坊多单浮盈超 205 万美元，持仓规模为 1.2 万枚 ETH。 账户历史亏损收窄至 2637 万美元。",
+        "gold_risk_score": 10.0,
+        "rule_risk_score": 75.0,
+        "score_diff": 65.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "high",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "大额转账 / 巨鲸行为风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "大额转账 / 巨鲸行为风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_whale",
+            "value": 0.75
+          }
+        ]
+      },
+      {
+        "news_id": "424",
+        "title": "nan",
+        "content": "以太坊基金会完成 ETH Rangers 计划，追回超 580 万美元 以太坊基金会联合 Secureum、The Red Guild 及 Security Alliance（SEAL）发起的 ETH Rangers 计划已完成六个月运行。据 BlockBeats 报道，17 名资助获得者的阶段性成果正式公布。 综合成果包括协助追回或冻结资金超 580 万美元，记录和报告漏洞、客户端缺陷及概念验证（PoC）超过 785 个，识别约 10...",
+        "gold_risk_score": 15.0,
+        "rule_risk_score": 98.0,
+        "score_diff": 83.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "high",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "链上漏洞 / 攻击风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_hack",
+            "value": 0.98
+          }
+        ]
+      },
+      {
+        "news_id": "904",
+        "title": "nan",
+        "content": "Circle CEO：USDC 不太可能用于霍尔木兹海峡的伊朗相关通行费 Circle CEO Jeremy Allaire 表示，由于受制裁的行为面临资产冻结的高风险，USDC 极不可能用于霍尔木兹海峡的伊朗相关通行费。据 NS3 报道，Allaire 还指出，Circle 只能在执法部门或法院的指示下冻结钱包，此前因 Drift Protocol 价值 2.85 亿美元的漏洞遭到批评。此外，Allaire 表示 Circle 不计划...",
+        "gold_risk_score": 15.0,
+        "rule_risk_score": 98.0,
+        "score_diff": 83.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "high",
+        "gold_primary_risk_type": "监管与法律风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "gold_risk_types": "[\"监管与法律风险\"]",
+        "rule_risk_types": "链上漏洞 / 攻击风险|监管与法律风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_hack",
+            "value": 0.98
+          },
+          {
+            "score_col": "score_regulatory",
+            "value": 0.8
+          }
+        ]
+      },
+      {
+        "news_id": "497",
+        "title": "nan",
+        "content": "Blockstream CEO建议比特币进行量子抗性升级 Blockstream CEO在巴黎区块链周上表示，比特币应立即进行量子抗性升级。据CoinDesk报道，此前一天，Jameson Lopp建议冻结易受攻击的币种。",
+        "gold_risk_score": 10.0,
+        "rule_risk_score": 90.0,
+        "score_diff": 80.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "high",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "链上漏洞 / 攻击风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_hack",
+            "value": 0.9
+          }
+        ]
+      }
+    ],
+    "false_negative": [
+      {
+        "news_id": "444",
+        "title": "nan",
+        "content": "Drift将重启为基于USDT的Solana永续合约DEX Drift将利用资金恢复用户资金。据CoinDesk报道，本月客户资产超过2.7亿美元被利用。该协议将重启为基于USDT的Solana永续合约DEX。",
+        "gold_risk_score": 80.0,
+        "rule_risk_score": 0.0,
+        "score_diff": 80.0,
+        "gold_risk_label": "high",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "无明显风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\", \"偿付能力 / 储备 / 流动性风险\"]",
+        "rule_risk_types": "nan",
+        "top_triggered_scores": []
+      },
+      {
+        "news_id": "899",
+        "title": "nan",
+        "content": "AI趋势 | LLM路由器被曝安全漏洞，窃取加密货币 研究人员表示，26个LLM路由器被发现注入恶意工具调用并窃取凭证。据NS3报道，其中一起案件导致一个价值50万美元的钱包被盗。研究指出，这些中介服务可以读取和更改用户与AI模型之间的流量，随着行业领导者推动AI代理进行加密货币支付，这一安全漏洞引发关注。",
+        "gold_risk_score": 75.0,
+        "rule_risk_score": 0.0,
+        "score_diff": 75.0,
+        "gold_risk_label": "high",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "无明显风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\", \"诈骗 / 跑路 / Rug Pull 风险\"]",
+        "rule_risk_types": "nan",
+        "top_triggered_scores": []
+      },
+      {
+        "news_id": "238",
+        "title": "nan",
+        "content": "Rhea Finance 遭遇漏洞攻击，损失超 1840 万美元 Rhea Finance 表示，周四的一次漏洞攻击导致其借贷协议损失约 1840 万美元，高于最初估计的 760 万美元。据 NS3 报道，周五的事后分析显示，攻击者利用协议的保证金交易功能，通过精心设计的交换路径进行攻击。Rhea Finance 表示，部分资金已被追回或冻结，其中包括约 434 万 USDT 被冻结。",
+        "gold_risk_score": 85.0,
+        "rule_risk_score": 30.0,
+        "score_diff": 55.0,
+        "gold_risk_label": "high",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\", \"偿付能力 / 储备 / 流动性风险\"]",
+        "rule_risk_types": "链上漏洞 / 攻击风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_hack",
+            "value": 0.3
+          }
+        ]
+      },
+      {
+        "news_id": "426",
+        "title": "nan",
+        "content": "Hyperbridge 桥接漏洞损失估计提高至 250 万美元 Hyperbridge 将其 Polkadot 桥接漏洞的损失估计从最初的 23.7 万美元提高到 250 万美元。据 NS3 报道，Hyperbridge 表示，最初认为盗窃仅限于 Ethereum 桥接，但 Base、BNB Chain 和 Arbitrum 上的激励池也受到影响。",
+        "gold_risk_score": 85.0,
+        "rule_risk_score": 30.0,
+        "score_diff": 55.0,
+        "gold_risk_label": "high",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\", \"基础设施 / 协议层异常风险\"]",
+        "rule_risk_types": "链上漏洞 / 攻击风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_hack",
+            "value": 0.3
+          }
+        ]
+      },
+      {
+        "news_id": "674",
+        "title": "nan",
+        "content": "Bridged Polkadot 攻击者转移资金至 Tornado Cash 据Odaily星球日报报道，Arkham 在 X 平台发文称，Bridged Polkadot 攻击者已将所有资金转移至 Tornado Cash，涉及金额 26.9 万美元。",
+        "gold_risk_score": 85.0,
+        "rule_risk_score": 30.0,
+        "score_diff": 55.0,
+        "gold_risk_label": "high",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\", \"诈骗 / 跑路 / Rug Pull 风险\"]",
+        "rule_risk_types": "链上漏洞 / 攻击风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_hack",
+            "value": 0.3
+          }
+        ]
+      },
+      {
+        "news_id": "440",
+        "title": "nan",
+        "content": "Drift 获得 Tether 1.275 亿美元补偿用户 Drift 在本月早些时候遭遇约 3.5 亿美元的黑客损失后，获得了 Tether 提供的 1.275 亿美元资金以补偿用户。据 NS3 报道，这笔资金将用于弥补用户因黑客攻击而遭受的损失。",
+        "gold_risk_score": 80.0,
+        "rule_risk_score": 30.0,
+        "score_diff": 50.0,
+        "gold_risk_label": "high",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\", \"偿付能力 / 储备 / 流动性风险\"]",
+        "rule_risk_types": "链上漏洞 / 攻击风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_hack",
+            "value": 0.3
+          }
+        ]
+      },
+      {
+        "news_id": "12",
+        "title": "nan",
+        "content": "KelpDAO 黑客攻击影响稳定币市场 KelpDAO 在周六遭遇黑客攻击后，其余波正在影响稳定币市场。据CoinDesk报道，这次攻击的影响并未立即显现，但正在逐渐扩散。",
+        "gold_risk_score": 75.0,
+        "rule_risk_score": 30.0,
+        "score_diff": 45.0,
+        "gold_risk_label": "high",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\", \"稳定币异常风险\"]",
+        "rule_risk_types": "链上漏洞 / 攻击风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_hack",
+            "value": 0.3
+          }
+        ]
+      },
+      {
+        "news_id": "54",
+        "title": "nan",
+        "content": "以太坊合约疑似遭攻击，损失约 25.7 万美元 据 Foresight News 报道，TenArmor 监测发现以太坊上某合约疑似遭受攻击，损失约 25.7 万美元。该合约中的 uniswapV3SwapCallback 函数似乎缺少适当的访问控制。",
+        "gold_risk_score": 75.0,
+        "rule_risk_score": 30.0,
+        "score_diff": 45.0,
+        "gold_risk_label": "high",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\"]",
+        "rule_risk_types": "链上漏洞 / 攻击风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_hack",
+            "value": 0.3
+          }
+        ]
+      },
+      {
+        "news_id": "153",
+        "title": "nan",
+        "content": "KelpDAO 黑客事件导致 Aave TVL 下降 16.78% 据 BlockBeats 报道，4 月 19 日，Defillama 数据显示，KelpDAO 黑客从 Aave 借出大量 ETH。大量鲸鱼出于避险目的从 Aave 提取资金。 受此影响，Aave 的 TVL 跌至 219.66 亿美元，较昨日下降 16.78%。",
+        "gold_risk_score": 75.0,
+        "rule_risk_score": 30.0,
+        "score_diff": 45.0,
+        "gold_risk_label": "high",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\", \"偿付能力 / 储备 / 流动性风险\"]",
+        "rule_risk_types": "链上漏洞 / 攻击风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_hack",
+            "value": 0.3
+          }
+        ]
+      },
+      {
+        "news_id": "418",
+        "title": "nan",
+        "content": "Drift Protocol计划重启，因黑客攻击损失2.85亿美元后获1.5亿美元融资 去中心化金融平台Drift Protocol本月早些时候遭遇黑客攻击，损失约2.85亿美元用户加密货币。据Bloomberg报道，该平台计划重启，并已从以稳定币发行商Tether Holdings SA为首的财团获得约1.5亿美元融资。",
+        "gold_risk_score": 75.0,
+        "rule_risk_score": 30.0,
+        "score_diff": 45.0,
+        "gold_risk_label": "high",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\", \"偿付能力 / 储备 / 流动性风险\"]",
+        "rule_risk_types": "链上漏洞 / 攻击风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_hack",
+            "value": 0.3
+          }
+        ]
+      },
+      {
+        "news_id": "933",
+        "title": "nan",
+        "content": "以太坊合约遭攻击，损失约 24.2 万美元 据 Foresight News 报道，BlockSec 监测发现，以太坊上的 Hyperbridge HandlerV1 合约遭遇 MMR 证明重放攻击，损失约 24.2 万美元。此漏洞允许攻击者重放先前被接受的证明，并与新请求配对，实现特权操作以牟利。在 HandlerV1 中，重放保护仅验证请求承诺之前未被使用，但证明验证过程未将请求负载绑定到已验证的证明。这种脱节使得有效的历史证明可以...",
+        "gold_risk_score": 75.0,
+        "rule_risk_score": 30.0,
+        "score_diff": 45.0,
+        "gold_risk_label": "high",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\"]",
+        "rule_risk_types": "链上漏洞 / 攻击风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_hack",
+            "value": 0.3
+          }
+        ]
+      },
+      {
+        "news_id": "687",
+        "title": "nan",
+        "content": "Zerion 遭遇 AI 社会工程攻击，内部热钱包被盗 10 万美元 Foresight News 消息，Web3 钱包应用 Zerion 披露上周一名团队成员遭遇与朝鲜威胁行为者相关的 AI 社会工程攻击，导致公司内部热钱包约 10 万美元资金被盗。据 Foresight News 报道，用户资金及应用基础设施均未受影响。 事件发生后，Zerion 已主动下线 Web 应用并预计在 48 小时内恢复，同时轮换所有泄露凭证、锁定部署基础...",
+        "gold_risk_score": 75.0,
+        "rule_risk_score": 35.0,
+        "score_diff": 40.0,
+        "gold_risk_label": "high",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "大额转账 / 巨鲸行为风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\", \"诈骗 / 跑路 / Rug Pull 风险\"]",
+        "rule_risk_types": "大额转账 / 巨鲸行为风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_whale",
+            "value": 0.35
+          }
+        ]
+      }
+    ],
+    "type_mismatch": [
+      {
+        "news_id": "2",
+        "title": "nan",
+        "content": "Bitcoin价格波动引发市场关注 Bitcoin价格经历50%的下滑后部分回升，交易员密切关注拉斯维加斯事件是否标志着Bitcoin的另一个短期高点。据CoinDesk报道，市场对Bitcoin的未来走势充满期待。",
+        "gold_risk_score": 35.0,
+        "rule_risk_score": 0.0,
+        "score_diff": 35.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "异常行情波动风险",
+        "rule_primary_risk_type": "无明显风险",
+        "gold_risk_types": "[\"异常行情波动风险\"]",
+        "rule_risk_types": "nan",
+        "top_triggered_scores": []
+      },
+      {
+        "news_id": "332",
+        "title": "nan",
+        "content": "Meme 币市值短时突破 2000 万美元 ETH 链上的 Meme 币 ASTEROID 市值短时突破 2000 万美元，现报 1920 万美元。据 Odaily 星球日报报道，Meme 币价格波动较大，投资者需注意风险。Meme 币普遍缺乏实际应用场景，更多依赖情绪炒作，入场需谨慎。",
+        "gold_risk_score": 35.0,
+        "rule_risk_score": 0.0,
+        "score_diff": 35.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "异常行情波动风险",
+        "rule_primary_risk_type": "无明显风险",
+        "gold_risk_types": "[\"异常行情波动风险\"]",
+        "rule_risk_types": "nan",
+        "top_triggered_scores": []
+      },
+      {
+        "news_id": "340",
+        "title": "nan",
+        "content": "Bitcoin价格回升至75000美元以上面临信任危机 Bitcoin价格回升至75000美元以上，但市场信任度不足。据Bloomberg报道，持有最大杠杆的交易者对此持怀疑态度，认为市场缺乏足够的支撑。",
+        "gold_risk_score": 35.0,
+        "rule_risk_score": 0.0,
+        "score_diff": 35.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "异常行情波动风险",
+        "rule_primary_risk_type": "无明显风险",
+        "gold_risk_types": "[\"异常行情波动风险\"]",
+        "rule_risk_types": "nan",
+        "top_triggered_scores": []
+      },
+      {
+        "news_id": "102",
+        "title": "nan",
+        "content": "Nayib Bukele 支持率达 94%，安全政策获认可 萨尔瓦多总统 Nayib Bukele 在一项26位领导人支持率排名中以94%的支持率位居榜首。据 NS3 报道，民调显示，Bukele 的高支持率更多源于其在安全方面的成就，而非其 Bitcoin 政策。萨尔瓦多目前每天购买约 1 枚 BTC。",
+        "gold_risk_score": 0.0,
+        "rule_risk_score": 35.0,
+        "score_diff": 35.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "监管与法律风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "监管与法律风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_regulatory",
+            "value": 0.35
+          }
+        ]
+      },
+      {
+        "news_id": "296",
+        "title": "nan",
+        "content": "链上 Perp DEX 市场交易量回落，Hyperliquid 下降 16% BlockBeats 消息，4 月 17 日，据 DefiLlama 数据，链上 Perp DEX 市场整体交易量普遍回落。 据 BlockBeats链上侦探报道，Hyperliquid 交易量较昨日下降约 16%；TradeXYZ 本周交易量较低，已回落至 3 月初水平。Aster 目前位居交易量第二。 当前主要 Perp DEX 交易量排名如下：Hyper...",
+        "gold_risk_score": 10.0,
+        "rule_risk_score": 36.0,
+        "score_diff": 26.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "异常行情波动风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "异常行情波动风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_volatility",
+            "value": 0.3631
+          }
+        ]
+      },
+      {
+        "news_id": "830",
+        "title": "nan",
+        "content": "Flare 治理提案 FIP.16 将开启投票，目标实现 FLR 代币潜在通缩 据 Foresight News 报道，XRP 生态 DeFi 项目 Flare 的治理提案 FIP.16 将于 4 月 17 日开启投票。提案旨在通过降低通胀、建立收入再投资机制及提升质押激励，实现 FLR 代币从通胀向潜在通缩的转变。 提案内容包括将年通胀率从 5% 降至 3%，成立 Flare Income Reinvestment Entity（FI...",
+        "gold_risk_score": 10.0,
+        "rule_risk_score": 36.0,
+        "score_diff": 26.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "异常行情波动风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "异常行情波动风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_volatility",
+            "value": 0.3614
+          }
+        ]
+      },
+      {
+        "news_id": "482",
+        "title": "nan",
+        "content": "加密货币大户在关键平衡区附近准备出售 据CoinDesk报道，宏观驱动的ETF资金流入推动了价格上涨，但CryptoQuant数据显示，大型持有者正在关键平衡区附近准备出售。",
+        "gold_risk_score": 35.0,
+        "rule_risk_score": 0.0,
+        "score_diff": 35.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "大额转账 / 巨鲸行为风险",
+        "rule_primary_risk_type": "无明显风险",
+        "gold_risk_types": "[\"大额转账 / 巨鲸行为风险\"]",
+        "rule_risk_types": "nan",
+        "top_triggered_scores": []
+      },
+      {
+        "news_id": "645",
+        "title": "nan",
+        "content": "中本聪时代比特币 OG 转移 1000 枚 BTC，或准备出售 据 Onchain Lens 监测，中本聪时代的一位比特币 OG 将价值 7403 万美元的 1000 枚 BTC 转移至 2 个新建钱包，可能准备出售。据 Odaily星球日报报道，该钱包目前仍持有 1833 枚 BTC，价值 1.356 亿美元。",
+        "gold_risk_score": 35.0,
+        "rule_risk_score": 0.0,
+        "score_diff": 35.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "大额转账 / 巨鲸行为风险",
+        "rule_primary_risk_type": "无明显风险",
+        "gold_risk_types": "[\"大额转账 / 巨鲸行为风险\"]",
+        "rule_risk_types": "nan",
+        "top_triggered_scores": []
+      },
+      {
+        "news_id": "841",
+        "title": "nan",
+        "content": "Intuition 创始人抛售 ETH，近乎清仓 据 Foresight News 报道，Intuition 创始人 billΞ.eth 于 1 小时前在短时高点 2372.24 美元抛售 3285 枚 ETH。自 3 月 8 日以来，他累计卖出 8771 枚 ETH，平均卖出价格为 2182 美元，现已近乎清仓。",
+        "gold_risk_score": 35.0,
+        "rule_risk_score": 0.0,
+        "score_diff": 35.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "大额转账 / 巨鲸行为风险",
+        "rule_primary_risk_type": "无明显风险",
+        "gold_risk_types": "[\"大额转账 / 巨鲸行为风险\"]",
+        "rule_risk_types": "nan",
+        "top_triggered_scores": []
+      },
+      {
+        "news_id": "56",
+        "title": "nan",
+        "content": "资产代币化平台 BRIX 推迟上线，因 DeFi 安全事件 Foresight News 消息，资产代币化平台 BRIX 将推迟至 4 月 23 日上线。据 Foresight News 报道，官方表示，由于 DeFi 领域近期发生安全事件，不希望在生态系统处于不安状态下发布。BRIX 将与所有集成合作伙伴核对并检查设置。此前消息，Brix 曾于 4 月 15 日完成 550 万美元融资，Yapi Kredi 的风险投资部门 FRWRD...",
+        "gold_risk_score": 35.0,
+        "rule_risk_score": 0.0,
+        "score_diff": 35.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "无明显风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\", \"项目治理 / 团队异常风险\"]",
+        "rule_risk_types": "nan",
+        "top_triggered_scores": []
+      },
+      {
+        "news_id": "948",
+        "title": "nan",
+        "content": "AI趋势 | 加州大学研究发现第三方LLM路由器存在恶意行为 加州大学的研究人员发现，26个第三方LLM路由器存在恶意行为，可能会在AI代理流量中注入代码或窃取凭证。据NS3报道，研究人员指出，其中一个路由器从一个诱饵钱包中抽走了Ether，但报告的损失低于50美元。研究论文警告称，开发者在使用AI编码代理进行智能合约或钱包开发时，若请求通过未筛选的路由器，可能会暴露私钥或种子短语。",
+        "gold_risk_score": 35.0,
+        "rule_risk_score": 0.0,
+        "score_diff": 35.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "无明显风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\"]",
+        "rule_risk_types": "nan",
+        "top_triggered_scores": []
+      },
+      {
+        "news_id": "246",
+        "title": "nan",
+        "content": "AI趋势 | GPT-5.4与Claude Opus 4.6再现漏洞发现能力 Vidoc Security表示，GPT-5.4和Claude Opus 4.6以每个文件低于30美元的成本再现了Anthropic风格的漏洞发现结果。据NS3报道，研究表明，这两个模型在所有三次运行中再现了两个漏洞案例，暗示漏洞发现已经变得廉价且广泛可及。",
+        "gold_risk_score": 20.0,
+        "rule_risk_score": 0.0,
+        "score_diff": 20.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "无明显风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\"]",
+        "rule_risk_types": "nan",
+        "top_triggered_scores": []
+      }
+    ],
+    "score_diff": [
+      {
+        "news_id": "220",
+        "title": "nan",
+        "content": "专家语录 | Arthur Hayes：90%净资产投资于比特币 Arthur Hayes表示，他的净资产中超过90%投资于比特币。据NS3报道，Hayes目前最看好Zcash和Hyperliquid。",
+        "gold_risk_score": 0.0,
+        "rule_risk_score": 67.0,
+        "score_diff": 67.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "medium",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "异常行情波动风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "异常行情波动风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_volatility",
+            "value": 0.6672
+          }
+        ]
+      },
+      {
+        "news_id": "306",
+        "title": "nan",
+        "content": "加密货币总市值逾2.57万亿美元，比特币占有率为59.1% 据CoinMarketCap显示，今日加密货币总市值25685.40亿美元，24小时交易量1556.00亿美元，其中BTC占有率达59.1%。",
+        "gold_risk_score": 0.0,
+        "rule_risk_score": 66.0,
+        "score_diff": 66.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "medium",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "异常行情波动风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "异常行情波动风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_volatility",
+            "value": 0.658
+          }
+        ]
+      },
+      {
+        "news_id": "6",
+        "title": "nan",
+        "content": "加密货币总市值逾2.53万亿美元，比特币占有率为59.3% 据CoinMarketCap显示，今日加密货币总市值25323.86亿美元，24小时交易量1328.71亿美元，其中BTC占有率达59.3%。",
+        "gold_risk_score": 0.0,
+        "rule_risk_score": 66.0,
+        "score_diff": 66.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "medium",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "异常行情波动风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "异常行情波动风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_volatility",
+            "value": 0.6586
+          }
+        ]
+      },
+      {
+        "news_id": "820",
+        "title": "nan",
+        "content": "股票市场 | 闪迪将纳入纳斯达克 100 指数，股价创历史新高 BlockBeats 消息，4 月 14 日，上周五纳斯达克宣布闪迪（SNDK）将于 2026 年 4 月 20 日开盘前正式纳入纳斯达克 100 指数成分股。 据 BlockBeats 报道，受此消息影响，SNDK 股价在周一盘中及今日夜盘累计上涨超 14%，创历史新高。Hyperliquid 平台 SNDK 合约24小时涨幅达 13.8%。 据 Hyperinsight...",
+        "gold_risk_score": 0.0,
+        "rule_risk_score": 75.0,
+        "score_diff": 75.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "high",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "大额转账 / 巨鲸行为风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "大额转账 / 巨鲸行为风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_whale",
+            "value": 0.7468
+          }
+        ]
+      },
+      {
+        "news_id": "670",
+        "title": "nan",
+        "content": "摩根士丹利相关ETF购入8360万美元BTC 据Odaily星球日报报道，Arkham监测显示，摩根士丹利相关的MSBT ETF自本周成立以来已购入8360万美元BTC。目前，其链上地址持有约6440万美元BTC。",
+        "gold_risk_score": 5.0,
+        "rule_risk_score": 75.0,
+        "score_diff": 70.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "high",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "大额转账 / 巨鲸行为风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "大额转账 / 巨鲸行为风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_whale",
+            "value": 0.75
+          }
+        ]
+      },
+      {
+        "news_id": "730",
+        "title": "nan",
+        "content": "Figure 和 Hastra 扩展去中心化金融平台，增加汽车贷款 据 Cointelegraph 报道，Figure 和 Hastra 正在其代币化信贷平台上增加汽车贷款，扩展去中心化金融（DeFi）投资者可用的现实世界资产类型。 Democratized Prime 是 Figure Markets 上的去中心化借贷市场，计划在链上发行、交易和资助不同类型的消费者信贷。Figure CEO Michael Tannenbaum 表示...",
+        "gold_risk_score": 10.0,
+        "rule_risk_score": 75.0,
+        "score_diff": 65.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "high",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "大额转账 / 巨鲸行为风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "大额转账 / 巨鲸行为风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_whale",
+            "value": 0.75
+          }
+        ]
+      },
+      {
+        "news_id": "444",
+        "title": "nan",
+        "content": "Drift将重启为基于USDT的Solana永续合约DEX Drift将利用资金恢复用户资金。据CoinDesk报道，本月客户资产超过2.7亿美元被利用。该协议将重启为基于USDT的Solana永续合约DEX。",
+        "gold_risk_score": 80.0,
+        "rule_risk_score": 0.0,
+        "score_diff": 80.0,
+        "gold_risk_label": "high",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "无明显风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\", \"偿付能力 / 储备 / 流动性风险\"]",
+        "rule_risk_types": "nan",
+        "top_triggered_scores": []
+      },
+      {
+        "news_id": "899",
+        "title": "nan",
+        "content": "AI趋势 | LLM路由器被曝安全漏洞，窃取加密货币 研究人员表示，26个LLM路由器被发现注入恶意工具调用并窃取凭证。据NS3报道，其中一起案件导致一个价值50万美元的钱包被盗。研究指出，这些中介服务可以读取和更改用户与AI模型之间的流量，随着行业领导者推动AI代理进行加密货币支付，这一安全漏洞引发关注。",
+        "gold_risk_score": 75.0,
+        "rule_risk_score": 0.0,
+        "score_diff": 75.0,
+        "gold_risk_label": "high",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "无明显风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\", \"诈骗 / 跑路 / Rug Pull 风险\"]",
+        "rule_risk_types": "nan",
+        "top_triggered_scores": []
+      },
+      {
+        "news_id": "76",
+        "title": "nan",
+        "content": "地缘政治 | 比特币回落至7.5万美元，市场遭多重冲击 Kelp DAO因rsETH可疑活动暂停合约并启动调查。据PANews报道，Lido暂停earnETH存款。ZachXBT揭露RAVE代币操纵导致散户巨亏。地缘紧张与多起安全事件冲击市场，比特币回落至7.5万美元，DeFi协议出现大规模资金外流。",
+        "gold_risk_score": 65.0,
+        "rule_risk_score": 0.0,
+        "score_diff": 65.0,
+        "gold_risk_label": "medium",
+        "rule_risk_label": "low",
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "无明显风险",
+        "gold_risk_types": "[\"链上漏洞 / 攻击风险\", \"诈骗 / 跑路 / Rug Pull 风险\", \"异常行情波动风险\", \"基础设施 / 协议层异常风险\"]",
+        "rule_risk_types": "nan",
+        "top_triggered_scores": []
+      },
+      {
+        "news_id": "87",
+        "title": "nan",
+        "content": "DeFi 协议 Fluid 推出 aWETH 赎回协议以降低清算风险 DeFi 协议 Fluid 官方宣布推出 aWETH 赎回协议。由于 Aave 平台上的 ETH 使用率已达 100%，许多借贷者无法提取资金，市场波动时风险增加。据 BlockBeats 报道，aWETH 赎回协议允许 ETH 借贷者赎回为 wstETH 或 weETH，立即恢复流动性，降低清算风险。用户仅借出 ETH 可完全赎回，若有抵押品和其他债务，抵押品将转换...",
+        "gold_risk_score": 15.0,
+        "rule_risk_score": 85.0,
+        "score_diff": 70.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "high",
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "爆仓 / 清算风险",
+        "gold_risk_types": "[]",
+        "rule_risk_types": "爆仓 / 清算风险|异常行情波动风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_liquidation",
+            "value": 0.85
+          },
+          {
+            "score_col": "score_volatility",
+            "value": 0.6765
+          }
+        ]
+      },
+      {
+        "news_id": "563",
+        "title": "nan",
+        "content": "英国资产管理公司推出区块链代币化流动性基金 据 Cointelegraph 报道，伦敦的Legal & General Asset Management通过Calastone的区块链分销网络推出代币化流动性基金，投资者可通过数字基础设施访问和转移基金份额。代币化份额允许授权用户在受监管环境中购买、持有和转移，而传统份额仍通过现有渠道提供。 这些基金以美元、欧元和英镑计价，管理资产超过500亿英镑，旨在资本保值和当日流动性，投资于高质量短...",
+        "gold_risk_score": 25.0,
+        "rule_risk_score": 85.0,
+        "score_diff": 60.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "high",
+        "gold_primary_risk_type": "监管与法律风险",
+        "rule_primary_risk_type": "爆仓 / 清算风险",
+        "gold_risk_types": "[\"监管与法律风险\"]",
+        "rule_risk_types": "监管与法律风险|爆仓 / 清算风险|大额转账 / 巨鲸行为风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_liquidation",
+            "value": 0.85
+          },
+          {
+            "score_col": "score_whale",
+            "value": 0.75
+          },
+          {
+            "score_col": "score_regulatory",
+            "value": 0.45
+          }
+        ]
+      },
+      {
+        "news_id": "350",
+        "title": "nan",
+        "content": "Hyperliquid 上地址 0x20b 建仓百万美元级 WTI 原油多单 据 BlockBeats 报道，Hyperinsight 监测显示，地址 0x20b 最近在 Hyperliquid 上建仓百万美元级 WTI 原油多单。该地址使用 20 倍杠杆，WTIOIL 多单规模达 236 万美元，均价 89.6 美元，清算价 85.75 美元。 此外，该地址在加仓原油的同时，平仓了小额 BTC 多单，并将资金加仓至 HYPE 多单，当...",
+        "gold_risk_score": 25.0,
+        "rule_risk_score": 82.0,
+        "score_diff": 57.0,
+        "gold_risk_label": "low",
+        "rule_risk_label": "high",
+        "gold_primary_risk_type": "爆仓 / 清算风险",
+        "rule_primary_risk_type": "爆仓 / 清算风险",
+        "gold_risk_types": "[\"爆仓 / 清算风险\"]",
+        "rule_risk_types": "爆仓 / 清算风险|大额转账 / 巨鲸行为风险",
+        "top_triggered_scores": [
+          {
+            "score_col": "score_liquidation",
+            "value": 0.8166
+          },
+          {
+            "score_col": "score_whale",
+            "value": 0.7325
+          }
+        ]
+      }
+    ]
+  }
+}
