@@ -1,2 +1,12 @@
 .env
 .vscode
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local data and generated run artifacts
+raw_*.csv
+data/input/
+versions/v*/reports/
