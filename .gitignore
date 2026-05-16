@@ -9,4 +9,4 @@ __pycache__/
 # Local data and generated run artifacts
 raw_*.csv
 data/input/
-versions/v*/reports/
+versions/v*/
