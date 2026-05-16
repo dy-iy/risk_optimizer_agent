@@ -144,11 +144,11 @@ def merge_gold_and_predictions(
 if __name__ == "__main__":
     project_root = resolve_project_root()
 
-    version_dir = project_root / "versions" / "v1"
+    version_dir = project_root / "versions" / "v20"
     gold_csv = project_root / "data" / "gold" / "cleared_news_v2_deepseek_1000_labeled.csv"
-    pred_csv = version_dir / "reports" / "predictions" / "risk_labeler_v1_output.csv"
-    merged_csv = version_dir / "reports" / "merged" / "risk_labeler_v1_merged.csv"
-    log_json = version_dir / "reports" / "merged" / "risk_labeler_v1_merge_log.json"
+    pred_csv = version_dir / "reports" / "predictions" / "risk_labeler_v20_output.csv"
+    merged_csv = version_dir / "reports" / "merged" / "risk_labeler_v20_merged.csv"
+    log_json = version_dir / "reports" / "merged" / "risk_labeler_v20_merge_log.json"
 
     result = merge_gold_and_predictions(
         gold_csv=gold_csv,

@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "script_path": "D:\\risk_optimizer_agent\\versions\\v18\\scripts\\risk_labeler_v18.py",
+  "input_csv": "D:\\risk_optimizer_agent\\data\\input\\raw_1000_news.csv",
+  "output_csv": "D:\\risk_optimizer_agent\\versions\\v18\\reports\\predictions\\risk_labeler_v18_output.csv",
+  "return_code": 0,
+  "stdout": "Saved: D:\\risk_optimizer_agent\\versions\\v18\\reports\\predictions\\risk_labeler_v18_output.csv\n\n总分分布：\ncount    1000.000000\nmean       14.359000\nstd        24.280685\nmin         0.000000\n25%         0.000000\n50%         0.000000\n75%        20.000000\nmax        90.000000\nName: risk, dtype: float64\n\n风险等级分布：\nrule_label\nlow       858\nhigh       71\nmedium     71\nName: count, dtype: int64\n\n主风险类别分布：\nrule_primary_type\n无明显风险                    647\n链上漏洞 / 攻击风险              106\n监管与法律风险                   83\n宏观 / 政策冲击风险               39\n爆仓 / 清算风险                 37\n大额转账 / 巨鲸行为风险             28\n诈骗 / 跑路 / Rug Pull 风险     17\n异常行情波动风险                  17\n偿付能力 / 储备 / 流动性风险         15\n交易所与系统运维风险                 5\n项目治理 / 团队异常风险              4\n基础设施 / 协议层异常风险             1\n稳定币异常风险                    1\nName: count, dtype: int64\n",
+  "stderr": "",
+  "error_message": ""
+}

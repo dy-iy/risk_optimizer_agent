@@ -252,10 +252,10 @@ def evaluate_merged_file(
 if __name__ == "__main__":
     project_root = resolve_project_root()
 
-    version_dir = project_root / "versions" / "v1"
-    merged_csv = version_dir / "reports" / "merged" / "risk_labeler_v1_merged.csv"
-    eval_json = version_dir / "reports" / "evals" / "risk_labeler_v1_eval.json"
-    details_json = version_dir / "reports" / "evals" / "risk_labeler_v1_eval_details.json"
+    version_dir = project_root / "versions" / "v20"
+    merged_csv = version_dir / "reports" / "merged" / "risk_labeler_v20_merged.csv"
+    eval_json = version_dir / "reports" / "evals" / "risk_labeler_v20_eval.json"
+    details_json = version_dir / "reports" / "evals" / "risk_labeler_v20_eval_details.json"
 
     result = evaluate_merged_file(
         merged_csv=merged_csv,

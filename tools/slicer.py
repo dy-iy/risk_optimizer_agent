@@ -251,13 +251,13 @@ def slice_errors(
 if __name__ == "__main__":
     project_root = resolve_project_root()
 
-    version_dir = project_root / "versions" / "v1"
-    merged_csv = version_dir / "reports" / "merged" / "risk_labeler_v1_merged.csv"
-    false_positive_csv = version_dir / "reports" / "errors" / "risk_labeler_v1_false_positive.csv"
-    false_negative_csv = version_dir / "reports" / "errors" / "risk_labeler_v1_false_negative.csv"
-    type_mismatch_csv = version_dir / "reports" / "errors" / "risk_labeler_v1_type_mismatch.csv"
-    score_diff_top_csv = version_dir / "reports" / "errors" / "risk_labeler_v1_score_diff_top.csv"
-    log_json = version_dir / "reports" / "errors" / "risk_labeler_v1_slice_log.json"
+    version_dir = project_root / "versions" / "v20"
+    merged_csv = version_dir / "reports" / "merged" / "risk_labeler_v20_merged.csv"
+    false_positive_csv = version_dir / "reports" / "errors" / "risk_labeler_v20_false_positive.csv"
+    false_negative_csv = version_dir / "reports" / "errors" / "risk_labeler_v20_false_negative.csv"
+    type_mismatch_csv = version_dir / "reports" / "errors" / "risk_labeler_v20_type_mismatch.csv"
+    score_diff_top_csv = version_dir / "reports" / "errors" / "risk_labeler_v20_score_diff_top.csv"
+    log_json = version_dir / "reports" / "errors" / "risk_labeler_v20_slice_log.json"
 
     result = slice_errors(
         merged_csv=merged_csv,

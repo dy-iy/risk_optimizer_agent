@@ -45,6 +45,137 @@ def truncate_text(text: str, limit: int) -> str:
     return text[:limit] + "\n\n# [TRUNCATED]"
 
 
+def compact_scorer_trace(trace: list[dict], max_items: int = 3) -> list[dict]:
+    compact = []
+    for item in trace[:max_items]:
+        compact.append(
+            {
+                "score_col": item.get("score_col", ""),
+                "role": item.get("role", ""),
+                "value": item.get("value"),
+                "score_band": item.get("score_band", ""),
+                "matched_positive_keyword_lists": item.get("matched_positive_keyword_lists", [])[:3],
+                "matched_negative_keyword_lists": item.get("matched_negative_keyword_lists", [])[:3],
+                "matched_or_possible_early_return_guards": (
+                    item.get("matched_or_possible_early_return_guards", [])[:3]
+                ),
+            }
+        )
+    return compact
+
+
+def compact_sample_case(case: dict) -> dict:
+    return {
+        "news_id": case.get("news_id", ""),
+        "title": case.get("title", ""),
+        "gold_risk_score": case.get("gold_risk_score"),
+        "rule_risk_score": case.get("rule_risk_score"),
+        "rule_minus_gold": case.get("rule_minus_gold"),
+        "score_diff_direction": case.get("score_diff_direction", ""),
+        "gold_primary_risk_type": case.get("gold_primary_risk_type", ""),
+        "rule_primary_risk_type": case.get("rule_primary_risk_type", ""),
+        "all_score_values": case.get("all_score_values", [])[:6],
+        "primary_type_competition": case.get("primary_type_competition", {}),
+        "scorer_trace": compact_scorer_trace(case.get("scorer_trace", []) or []),
+    }
+
+
+def compact_sample_cases_for_patcher(sample_cases: dict, max_cases: int = 4) -> dict:
+    result = {}
+    for key, value in sample_cases.items():
+        if isinstance(value, list):
+            result[key] = [compact_sample_case(item) for item in value[:max_cases] if isinstance(item, dict)]
+        else:
+            result[key] = value
+    return result
+
+
+def compact_source_code_context_for_patcher(source_code_context: dict) -> dict:
+    scorer_summaries = source_code_context.get("scorer_summaries", {}) or {}
+    compact_summaries = {}
+    for score_col, info in scorer_summaries.items():
+        compact_summaries[score_col] = {
+            "positive_keyword_lists": (info.get("positive_keyword_lists", []) or [])[:8],
+            "negative_keyword_lists": (info.get("negative_keyword_lists", []) or [])[:8],
+            "early_return_guards": [
+                {
+                    "condition": guard.get("condition", ""),
+                    "keyword_lists": (guard.get("keyword_lists", []) or [])[:6],
+                    "return_values": (guard.get("return_values", []) or [])[:3],
+                }
+                for guard in (info.get("early_return_guards", []) or [])[:5]
+            ],
+        }
+    return {
+        "source_script": source_code_context.get("source_script", ""),
+        "source_available": source_code_context.get("source_available", False),
+        "thresholds": source_code_context.get("thresholds", {}),
+        "risk_name_map": source_code_context.get("risk_name_map", {}),
+        "scorer_summaries": compact_summaries,
+        "trace_note": source_code_context.get("trace_note", ""),
+    }
+
+
+def compact_analysis_for_patcher(analysis_data: dict, limit: int = DEFAULT_ANALYSIS_LIMIT) -> dict:
+    analysis_data_str = json.dumps(analysis_data, ensure_ascii=False)
+    if len(analysis_data_str) <= limit:
+        return analysis_data
+
+    llm = analysis_data.get("llm_analysis", {}) if isinstance(analysis_data, dict) else {}
+    statistics = analysis_data.get("statistics", {}) if isinstance(analysis_data, dict) else {}
+    sample_cases = analysis_data.get("sample_cases", {}) if isinstance(analysis_data, dict) else {}
+
+    compact = {
+        "summary": analysis_data.get("summary", {}),
+        "version_history": analysis_data.get("version_history", {}),
+        "source_code_context": compact_source_code_context_for_patcher(
+            analysis_data.get("source_code_context", {}) or {}
+        ),
+        "llm_analysis": {
+            "executive_summary": llm.get("executive_summary", []),
+            "metric_tradeoff_diagnosis": llm.get("metric_tradeoff_diagnosis", {}),
+            "patterns": llm.get("patterns", []),
+            "scorer_diagnosis": llm.get("scorer_diagnosis", []),
+            "scorer_trace_diagnosis": llm.get("scorer_trace_diagnosis", []),
+            "primary_type_diagnosis": llm.get("primary_type_diagnosis", []),
+            "patch_plan": llm.get("patch_plan", []),
+            "do_not_patch": llm.get("do_not_patch", []),
+            "confidence": llm.get("confidence", ""),
+        },
+        "statistics": {
+            "type_mismatch_analysis": statistics.get("type_mismatch_analysis", {}),
+            "score_diff_analysis": statistics.get("score_diff_analysis", {}),
+            "false_positive_analysis": statistics.get("false_positive_analysis", {}),
+            "false_negative_analysis": statistics.get("false_negative_analysis", {}),
+        },
+        "sample_cases": compact_sample_cases_for_patcher(sample_cases),
+        "meta": {
+            "compacted_for_patcher": True,
+            "original_chars": len(analysis_data_str),
+        },
+    }
+
+    compact_str = json.dumps(compact, ensure_ascii=False)
+    if len(compact_str) <= limit:
+        return compact
+
+    compact["sample_cases"] = compact_sample_cases_for_patcher(sample_cases, max_cases=2)
+    compact_str = json.dumps(compact, ensure_ascii=False)
+    if len(compact_str) <= limit:
+        compact["meta"]["reduced_sample_cases_due_to_size"] = True
+        return compact
+
+    compact["source_code_context"]["scorer_summaries"] = {}
+    compact_str = json.dumps(compact, ensure_ascii=False)
+    if len(compact_str) <= limit:
+        compact["meta"]["dropped_scorer_summaries_due_to_size"] = True
+        return compact
+
+    compact["sample_cases"] = {}
+    compact["meta"]["dropped_sample_cases_due_to_size"] = True
+    return compact
+
+
 def resolve_default_source_script(project_root: Path) -> Optional[Path]:
     env_path = os.environ.get("SOURCE_SCRIPT")
     if env_path:
@@ -132,6 +263,10 @@ def render_patch_markdown(report: dict) -> str:
             lines.append(f"- 动作: {item.get('action')}" )
         if item.get("risk"):
             lines.append(f"- 风险: {item.get('risk')}" )
+        if item.get("guardrail"):
+            lines.append(f"- Guardrail: {item.get('guardrail')}" )
+        if item.get("validation"):
+            lines.append(f"- 验证: {item.get('validation')}" )
         lines.append("")
 
     notes = report.get("validation_notes", []) or []
@@ -225,9 +360,7 @@ def patch_script_with_llm(
 
         # 3) 读取 analysis_json
         analysis_data = json.loads(read_text_file(analysis_json))
-        analysis_data_str = json.dumps(analysis_data, ensure_ascii=False)
-        if len(analysis_data_str) > DEFAULT_ANALYSIS_LIMIT:
-            analysis_data = json.loads(truncate_text(analysis_data_str, DEFAULT_ANALYSIS_LIMIT))
+        analysis_data = compact_analysis_for_patcher(analysis_data, DEFAULT_ANALYSIS_LIMIT)
         progress.update("analysis_json 读取完成")
 
         # 4) 构造 prompt

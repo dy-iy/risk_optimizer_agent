@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "merged_csv": "D:\\risk_optimizer_agent\\versions\\v20\\reports\\merged\\risk_labeler_v20_merged.csv",
+  "false_positive_csv": "D:\\risk_optimizer_agent\\versions\\v20\\reports\\errors\\risk_labeler_v20_false_positive.csv",
+  "false_negative_csv": "D:\\risk_optimizer_agent\\versions\\v20\\reports\\errors\\risk_labeler_v20_false_negative.csv",
+  "type_mismatch_csv": "D:\\risk_optimizer_agent\\versions\\v20\\reports\\errors\\risk_labeler_v20_type_mismatch.csv",
+  "score_diff_top_csv": "D:\\risk_optimizer_agent\\versions\\v20\\reports\\errors\\risk_labeler_v20_score_diff_top.csv",
+  "total_rows": 1000,
+  "matched_rows": 1000,
+  "false_positive_rows": 26,
+  "false_negative_rows": 13,
+  "type_mismatch_rows": 258,
+  "score_diff_top_rows": 200,
+  "error_message": ""
+}

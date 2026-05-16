@@ -104,6 +104,47 @@ def write_json(path: Path, data: dict) -> None:
     write_json_file(path, data)
 
 
+def read_json_if_exists(path: Path) -> dict:
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text(encoding="utf-8-sig"))
+
+
+def collect_version_metric(project_root: Path, version_name: str) -> dict:
+    version_dir = project_root / "versions" / version_name
+    eval_path = version_dir / "reports" / "evals" / f"risk_labeler_{version_name}_eval.json"
+    slice_path = version_dir / "reports" / "errors" / f"risk_labeler_{version_name}_slice_log.json"
+
+    eval_data = read_json_if_exists(eval_path)
+    slice_data = read_json_if_exists(slice_path)
+    score_metrics = eval_data.get("score_metrics", {}) or {}
+
+    return {
+        "version": version_name,
+        "false_positive_rows": slice_data.get("false_positive_rows", 0),
+        "false_negative_rows": slice_data.get("false_negative_rows", 0),
+        "type_mismatch_rows": slice_data.get("type_mismatch_rows", 0),
+        "score_diff_top_rows": slice_data.get("score_diff_top_rows", 0),
+        "score_diff_mean": score_metrics.get("mae", 0),
+        "score_diff_rmse": score_metrics.get("rmse", 0),
+    }
+
+
+def build_recent_version_metrics(project_root: Path, current_version_name: str) -> list[dict]:
+    current_num = int(current_version_name.lstrip("v"))
+    metrics: list[dict] = []
+    if current_num > 1:
+        prev_version = f"v{current_num - 1}"
+        prev_metric = collect_version_metric(project_root, prev_version)
+        if any(prev_metric.get(k, 0) for k in prev_metric if k != "version"):
+            metrics.append(prev_metric)
+
+    current_metric = collect_version_metric(project_root, current_version_name)
+    if any(current_metric.get(k, 0) for k in current_metric if k != "version"):
+        metrics.append(current_metric)
+    return metrics
+
+
 # =========================
 # 动态导入
 # =========================
@@ -425,6 +466,12 @@ def orchestrate_pipeline(
 
         # 5) analyzer_llm：固定运行
         analyze_error_files_with_llm = import_analyzer_llm()
+        version_metrics = build_recent_version_metrics(project_root, current_version_name)
+        version_metrics_json = paths["analysis_json_llm"].with_name(
+            f"risk_labeler_{current_version_name}_version_metrics.json"
+        )
+        if version_metrics:
+            write_json(version_metrics_json, version_metrics)
         ana_result = analyze_error_files_with_llm(
             false_positive_csv=paths["false_positive_csv"],
             false_negative_csv=paths["false_negative_csv"],
@@ -437,6 +484,8 @@ def orchestrate_pipeline(
             sample_rows=sample_rows,
             text_limit=text_limit,
             show_progress=True,
+            version_metrics_json=version_metrics_json if version_metrics else None,
+            source_script=script_path,
         )
 
         if not ana_result.success:

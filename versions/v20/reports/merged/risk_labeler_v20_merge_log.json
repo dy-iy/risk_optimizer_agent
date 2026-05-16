@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "gold_csv": "D:\\risk_optimizer_agent\\data\\gold\\cleared_news_v2_deepseek_1000_labeled.csv",
+  "pred_csv": "D:\\risk_optimizer_agent\\versions\\v20\\reports\\predictions\\risk_labeler_v20_output.csv",
+  "merged_csv": "D:\\risk_optimizer_agent\\versions\\v20\\reports\\merged\\risk_labeler_v20_merged.csv",
+  "gold_rows": 1000,
+  "pred_rows": 12197,
+  "merged_rows": 1000,
+  "error_message": ""
+}

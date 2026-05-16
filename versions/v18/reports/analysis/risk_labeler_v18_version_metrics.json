@@ -1,0 +1,20 @@
+[
+  {
+    "version": "v17",
+    "false_positive_rows": 71,
+    "false_negative_rows": 2,
+    "type_mismatch_rows": 236,
+    "score_diff_top_rows": 200,
+    "score_diff_mean": 14.222,
+    "score_diff_rmse": 19.38024767643592
+  },
+  {
+    "version": "v18",
+    "false_positive_rows": 42,
+    "false_negative_rows": 7,
+    "type_mismatch_rows": 259,
+    "score_diff_top_rows": 200,
+    "score_diff_mean": 13.62,
+    "score_diff_rmse": 18.501837746559122
+  }
+]
