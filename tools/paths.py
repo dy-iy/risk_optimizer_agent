@@ -42,6 +42,27 @@ def resolve_default_gold_csv(project_root: Path) -> Path:
     return project_root / "data" / "gold" / "cleared_news_v2_deepseek_1000_labeled.csv"
 
 
+def ensure_version_dirs(project_root: Path, version_name: str) -> None:
+    version_dir = project_root / "versions" / version_name
+    for relative_dir in [
+        "scripts",
+        "reports/predictions",
+        "reports/merged",
+        "reports/evals",
+        "reports/errors",
+        "reports/analysis",
+        "reports/patched",
+        "reports/comparisons",
+        "reports/orchestrations",
+    ]:
+        (version_dir / relative_dir).mkdir(parents=True, exist_ok=True)
+
+
+def ensure_pipeline_dirs(project_root: Path, current_version: str, next_version: str) -> None:
+    ensure_version_dirs(project_root, current_version)
+    ensure_version_dirs(project_root, next_version)
+
+
 def build_paths(project_root: Path, current_version: str, next_version: str) -> dict[str, Path]:
     versions_dir = project_root / "versions"
     current_dir = versions_dir / current_version
@@ -65,5 +86,7 @@ def build_paths(project_root: Path, current_version: str, next_version: str) -> 
         "patched_script": next_dir / "scripts" / f"risk_labeler_{next_version}.py",
         "patch_report_json": next_dir / "reports" / "patched" / f"risk_labeler_{next_version}_patch_report.json",
         "patch_report_markdown": next_dir / "reports" / "patched" / f"risk_labeler_{next_version}_patch_report.md",
+        "compare_json": next_dir / "reports" / "comparisons" / f"{current_version}_vs_{next_version}_compare.json",
+        "compare_markdown": next_dir / "reports" / "comparisons" / f"{current_version}_vs_{next_version}_compare.md",
         "orchestrate_json": next_dir / "reports" / "orchestrations" / f"{current_version}_to_{next_version}_orchestrate.json",
     }

@@ -8,6 +8,7 @@ from typing import Optional
 from tools.common import StageProgress, write_json_file
 from tools.paths import (
     build_paths,
+    ensure_pipeline_dirs,
     normalize_version_name,
     resolve_default_gold_csv,
     resolve_default_input_csv,
@@ -22,7 +23,7 @@ from tools.paths import (
 # 1. 版本号仍然在运行时手动输入
 # 2. 模块不再手动选择，固定跑：
 #    runner -> merger -> evaluator -> slicer -> analyzer_llm -> patcher
-# 3. 不再运行 comparator
+# 3. patcher 生成下一版后，运行下一版并用 comparator 对比当前版
 # 4. 不再保留 nollm analyzer
 # =========================================================
 INPUT_CSV: Optional[str] = None
@@ -80,6 +81,20 @@ class OrchestrateResult:
     patch_report_markdown: str = ""
     patch_syntax_ok: bool = False
 
+    candidate_prediction_csv: str = ""
+    candidate_merged_csv: str = ""
+    candidate_eval_json: str = ""
+    candidate_eval_details_json: str = ""
+    candidate_false_positive_csv: str = ""
+    candidate_false_negative_csv: str = ""
+    candidate_type_mismatch_csv: str = ""
+    candidate_score_diff_top_csv: str = ""
+    candidate_slice_log_json: str = ""
+
+    compare_json: str = ""
+    compare_markdown: str = ""
+    compare_winner: str = ""
+
     orchestrate_json: str = ""
     steps_completed: int = 0
     error_message: str = ""
@@ -122,10 +137,9 @@ def import_patcher():
     return patch_script_with_llm
 
 
-# comparator 暂时不用，先注释掉
-# def import_comparator():
-#     from comparator import compare_versions
-#     return compare_versions
+def import_comparator():
+    from tools.comparator import compare_versions
+    return compare_versions
 
 
 # =========================
@@ -146,10 +160,14 @@ def build_result(
     patch_report_json: str = "",
     patch_report_markdown: str = "",
     patch_syntax_ok: bool = False,
+    candidate_paths: dict[str, Path] | None = None,
+    compare_winner: str = "",
     steps_completed: int = 0,
     success: bool = False,
     error_message: str = "",
 ) -> OrchestrateResult:
+    candidate_paths = candidate_paths or {}
+
     return OrchestrateResult(
         success=success,
         current_version=current_version,
@@ -178,6 +196,20 @@ def build_result(
         patch_report_json=patch_report_json,
         patch_report_markdown=patch_report_markdown,
         patch_syntax_ok=patch_syntax_ok,
+
+        candidate_prediction_csv=str(candidate_paths.get("prediction_csv", "")),
+        candidate_merged_csv=str(candidate_paths.get("merged_csv", "")),
+        candidate_eval_json=str(candidate_paths.get("eval_json", "")),
+        candidate_eval_details_json=str(candidate_paths.get("eval_details_json", "")),
+        candidate_false_positive_csv=str(candidate_paths.get("false_positive_csv", "")),
+        candidate_false_negative_csv=str(candidate_paths.get("false_negative_csv", "")),
+        candidate_type_mismatch_csv=str(candidate_paths.get("type_mismatch_csv", "")),
+        candidate_score_diff_top_csv=str(candidate_paths.get("score_diff_top_csv", "")),
+        candidate_slice_log_json=str(candidate_paths.get("slice_log_json", "")),
+
+        compare_json=str(paths.get("compare_json", "")),
+        compare_markdown=str(paths.get("compare_markdown", "")),
+        compare_winner=compare_winner,
 
         orchestrate_json=str(paths["orchestrate_json"]),
         steps_completed=steps_completed,
@@ -229,9 +261,11 @@ def orchestrate_pipeline(
     else:
         gold_csv = Path(gold_csv).resolve()
 
+    ensure_pipeline_dirs(project_root, current_version_name, next_version_name)
     paths = build_paths(project_root, current_version_name, next_version_name)
+    candidate_paths = build_paths(project_root, next_version_name, next_version_name)
 
-    total_steps = 5 + (1 if enable_patcher else 0)
+    total_steps = 5 + (6 if enable_patcher else 0)
     progress = StageProgress(
         total=total_steps,
         enabled=show_progress,
@@ -248,6 +282,7 @@ def orchestrate_pipeline(
     patch_report_json = ""
     patch_report_markdown = ""
     patch_syntax_ok = False
+    compare_winner = ""
 
     try:
         # 0) 先检查当前脚本是否存在
@@ -501,6 +536,202 @@ def orchestrate_pipeline(
             steps_completed += 1
             progress.update("patcher 完成")
 
+            # 7) runner candidate
+            candidate_run_result = run_rule_script(
+                script_path=paths["patched_script"],
+                input_csv=input_csv,
+                output_csv=candidate_paths["prediction_csv"],
+                python_executable=python_executable,
+                timeout=timeout,
+            )
+            save_run_result(candidate_run_result, candidate_paths["runlog_json"])
+
+            if not candidate_run_result.success:
+                progress.close()
+                return persist_and_return(
+                    build_result(
+                        current_version=current_version_name,
+                        next_version=next_version_name,
+                        script_path=script_path,
+                        input_csv=input_csv,
+                        gold_csv=gold_csv,
+                        paths=paths,
+                        analysis_json=analysis_json,
+                        analysis_markdown=analysis_markdown,
+                        llm_payload_json=llm_payload_json,
+                        patched_script=patched_script,
+                        patch_report_json=patch_report_json,
+                        patch_report_markdown=patch_report_markdown,
+                        patch_syntax_ok=patch_syntax_ok,
+                        candidate_paths=candidate_paths,
+                        compare_winner=compare_winner,
+                        steps_completed=steps_completed,
+                        success=False,
+                        error_message=f"candidate runner 失败: {candidate_run_result.error_message}",
+                    ),
+                    paths["orchestrate_json"],
+                )
+
+            steps_completed += 1
+            progress.update("candidate runner 完成")
+
+            # 8) merger candidate
+            candidate_merge_result = merge_gold_and_predictions(
+                gold_csv=gold_csv,
+                pred_csv=candidate_paths["prediction_csv"],
+                merged_csv=candidate_paths["merged_csv"],
+                log_json=candidate_paths["merge_log_json"],
+            )
+
+            if not candidate_merge_result.success:
+                progress.close()
+                return persist_and_return(
+                    build_result(
+                        current_version=current_version_name,
+                        next_version=next_version_name,
+                        script_path=script_path,
+                        input_csv=input_csv,
+                        gold_csv=gold_csv,
+                        paths=paths,
+                        analysis_json=analysis_json,
+                        analysis_markdown=analysis_markdown,
+                        llm_payload_json=llm_payload_json,
+                        patched_script=patched_script,
+                        patch_report_json=patch_report_json,
+                        patch_report_markdown=patch_report_markdown,
+                        patch_syntax_ok=patch_syntax_ok,
+                        candidate_paths=candidate_paths,
+                        compare_winner=compare_winner,
+                        steps_completed=steps_completed,
+                        success=False,
+                        error_message=f"candidate merger 失败: {candidate_merge_result.error_message}",
+                    ),
+                    paths["orchestrate_json"],
+                )
+
+            steps_completed += 1
+            progress.update("candidate merger 完成")
+
+            # 9) evaluator candidate
+            candidate_eval_result = evaluate_merged_file(
+                merged_csv=candidate_paths["merged_csv"],
+                eval_json=candidate_paths["eval_json"],
+                details_json=candidate_paths["eval_details_json"],
+            )
+
+            if not candidate_eval_result.success:
+                progress.close()
+                return persist_and_return(
+                    build_result(
+                        current_version=current_version_name,
+                        next_version=next_version_name,
+                        script_path=script_path,
+                        input_csv=input_csv,
+                        gold_csv=gold_csv,
+                        paths=paths,
+                        analysis_json=analysis_json,
+                        analysis_markdown=analysis_markdown,
+                        llm_payload_json=llm_payload_json,
+                        patched_script=patched_script,
+                        patch_report_json=patch_report_json,
+                        patch_report_markdown=patch_report_markdown,
+                        patch_syntax_ok=patch_syntax_ok,
+                        candidate_paths=candidate_paths,
+                        compare_winner=compare_winner,
+                        steps_completed=steps_completed,
+                        success=False,
+                        error_message=f"candidate evaluator 失败: {candidate_eval_result.error_message}",
+                    ),
+                    paths["orchestrate_json"],
+                )
+
+            steps_completed += 1
+            progress.update("candidate evaluator 完成")
+
+            # 10) slicer candidate
+            candidate_slice_result = slice_errors(
+                merged_csv=candidate_paths["merged_csv"],
+                false_positive_csv=candidate_paths["false_positive_csv"],
+                false_negative_csv=candidate_paths["false_negative_csv"],
+                type_mismatch_csv=candidate_paths["type_mismatch_csv"],
+                score_diff_top_csv=candidate_paths["score_diff_top_csv"],
+                log_json=candidate_paths["slice_log_json"],
+                topn_score_diff=200,
+            )
+
+            if not candidate_slice_result.success:
+                progress.close()
+                return persist_and_return(
+                    build_result(
+                        current_version=current_version_name,
+                        next_version=next_version_name,
+                        script_path=script_path,
+                        input_csv=input_csv,
+                        gold_csv=gold_csv,
+                        paths=paths,
+                        analysis_json=analysis_json,
+                        analysis_markdown=analysis_markdown,
+                        llm_payload_json=llm_payload_json,
+                        patched_script=patched_script,
+                        patch_report_json=patch_report_json,
+                        patch_report_markdown=patch_report_markdown,
+                        patch_syntax_ok=patch_syntax_ok,
+                        candidate_paths=candidate_paths,
+                        compare_winner=compare_winner,
+                        steps_completed=steps_completed,
+                        success=False,
+                        error_message=f"candidate slicer 失败: {candidate_slice_result.error_message}",
+                    ),
+                    paths["orchestrate_json"],
+                )
+
+            steps_completed += 1
+            progress.update("candidate slicer 完成")
+
+            # 11) comparator
+            compare_versions = import_comparator()
+            compare_result = compare_versions(
+                baseline_eval_json=paths["eval_json"],
+                candidate_eval_json=candidate_paths["eval_json"],
+                baseline_slice_log_json=paths["slice_log_json"],
+                candidate_slice_log_json=candidate_paths["slice_log_json"],
+                compare_json=paths["compare_json"],
+                compare_markdown=paths["compare_markdown"],
+                baseline_name=current_version_name,
+                candidate_name=next_version_name,
+            )
+
+            compare_winner = compare_result.winner
+
+            if not compare_result.success:
+                progress.close()
+                return persist_and_return(
+                    build_result(
+                        current_version=current_version_name,
+                        next_version=next_version_name,
+                        script_path=script_path,
+                        input_csv=input_csv,
+                        gold_csv=gold_csv,
+                        paths=paths,
+                        analysis_json=analysis_json,
+                        analysis_markdown=analysis_markdown,
+                        llm_payload_json=llm_payload_json,
+                        patched_script=patched_script,
+                        patch_report_json=patch_report_json,
+                        patch_report_markdown=patch_report_markdown,
+                        patch_syntax_ok=patch_syntax_ok,
+                        candidate_paths=candidate_paths,
+                        compare_winner=compare_winner,
+                        steps_completed=steps_completed,
+                        success=False,
+                        error_message=f"comparator 失败: {compare_result.error_message}",
+                    ),
+                    paths["orchestrate_json"],
+                )
+
+            steps_completed += 1
+            progress.update("comparator 完成")
+
         progress.close()
 
         return persist_and_return(
@@ -518,6 +749,8 @@ def orchestrate_pipeline(
                 patch_report_json=patch_report_json,
                 patch_report_markdown=patch_report_markdown,
                 patch_syntax_ok=patch_syntax_ok,
+                candidate_paths=candidate_paths if enable_patcher else None,
+                compare_winner=compare_winner,
                 steps_completed=steps_completed,
                 success=True,
                 error_message="",
@@ -542,6 +775,8 @@ def orchestrate_pipeline(
                 patch_report_json=patch_report_json,
                 patch_report_markdown=patch_report_markdown,
                 patch_syntax_ok=patch_syntax_ok,
+                candidate_paths=candidate_paths if enable_patcher else None,
+                compare_winner=compare_winner,
                 steps_completed=steps_completed,
                 success=False,
                 error_message=f"orchestrator 异常: {e}",
@@ -603,6 +838,16 @@ if __name__ == "__main__":
     print(f"patch_report_json    : {result.patch_report_json}")
     print(f"patch_report_markdown: {result.patch_report_markdown}")
     print(f"patch_syntax_ok      : {result.patch_syntax_ok}")
+
+    print(f"candidate_prediction_csv: {result.candidate_prediction_csv}")
+    print(f"candidate_merged_csv    : {result.candidate_merged_csv}")
+    print(f"candidate_eval_json     : {result.candidate_eval_json}")
+    print(f"candidate_eval_details  : {result.candidate_eval_details_json}")
+    print(f"candidate_slice_log     : {result.candidate_slice_log_json}")
+
+    print(f"compare_json         : {result.compare_json}")
+    print(f"compare_markdown     : {result.compare_markdown}")
+    print(f"compare_winner       : {result.compare_winner}")
 
     print(f"orchestrate_json     : {result.orchestrate_json}")
     print(f"steps_completed      : {result.steps_completed}")

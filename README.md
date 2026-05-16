@@ -10,6 +10,7 @@ This project is an iterative optimization pipeline for a crypto-news risk labeli
 4. Slice representative error buckets: false positive, false negative, type mismatch, and score-diff cases.
 5. Use `analyzer_llm.py` to summarize error patterns from statistics and samples.
 6. Use `patcher_llm_v2.py` to generate the next versioned rule script.
+7. Run the generated candidate version and use `tools/comparator.py` to compare current vs next metrics.
 
 The main orchestration entrypoint is:
 
@@ -35,6 +36,7 @@ py -3 orchestrator.py
 - Gold labels: `data/gold/...`
 
 Each optimization round uses a current version, for example `v16`, and writes patched output for the next version, for example `v17`.
+The orchestrator creates the required `scripts/` and `reports/` subdirectories for the current and next versions automatically.
 
 ## Configuration
 
