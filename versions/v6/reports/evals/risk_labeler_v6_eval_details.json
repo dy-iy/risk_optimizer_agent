@@ -1,0 +1,22 @@
+{
+  "label_match_rate": 0.798,
+  "primary_type_match_rate": 0.677,
+  "score_diff_describe": {
+    "count": 1000.0,
+    "mean": 17.711,
+    "std": 16.783001762144583,
+    "min": 0.0,
+    "25%": 5.0,
+    "50%": 10.0,
+    "75%": 25.0,
+    "max": 85.0
+  },
+  "label_match_counts": {
+    "True": 798,
+    "False": 202
+  },
+  "primary_type_match_counts": {
+    "True": 677,
+    "False": 323
+  }
+}

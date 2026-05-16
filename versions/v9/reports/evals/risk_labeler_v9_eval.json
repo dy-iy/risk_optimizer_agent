@@ -1,0 +1,175 @@
+{
+  "success": true,
+  "merged_csv": "D:\\risk_optimizer_agent\\v9\\reports\\merged\\risk_labeler_v9_merged.csv",
+  "total_rows": 1000,
+  "matched_rows": 1000,
+  "eval_rows": 1000,
+  "score_metrics": {
+    "mae": 15.915,
+    "rmse": 21.891665080573475
+  },
+  "label_metrics": {
+    "accuracy": 0.775,
+    "gold_distribution": {
+      "low": 842,
+      "medium": 112,
+      "high": 46
+    },
+    "rule_distribution": {
+      "low": 764,
+      "high": 154,
+      "medium": 82
+    },
+    "confusion_matrix": {
+      "low": {
+        "low": 728,
+        "medium": 68,
+        "high": 46
+      },
+      "medium": {
+        "low": 35,
+        "medium": 8,
+        "high": 69
+      },
+      "high": {
+        "low": 1,
+        "medium": 6,
+        "high": 39
+      }
+    }
+  },
+  "primary_type_metrics": {
+    "accuracy": 0.688,
+    "gold_distribution": {
+      "无明显风险": 587,
+      "链上漏洞 / 攻击风险": 83,
+      "异常行情波动风险": 75,
+      "监管与法律风险": 74,
+      "爆仓 / 清算风险": 42,
+      "大额转账 / 巨鲸行为风险": 42,
+      "项目治理 / 团队异常风险": 20,
+      "宏观 / 政策冲击风险": 20,
+      "诈骗 / 跑路 / Rug Pull 风险": 16,
+      "偿付能力 / 储备 / 流动性风险": 14,
+      "基础设施 / 协议层异常风险": 12,
+      "交易所与系统运维风险": 8,
+      "稳定币异常风险": 7
+    },
+    "rule_distribution": {
+      "无明显风险": 712,
+      "链上漏洞 / 攻击风险": 114,
+      "监管与法律风险": 57,
+      "爆仓 / 清算风险": 36,
+      "异常行情波动风险": 26,
+      "宏观 / 政策冲击风险": 16,
+      "诈骗 / 跑路 / Rug Pull 风险": 16,
+      "大额转账 / 巨鲸行为风险": 9,
+      "偿付能力 / 储备 / 流动性风险": 6,
+      "交易所与系统运维风险": 4,
+      "项目治理 / 团队异常风险": 3,
+      "稳定币异常风险": 1
+    },
+    "top_mismatches": [
+      {
+        "gold_primary_risk_type": "异常行情波动风险",
+        "rule_primary_risk_type": "无明显风险",
+        "count": 61
+      },
+      {
+        "gold_primary_risk_type": "大额转账 / 巨鲸行为风险",
+        "rule_primary_risk_type": "无明显风险",
+        "count": 33
+      },
+      {
+        "gold_primary_risk_type": "监管与法律风险",
+        "rule_primary_risk_type": "无明显风险",
+        "count": 27
+      },
+      {
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "监管与法律风险",
+        "count": 20
+      },
+      {
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "count": 20
+      },
+      {
+        "gold_primary_risk_type": "项目治理 / 团队异常风险",
+        "rule_primary_risk_type": "无明显风险",
+        "count": 15
+      },
+      {
+        "gold_primary_risk_type": "宏观 / 政策冲击风险",
+        "rule_primary_risk_type": "无明显风险",
+        "count": 12
+      },
+      {
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "宏观 / 政策冲击风险",
+        "count": 11
+      },
+      {
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "无明显风险",
+        "count": 10
+      },
+      {
+        "gold_primary_risk_type": "爆仓 / 清算风险",
+        "rule_primary_risk_type": "无明显风险",
+        "count": 10
+      },
+      {
+        "gold_primary_risk_type": "监管与法律风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "count": 10
+      },
+      {
+        "gold_primary_risk_type": "无明显风险",
+        "rule_primary_risk_type": "异常行情波动风险",
+        "count": 9
+      },
+      {
+        "gold_primary_risk_type": "偿付能力 / 储备 / 流动性风险",
+        "rule_primary_risk_type": "无明显风险",
+        "count": 8
+      },
+      {
+        "gold_primary_risk_type": "基础设施 / 协议层异常风险",
+        "rule_primary_risk_type": "无明显风险",
+        "count": 7
+      },
+      {
+        "gold_primary_risk_type": "稳定币异常风险",
+        "rule_primary_risk_type": "无明显风险",
+        "count": 6
+      },
+      {
+        "gold_primary_risk_type": "基础设施 / 协议层异常风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "count": 4
+      },
+      {
+        "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+        "rule_primary_risk_type": "诈骗 / 跑路 / Rug Pull 风险",
+        "count": 4
+      },
+      {
+        "gold_primary_risk_type": "诈骗 / 跑路 / Rug Pull 风险",
+        "rule_primary_risk_type": "无明显风险",
+        "count": 3
+      },
+      {
+        "gold_primary_risk_type": "诈骗 / 跑路 / Rug Pull 风险",
+        "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+        "count": 3
+      },
+      {
+        "gold_primary_risk_type": "交易所与系统运维风险",
+        "rule_primary_risk_type": "无明显风险",
+        "count": 2
+      }
+    ]
+  }
+}

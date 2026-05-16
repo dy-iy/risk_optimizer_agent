@@ -1,0 +1,1026 @@
+{
+  "summary": {
+    "false_positive_rows": 158,
+    "false_negative_rows": 4,
+    "type_mismatch_rows": 174,
+    "score_diff_top_rows": 200
+  },
+  "statistics": {
+    "false_positive_analysis": {
+      "rule_primary_type_top": [
+        {
+          "name": "监管与法律风险",
+          "count": 49
+        },
+        {
+          "name": "宏观 / 政策冲击风险",
+          "count": 35
+        },
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 29
+        },
+        {
+          "name": "异常行情波动风险",
+          "count": 19
+        },
+        {
+          "name": "大额转账 / 巨鲸行为风险",
+          "count": 10
+        },
+        {
+          "name": "诈骗 / 跑路 / Rug Pull 风险",
+          "count": 5
+        },
+        {
+          "name": "偿付能力 / 储备 / 流动性风险",
+          "count": 4
+        },
+        {
+          "name": "交易所与系统运维风险",
+          "count": 3
+        },
+        {
+          "name": "爆仓 / 清算风险",
+          "count": 3
+        },
+        {
+          "name": "稳定币异常风险",
+          "count": 1
+        }
+      ],
+      "gold_primary_type_top": [
+        {
+          "name": "无明显风险",
+          "count": 67
+        },
+        {
+          "name": "监管与法律风险",
+          "count": 33
+        },
+        {
+          "name": "异常行情波动风险",
+          "count": 15
+        },
+        {
+          "name": "宏观 / 政策冲击风险",
+          "count": 11
+        },
+        {
+          "name": "大额转账 / 巨鲸行为风险",
+          "count": 10
+        },
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 7
+        },
+        {
+          "name": "诈骗 / 跑路 / Rug Pull 风险",
+          "count": 4
+        },
+        {
+          "name": "项目治理 / 团队异常风险",
+          "count": 4
+        },
+        {
+          "name": "交易所与系统运维风险",
+          "count": 3
+        },
+        {
+          "name": "爆仓 / 清算风险",
+          "count": 2
+        },
+        {
+          "name": "基础设施 / 协议层异常风险",
+          "count": 2
+        }
+      ],
+      "trigger_scores_top": [
+        {
+          "score_col": "score_regulatory",
+          "trigger_count": 57,
+          "mean_value": 0.1915,
+          "max_value": 0.8
+        },
+        {
+          "score_col": "score_macro",
+          "trigger_count": 40,
+          "mean_value": 0.1402,
+          "max_value": 0.6
+        },
+        {
+          "score_col": "score_hack",
+          "trigger_count": 30,
+          "mean_value": 0.1413,
+          "max_value": 0.95
+        },
+        {
+          "score_col": "score_volatility",
+          "trigger_count": 23,
+          "mean_value": 0.0735,
+          "max_value": 0.799
+        },
+        {
+          "score_col": "score_whale",
+          "trigger_count": 12,
+          "mean_value": 0.0499,
+          "max_value": 0.75
+        },
+        {
+          "score_col": "score_fraud",
+          "trigger_count": 6,
+          "mean_value": 0.0238,
+          "max_value": 0.88
+        },
+        {
+          "score_col": "score_outage",
+          "trigger_count": 4,
+          "mean_value": 0.0147,
+          "max_value": 0.68
+        },
+        {
+          "score_col": "score_solvency",
+          "trigger_count": 4,
+          "mean_value": 0.0204,
+          "max_value": 0.88
+        },
+        {
+          "score_col": "score_liquidation",
+          "trigger_count": 3,
+          "mean_value": 0.0076,
+          "max_value": 0.4
+        },
+        {
+          "score_col": "score_stablecoin",
+          "trigger_count": 1,
+          "mean_value": 0.0054,
+          "max_value": 0.85
+        },
+        {
+          "score_col": "score_team",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_infra",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        }
+      ]
+    },
+    "false_negative_analysis": {
+      "gold_primary_type_top": [
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 4
+        }
+      ],
+      "rule_primary_type_top": [
+        {
+          "name": "无明显风险",
+          "count": 4
+        }
+      ],
+      "trigger_scores_top": [
+        {
+          "score_col": "score_hack",
+          "trigger_count": 1,
+          "mean_value": 0.2788,
+          "max_value": 0.3178
+        },
+        {
+          "score_col": "score_fraud",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_regulatory",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_outage",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_stablecoin",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_liquidation",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_whale",
+          "trigger_count": 0,
+          "mean_value": 0.075,
+          "max_value": 0.15
+        },
+        {
+          "score_col": "score_volatility",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_team",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_solvency",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_infra",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_macro",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        }
+      ]
+    },
+    "type_mismatch_analysis": {
+      "gold_primary_type_top": [
+        {
+          "name": "异常行情波动风险",
+          "count": 54
+        },
+        {
+          "name": "监管与法律风险",
+          "count": 35
+        },
+        {
+          "name": "大额转账 / 巨鲸行为风险",
+          "count": 29
+        },
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 12
+        },
+        {
+          "name": "基础设施 / 协议层异常风险",
+          "count": 7
+        },
+        {
+          "name": "爆仓 / 清算风险",
+          "count": 7
+        },
+        {
+          "name": "宏观 / 政策冲击风险",
+          "count": 6
+        },
+        {
+          "name": "项目治理 / 团队异常风险",
+          "count": 6
+        },
+        {
+          "name": "稳定币异常风险",
+          "count": 5
+        },
+        {
+          "name": "诈骗 / 跑路 / Rug Pull 风险",
+          "count": 5
+        },
+        {
+          "name": "偿付能力 / 储备 / 流动性风险",
+          "count": 5
+        },
+        {
+          "name": "交易所与系统运维风险",
+          "count": 3
+        }
+      ],
+      "rule_primary_type_top": [
+        {
+          "name": "无明显风险",
+          "count": 161
+        },
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 6
+        },
+        {
+          "name": "监管与法律风险",
+          "count": 5
+        },
+        {
+          "name": "宏观 / 政策冲击风险",
+          "count": 1
+        },
+        {
+          "name": "异常行情波动风险",
+          "count": 1
+        }
+      ],
+      "top_mismatch_pairs": [
+        {
+          "gold_primary_risk_type": "异常行情波动风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 53
+        },
+        {
+          "gold_primary_risk_type": "监管与法律风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 33
+        },
+        {
+          "gold_primary_risk_type": "大额转账 / 巨鲸行为风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 29
+        },
+        {
+          "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 11
+        },
+        {
+          "gold_primary_risk_type": "基础设施 / 协议层异常风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 6
+        },
+        {
+          "gold_primary_risk_type": "爆仓 / 清算风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 6
+        },
+        {
+          "gold_primary_risk_type": "项目治理 / 团队异常风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 6
+        },
+        {
+          "gold_primary_risk_type": "宏观 / 政策冲击风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 6
+        },
+        {
+          "gold_primary_risk_type": "稳定币异常风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 4
+        },
+        {
+          "gold_primary_risk_type": "偿付能力 / 储备 / 流动性风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 3
+        },
+        {
+          "gold_primary_risk_type": "诈骗 / 跑路 / Rug Pull 风险",
+          "rule_primary_risk_type": "监管与法律风险",
+          "count": 2
+        },
+        {
+          "gold_primary_risk_type": "诈骗 / 跑路 / Rug Pull 风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 2
+        },
+        {
+          "gold_primary_risk_type": "交易所与系统运维风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 2
+        },
+        {
+          "gold_primary_risk_type": "偿付能力 / 储备 / 流动性风险",
+          "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+          "count": 2
+        },
+        {
+          "gold_primary_risk_type": "监管与法律风险",
+          "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+          "count": 2
+        },
+        {
+          "gold_primary_risk_type": "交易所与系统运维风险",
+          "rule_primary_risk_type": "链上漏洞 / 攻击风险",
+          "count": 1
+        },
+        {
+          "gold_primary_risk_type": "基础设施 / 协议层异常风险",
+          "rule_primary_risk_type": "监管与法律风险",
+          "count": 1
+        },
+        {
+          "gold_primary_risk_type": "异常行情波动风险",
+          "rule_primary_risk_type": "宏观 / 政策冲击风险",
+          "count": 1
+        },
+        {
+          "gold_primary_risk_type": "爆仓 / 清算风险",
+          "rule_primary_risk_type": "异常行情波动风险",
+          "count": 1
+        },
+        {
+          "gold_primary_risk_type": "稳定币异常风险",
+          "rule_primary_risk_type": "监管与法律风险",
+          "count": 1
+        }
+      ]
+    },
+    "score_diff_analysis": {
+      "trigger_scores_top": [
+        {
+          "score_col": "score_hack",
+          "trigger_count": 40,
+          "mean_value": 0.162,
+          "max_value": 0.95
+        },
+        {
+          "score_col": "score_regulatory",
+          "trigger_count": 38,
+          "mean_value": 0.1163,
+          "max_value": 0.8
+        },
+        {
+          "score_col": "score_volatility",
+          "trigger_count": 34,
+          "mean_value": 0.0891,
+          "max_value": 0.8081
+        },
+        {
+          "score_col": "score_macro",
+          "trigger_count": 30,
+          "mean_value": 0.0835,
+          "max_value": 0.6
+        },
+        {
+          "score_col": "score_liquidation",
+          "trigger_count": 23,
+          "mean_value": 0.0832,
+          "max_value": 0.75
+        },
+        {
+          "score_col": "score_fraud",
+          "trigger_count": 6,
+          "mean_value": 0.0215,
+          "max_value": 0.88
+        },
+        {
+          "score_col": "score_whale",
+          "trigger_count": 6,
+          "mean_value": 0.027,
+          "max_value": 0.75
+        },
+        {
+          "score_col": "score_solvency",
+          "trigger_count": 6,
+          "mean_value": 0.0239,
+          "max_value": 0.88
+        },
+        {
+          "score_col": "score_outage",
+          "trigger_count": 5,
+          "mean_value": 0.0144,
+          "max_value": 0.68
+        },
+        {
+          "score_col": "score_stablecoin",
+          "trigger_count": 1,
+          "mean_value": 0.0043,
+          "max_value": 0.85
+        },
+        {
+          "score_col": "score_infra",
+          "trigger_count": 1,
+          "mean_value": 0.0037,
+          "max_value": 0.75
+        },
+        {
+          "score_col": "score_team",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        }
+      ],
+      "rule_primary_type_top": [
+        {
+          "name": "无明显风险",
+          "count": 54
+        },
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 38
+        },
+        {
+          "name": "监管与法律风险",
+          "count": 26
+        },
+        {
+          "name": "宏观 / 政策冲击风险",
+          "count": 24
+        },
+        {
+          "name": "爆仓 / 清算风险",
+          "count": 23
+        },
+        {
+          "name": "异常行情波动风险",
+          "count": 15
+        },
+        {
+          "name": "诈骗 / 跑路 / Rug Pull 风险",
+          "count": 5
+        },
+        {
+          "name": "偿付能力 / 储备 / 流动性风险",
+          "count": 5
+        },
+        {
+          "name": "大额转账 / 巨鲸行为风险",
+          "count": 4
+        },
+        {
+          "name": "交易所与系统运维风险",
+          "count": 4
+        },
+        {
+          "name": "稳定币异常风险",
+          "count": 1
+        },
+        {
+          "name": "基础设施 / 协议层异常风险",
+          "count": 1
+        }
+      ],
+      "gold_primary_type_top": [
+        {
+          "name": "无明显风险",
+          "count": 67
+        },
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 26
+        },
+        {
+          "name": "爆仓 / 清算风险",
+          "count": 25
+        },
+        {
+          "name": "监管与法律风险",
+          "count": 21
+        },
+        {
+          "name": "异常行情波动风险",
+          "count": 19
+        },
+        {
+          "name": "项目治理 / 团队异常风险",
+          "count": 8
+        },
+        {
+          "name": "偿付能力 / 储备 / 流动性风险",
+          "count": 8
+        },
+        {
+          "name": "基础设施 / 协议层异常风险",
+          "count": 6
+        },
+        {
+          "name": "大额转账 / 巨鲸行为风险",
+          "count": 6
+        },
+        {
+          "name": "宏观 / 政策冲击风险",
+          "count": 4
+        },
+        {
+          "name": "诈骗 / 跑路 / Rug Pull 风险",
+          "count": 4
+        },
+        {
+          "name": "稳定币异常风险",
+          "count": 3
+        },
+        {
+          "name": "交易所与系统运维风险",
+          "count": 3
+        }
+      ]
+    }
+  },
+  "findings_non_llm": [
+    {
+      "name": "top_false_positive_rule_types",
+      "category": "false_positive",
+      "description": "误报样本中最常见的规则主类别",
+      "evidence": [
+        {
+          "name": "监管与法律风险",
+          "count": 49
+        },
+        {
+          "name": "宏观 / 政策冲击风险",
+          "count": 35
+        },
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 29
+        },
+        {
+          "name": "异常行情波动风险",
+          "count": 19
+        },
+        {
+          "name": "大额转账 / 巨鲸行为风险",
+          "count": 10
+        }
+      ],
+      "suggestion": "优先检查这些类别对应的 scorer 是否触发条件过宽。",
+      "priority": "high"
+    },
+    {
+      "name": "top_false_negative_gold_types",
+      "category": "false_negative",
+      "description": "漏报样本中最常见的金标主类别",
+      "evidence": [
+        {
+          "name": "链上漏洞 / 攻击风险",
+          "count": 4
+        }
+      ],
+      "suggestion": "优先补充这些类别的关键词、弱触发分支或语义模式。",
+      "priority": "high"
+    },
+    {
+      "name": "top_type_mismatch_pairs",
+      "category": "type_mismatch",
+      "description": "主类别最常见的错配方向",
+      "evidence": [
+        {
+          "gold_primary_risk_type": "异常行情波动风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 53
+        },
+        {
+          "gold_primary_risk_type": "监管与法律风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 33
+        },
+        {
+          "gold_primary_risk_type": "大额转账 / 巨鲸行为风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 29
+        },
+        {
+          "gold_primary_risk_type": "链上漏洞 / 攻击风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 11
+        },
+        {
+          "gold_primary_risk_type": "基础设施 / 协议层异常风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 6
+        },
+        {
+          "gold_primary_risk_type": "爆仓 / 清算风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 6
+        },
+        {
+          "gold_primary_risk_type": "项目治理 / 团队异常风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 6
+        },
+        {
+          "gold_primary_risk_type": "宏观 / 政策冲击风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 6
+        },
+        {
+          "gold_primary_risk_type": "稳定币异常风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 4
+        },
+        {
+          "gold_primary_risk_type": "偿付能力 / 储备 / 流动性风险",
+          "rule_primary_risk_type": "无明显风险",
+          "count": 3
+        }
+      ],
+      "suggestion": "重点检查这些类别之间的边界定义和主类别选取逻辑。",
+      "priority": "high"
+    },
+    {
+      "name": "top_false_positive_trigger_scores",
+      "category": "false_positive",
+      "description": "误报样本中最常被触发的风险分数列",
+      "evidence": [
+        {
+          "score_col": "score_regulatory",
+          "trigger_count": 57,
+          "mean_value": 0.1915,
+          "max_value": 0.8
+        },
+        {
+          "score_col": "score_macro",
+          "trigger_count": 40,
+          "mean_value": 0.1402,
+          "max_value": 0.6
+        },
+        {
+          "score_col": "score_hack",
+          "trigger_count": 30,
+          "mean_value": 0.1413,
+          "max_value": 0.95
+        },
+        {
+          "score_col": "score_volatility",
+          "trigger_count": 23,
+          "mean_value": 0.0735,
+          "max_value": 0.799
+        },
+        {
+          "score_col": "score_whale",
+          "trigger_count": 12,
+          "mean_value": 0.0499,
+          "max_value": 0.75
+        },
+        {
+          "score_col": "score_fraud",
+          "trigger_count": 6,
+          "mean_value": 0.0238,
+          "max_value": 0.88
+        }
+      ],
+      "suggestion": "这些 scorer 很可能过于激进，建议优先收紧触发条件。",
+      "priority": "high"
+    },
+    {
+      "name": "false_negative_trigger_scores",
+      "category": "false_negative",
+      "description": "漏报样本中的风险分数列触发情况",
+      "evidence": [
+        {
+          "score_col": "score_hack",
+          "trigger_count": 1,
+          "mean_value": 0.2788,
+          "max_value": 0.3178
+        },
+        {
+          "score_col": "score_fraud",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_regulatory",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_outage",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_stablecoin",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        },
+        {
+          "score_col": "score_liquidation",
+          "trigger_count": 0,
+          "mean_value": 0.0,
+          "max_value": 0.0
+        }
+      ],
+      "suggestion": "若关键类别长期不触发，说明对应规则存在盲区。",
+      "priority": "medium"
+    },
+    {
+      "name": "top_score_diff_trigger_scores",
+      "category": "score_diff",
+      "description": "分数偏差最大的样本中，最常被触发的风险分数列",
+      "evidence": [
+        {
+          "score_col": "score_hack",
+          "trigger_count": 40,
+          "mean_value": 0.162,
+          "max_value": 0.95
+        },
+        {
+          "score_col": "score_regulatory",
+          "trigger_count": 38,
+          "mean_value": 0.1163,
+          "max_value": 0.8
+        },
+        {
+          "score_col": "score_volatility",
+          "trigger_count": 34,
+          "mean_value": 0.0891,
+          "max_value": 0.8081
+        },
+        {
+          "score_col": "score_macro",
+          "trigger_count": 30,
+          "mean_value": 0.0835,
+          "max_value": 0.6
+        },
+        {
+          "score_col": "score_liquidation",
+          "trigger_count": 23,
+          "mean_value": 0.0832,
+          "max_value": 0.75
+        },
+        {
+          "score_col": "score_fraud",
+          "trigger_count": 6,
+          "mean_value": 0.0215,
+          "max_value": 0.88
+        }
+      ],
+      "suggestion": "这些 scorer 的强度映射或阈值可能需要重新校准。",
+      "priority": "medium"
+    }
+  ],
+  "llm_analysis": {
+    "executive_summary": [
+      "规则系统最突出的问题是score_regulatory、score_macro、score_hack的过度触发，导致大量低风险新闻被误评为高风险，并造成主类别误判。",
+      "同时score_hack、score_volatility、score_whale等真实风险类别存在严重漏召回，且主类别选择逻辑过度倾向“无明显风险”，导致类型错配激增。"
+    ],
+    "patterns": [
+      {
+        "category": "false_positive",
+        "pattern_name": "监管/宏观/黑客三大scorer过度赋分",
+        "affected_scorers": [
+          "score_regulatory",
+          "score_macro",
+          "score_hack"
+        ],
+        "evidence": [
+          "false_positive中score_regulatory触发57次（mean=0.19, max=0.8），macro触发40次（mean=0.14, max=0.6），hack触发30次（mean=0.14, max=0.95）",
+          "样本news_id=704（纯讨论稳定币收益规定）score_regulatory=0.8，gold risk 25；news_id=199（避险资产观点）score_macro=0.56，gold risk 0；news_id=315（稳定币需求）score_hack=0.89，gold risk 10",
+          "误报最多的三大规则主类别分别为监管与法律（49）、宏观/政策（35）、链上漏洞/攻击（29），gold多数为“无明显风险”（67）"
+        ],
+        "likely_root_cause": "关键词匹配范围过宽，缺少否定/缓解语境识别，且分数映射在中等相关性时即给出过高值，导致普通法规讨论、宏观分析、历史漏洞提及被当成高风险。",
+        "patch_suggestions": [
+          "为score_regulatory增加否定词列表（如“质疑”“反对”“不会影响”“申请不采取行动”），出现时大幅降权或设定上限",
+          "score_macro仅对明确的政策/制裁/地缘危机升级触发，过滤分析师观点和一般市场评论（如“油价冲击重塑市场”不视为风险）",
+          "score_hack引入攻击严重性分级，对仅提及“漏洞”“批评”而不涉及实际损失、且含防御/澄清/冻结等词的新闻降低50%以上分数"
+        ],
+        "priority": "high"
+      },
+      {
+        "category": "false_negative",
+        "pattern_name": "链上漏洞/攻击风险系统性漏报",
+        "affected_scorers": [
+          "score_hack"
+        ],
+        "evidence": [
+          "false_negative仅4条，全部为“链上漏洞/攻击风险”，规则主类别均为“无明显风险”",
+          "score_hack在漏报样本中仅触发1次（mean=0.2788, max=0.3178），远低于主类别触发阈值",
+          "样本news_id=222（量子计算威胁比特币）无任何分数触发；news_id=238（Rhea Finance漏洞损失1840万美元）score_hack仅0.3178；news_id=687（AI社会工程攻击）无触发"
+        ],
+        "likely_root_cause": "score_hack的关键词库覆盖不足，缺少对量子攻击、AI社会工程、内部热钱包被盗等新型攻击手法的匹配，且现有触发阈值可能偏高，导致真实严重事件无法形成主类别。",
+        "patch_suggestions": [
+          "扩展score_hack的词库：增加“量子计算”“社会工程攻击”“内部热钱包被盗”“密钥恢复”“冻结地址”等，并允许通过上下文（如损失金额）直接赋予较高基础分",
+          "降低hack类别进入主类别的最小分数门槛（如从现有隐含阈值降至0.25），并确保存在攻击证据时即使分数不高也能提升优先级"
+        ],
+        "priority": "high"
+      },
+      {
+        "category": "type_mismatch",
+        "pattern_name": "真实风险新闻被大量归为“无明显风险”",
+        "affected_scorers": [
+          "score_volatility",
+          "score_regulatory",
+          "score_whale",
+          "score_liquidation",
+          "score_infra",
+          "score_team"
+        ],
+        "evidence": [
+          "type_mismatch中161条规则主类别为“无明显风险”，而gold主类别包括异常行情波动(53)、监管与法律(33)、巨鲸行为(29)、链上漏洞(11)等",
+          "这些错配案例中，对应的scorer几乎未触发或分值过低，如news_id=8（价格最大痛苦点）无任何分数触发，news_id=401（CFTC主席言论）无触发，news_id=482（大户准备出售）无触发",
+          "部分scorer（如score_team、score_infra）在全局几乎不触发，进一步恶化漏报"
+        ],
+        "likely_root_cause": "多个风险类别的scorer触发覆盖面严重不足，导致即使新闻明确描述该类风险也无分数信号；同时主类别选择逻辑将“无明显风险”作为默认，缺少对弱信号的综合利用。",
+        "patch_suggestions": [
+          "对score_volatility增加对价格回调/下跌、期权偏斜、重大比率波动等描述的关键词，并对“暴涨/暴跌+%”给予基础分",
+          "对score_whale引入金额阈值（如>500万美元）并结合行为意图（抛售、转移至交易所）触发，区分常规机构买卖",
+          "对score_regulatory增加监管行动词（如“提交申请”“调查”“推进法案”“不采取行动”），但对无明显负面后果的设定较低分数",
+          "修改主类别选择规则：当任一gold潜在类别scorer有微弱信号（>0.1）时，优先选择该类别而非“无明显风险”"
+        ],
+        "priority": "high"
+      },
+      {
+        "category": "score_diff",
+        "pattern_name": "过度触发scorer造成的高偏差叠加",
+        "affected_scorers": [
+          "score_hack",
+          "score_regulatory",
+          "score_macro",
+          "score_volatility"
+        ],
+        "evidence": [
+          "score_diff_top中score_hack触发40次（mean=0.162, max=0.95），与false_positive的过度触发一致",
+          "样本news_id=283（公司购买2枚BTC）score_hack=0.85导致规则85分 vs 金标5分，news_id=904（USDC不会用于伊朗）score_hack=0.9497导致95分 vs 金标15分",
+          "score_regulatory同样在多个低分样本给到0.8，造成55分以上分差"
+        ],
+        "likely_root_cause": "关键scorer在没有实际负面后果的语境下仍给出极高置信度，缺乏强度控制。",
+        "patch_suggestions": [
+          "为score_hack增加上下文校验：当新闻含有“冻结”“防范”“不用于”“不受影响”等词汇时，最高分限制在0.3",
+          "对score_regulatory引入严重性层级，仅“制裁”“罚款”“正式指控”等给予0.7+，其余讨论性内容封顶0.4",
+          "为所有高频误报scorer增加“非事件性内容”抑制规则：若新闻主体为观点、评论、前景分析，自动折扣30%"
+        ],
+        "priority": "high"
+      }
+    ],
+    "scorer_diagnosis": [
+      {
+        "score_col": "score_regulatory",
+        "problem_type": "过宽触发",
+        "why": "在false_positive中触发57次（最多），平均0.19且常见0.8高分，但gold primary中33条确属监管风险，49条误报。大量仅提及法规讨论或质疑的新闻被赋高分。",
+        "recommendation": "增加否定/缓和词排除列表（质疑、反对、不会影响、申请不采取行动），并对非制裁/非禁止性政策讨论限制最高分0.4。"
+      },
+      {
+        "score_col": "score_macro",
+        "problem_type": "过宽触发",
+        "why": "触发40次，mean=0.14，max=0.6，但gold primary仅11条为宏观风险，大量误报源自一般宏观分析、油价影响、避险资产观点。",
+        "recommendation": "收紧触发条件至明确的政策冲击（制裁、资本管制、贸易战）、地缘严重升级等；过滤分析师个人观点或一般市场展望。"
+      },
+      {
+        "score_col": "score_hack",
+        "problem_type": "过宽触发 + 漏召回",
+        "why": "同时出现在FP（30次）和FN（4条漏报中最多）。FP给出0.85+高分，但新闻仅为沟通漏洞处理或回应；FN则完全漏掉量子攻击、社会工程攻击等。",
+        "recommendation": "双管齐下：扩展攻击类型关键词（量子、社会工程、内部热钱包盗、闪电贷），并部署否定/防御语境减分；将现行触发阈值从隐含约0.3降至0.25。"
+      },
+      {
+        "score_col": "score_volatility",
+        "problem_type": "过宽触发 + 漏召回",
+        "why": "FP中触发23次，mean=0.07但max=0.8，对一般暴涨炒作给高分；type_mismatch中53条行情风险被归为none，说明许多真实价格波动无触发。",
+        "recommendation": "提高单体给分门槛（如要求涨跌幅>10%且伴随期权偏斜、插针等），同时补充基础触发词（价格回调、急剧下跌、最大痛苦点）来解决漏报。"
+      },
+      {
+        "score_col": "score_whale",
+        "problem_type": "过宽触发 + 漏召回",
+        "why": "FP中触发了12次（mean=0.05，max=0.75），将伊朗通过加密转移资金视为巨鲸行为；type_mismatch中29条巨鲸风险被漏报，如机构出售BTC、鲸鱼持仓等无触发。",
+        "recommendation": "设置最小金额阈值（如500万美元），并区分恶意行为（如洗钱、抛售预警）与正常大额转账；增加大额持仓变化、大户准备出售等触发模式。"
+      },
+      {
+        "score_col": "score_team",
+        "problem_type": "证据不足",
+        "why": "在FP中触发0次，FN中0次，type_mismatch中仅少量gold为团队异常，但样本过少，难以判定。",
+        "recommendation": "暂维持现有规则，后续收集更多案例后再调整。"
+      },
+      {
+        "score_col": "score_infra",
+        "problem_type": "证据不足",
+        "why": "全局几乎不触发，但type_mismatch有6条基础设施风险被漏报，仅1条出现在score_diff统计中（mean极低）。",
+        "recommendation": "可能需要补充协议层异常关键词（分叉、停机、拥堵、共识失败），但证据有限，按需迭代。"
+      }
+    ],
+    "patch_plan": [
+      {
+        "step": 1,
+        "target": "score_hack的漏报与误报",
+        "action": "扩展攻击关键词库（量子计算、社会工程、内部热钱包被盗、密钥恢复、闪电贷、冻结地址），并在检测到“防御”“防范”“不受影响”“不会用于”等词时将分数上限设为0.3。将hack类别的最低触发有效分从隐含阈值降至0.25。",
+        "expected_benefit": "可覆盖4条漏报中的至少3条，同时减少类似news_id=904的误报（hack=0.9497→0.3），显著降低false_positive与score_diff。"
+      },
+      {
+        "step": 2,
+        "target": "score_regulatory和score_macro的过度触发",
+        "action": "为regulatory增加否定/和缓词（质疑、反对、不采取行动、未受影响），对非制裁类讨论将最高分限制在0.4；macro严格限定于直接政策/制裁/危机升级，排除分析师观点与一般市场结构描述。",
+        "expected_benefit": "减少约30%的regulatory误报和25%的macro误报，降低false_positive和type_mismatch中监管/宏观被错判为高风险的比例。"
+      },
+      {
+        "step": 3,
+        "target": "score_volatility和score_whale的覆盖与精度",
+        "action": "volatility增加价格回调、最大痛苦点、跌幅超过8%等触发词，同时将暴涨暴跌的需要幅度阈值提高至15%以上才给0.5+；whale增加金额门槛（单笔>500万或持仓变动超1000万）并识别抛售、交易所转入等负面意图。",
+        "expected_benefit": "type_mismatch中约50条行情错配和25条巨鲸错配将得到纠正，同时避免对普通大户新闻的过触发。"
+      },
+      {
+        "step": 4,
+        "target": "主类别选择逻辑",
+        "action": "修改规则：当多个scorer分数均低于0.3时，若任一scorer分数>0.1且gold常见类别中该scorer明确相关，则优先选择该类别而非“无明显风险”。引入最小启动阈值0.1以避免噪音。",
+        "expected_benefit": "大幅减少174条type_mismatch中的“无明显风险”误判，预计可解决60%以上的错配。"
+      }
+    ],
+    "confidence": "high"
+  },
+  "meta": {
+    "model": "deepseek-v4-pro",
+    "sample_rows_per_bucket": 12,
+    "text_limit": 220
+  }
+}
