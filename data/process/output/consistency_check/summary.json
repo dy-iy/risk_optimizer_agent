@@ -1,0 +1,24 @@
+{
+  "total_aligned": 1000,
+  "level_counts": {
+    "A_high_agreement": 825,
+    "C_severe_conflict": 119,
+    "B_minor_conflict": 56
+  },
+  "level_ratios": {
+    "A_high_agreement": 0.825,
+    "C_severe_conflict": 0.119,
+    "B_minor_conflict": 0.056
+  },
+  "avg_score_diff": 5.008,
+  "label_agreement_rate": 0.933,
+  "primary_agreement_rate": 0.908,
+  "types_exact_rate": 0.871,
+  "avg_types_jaccard": 0.8982,
+  "missing": {
+    "only_in_a": 0,
+    "only_in_b": 0,
+    "only_in_a_ids_preview": [],
+    "only_in_b_ids_preview": []
+  }
+}

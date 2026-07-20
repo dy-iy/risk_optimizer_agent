@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "dataset_status": "training_ready_ai_reviewed",
+  "generated_at_utc": "2026-07-15T03:04:32.827045+00:00",
+  "rows": 1000,
+  "columns": [
+    "新闻id",
+    "时间",
+    "内容",
+    "risk_score",
+    "risk_label",
+    "risk_types",
+    "primary_risk_type",
+    "reason",
+    "confidence",
+    "summary"
+  ],
+  "source_counts": {
+    "agreement_candidate": 825,
+    "codex_ai_reviewed": 119,
+    "minor_conflict_llm_adjudicated": 56
+  },
+  "risk_label_counts": {
+    "low": 870,
+    "medium": 80,
+    "high": 50
+  },
+  "primary_risk_type_counts": {
+    "无明显风险": 782,
+    "链上漏洞 / 攻击风险": 63,
+    "爆仓 / 清算风险": 33,
+    "监管与法律风险": 24,
+    "大额转账 / 巨鲸行为风险": 18,
+    "异常行情波动风险": 16,
+    "基础设施 / 协议层异常风险": 14,
+    "项目治理 / 团队异常风险": 13,
+    "宏观 / 政策冲击风险": 12,
+    "偿付能力 / 储备 / 流动性风险": 12,
+    "诈骗 / 跑路 / Rug Pull 风险": 11,
+    "交易所与系统运维风险": 2
+  },
+  "pending_human_review_rows": 0,
+  "codex_ai_reviewed_rows": 119,
+  "human_reviewed_rows": 0,
+  "inputs": [
+    {
+      "path": "data/process/output/consistency_check/candidate_gold_agreement.csv",
+      "sha256": "6321a6737b8b6be65e84554fc129ce94699493419972fb8d8502531ca331f1ce"
+    },
+    {
+      "path": "data/process/output/consistency_check/adjudicated_human_result.csv",
+      "sha256": "26eff34717d5eb8174f5ab135167175177b6a61f431d89767b284a5c389ea687"
+    },
+    {
+      "path": "data/process/output/consistency_check/adjudicated_llm_result.csv",
+      "sha256": "3e42ceeaeedfc600a2194f474ab0fc7cd5561d2c3b953716ebb93d25bd5f69e8"
+    },
+    {
+      "path": "data/process/output/consistency_check/cleared_news_v2_deepseek_1000_labeled.csv",
+      "sha256": "b2bd50950fa775ea5849f0665240a2c0908e5c82c19d0966e6b114c05881f25f"
+    },
+    {
+      "path": "data/process/output/codex_review_priority_119.csv",
+      "sha256": "0ef0911496d60cc8acbaa6f4f3b13c3bf1fe3ea6cb42a4789a415c7b0c90aa2d"
+    }
+  ],
+  "outputs": {
+    "dataset": {
+      "path": "data/process/output/final_gold_news_1000.csv",
+      "sha256": "ca21e46563cd6642dc7c9896496b9bf500dc653972ba673bf05bd6e3f7f55e70"
+    },
+    "dataset_with_source": {
+      "path": "data/process/output/final_gold_news_1000_with_source.csv",
+      "sha256": "2c3d3dbe0a7594fe1ccfdf54ffb198ba7da2aa226ce82b6381096a0fa36bbe46"
+    }
+  },
+  "notes": [
+    "Severe-conflict rows were independently reviewed by Codex AI; this must not be represented as human annotation."
+  ]
+}

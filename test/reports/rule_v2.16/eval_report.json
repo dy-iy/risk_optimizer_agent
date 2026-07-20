@@ -1,0 +1,181 @@
+{
+  "success": true,
+  "program": "D:\\risk_optimizer_agent\\test\\reports\\rule_v2.16\\rule_v2.16.py",
+  "gold_csv": "D:\\risk_optimizer_agent\\test\\testnews.csv",
+  "prediction_csv": "D:\\risk_optimizer_agent\\test\\reports\\rule_v2.16\\predictions.csv",
+  "rows": {
+    "gold_rows": 100,
+    "prediction_rows": 100,
+    "matched_rows": 100
+  },
+  "score_metrics": {
+    "mae": 23.98,
+    "rmse": 31.443600302764313,
+    "mean_error_rule_minus_gold": -17.04,
+    "max_abs_error": 75.0,
+    "within_5_accuracy": 0.24,
+    "within_10_accuracy": 0.38,
+    "within_20_accuracy": 0.58
+  },
+  "label_metrics": {
+    "accuracy": 0.59,
+    "gold_distribution": {
+      "low": 58,
+      "medium": 33,
+      "high": 9
+    },
+    "rule_distribution": {
+      "low": 76,
+      "medium": 16,
+      "high": 8
+    },
+    "confusion_matrix": {
+      "low": {
+        "low": 48,
+        "medium": 9,
+        "high": 1
+      },
+      "medium": {
+        "low": 25,
+        "medium": 6,
+        "high": 2
+      },
+      "high": {
+        "low": 3,
+        "medium": 1,
+        "high": 5
+      }
+    }
+  },
+  "primary_type_metrics": {
+    "accuracy": 0.11,
+    "gold_distribution": {
+      "综合风险": 34,
+      "异常行情波动风险": 15,
+      "交易所与系统运维风险": 10,
+      "爆仓 / 清算风险": 9,
+      "宏观 / 政策冲击风险": 6,
+      "监管与法律风险": 6,
+      "偿付能力 / 储备 / 流动性风险": 5,
+      "大额转账 / 巨鲸行为风险": 5,
+      "代币发行 / 异常增发风险": 4,
+      "链上漏洞 / 攻击风险": 3,
+      "跨链桥 / 跨链资金风险": 2,
+      "稳定币异常风险": 1
+    },
+    "rule_distribution": {
+      "无明显风险": 66,
+      "链上漏洞 / 攻击风险": 9,
+      "大额转账 / 巨鲸行为风险": 6,
+      "爆仓 / 清算风险": 5,
+      "宏观 / 政策冲击风险": 3,
+      "交易所与系统运维风险": 3,
+      "异常行情波动风险": 3,
+      "偿付能力 / 储备 / 流动性风险": 3,
+      "稳定币异常风险": 1,
+      "监管与法律风险": 1
+    },
+    "top_mismatches": [
+      {
+        "gold_type_norm": "综合风险",
+        "rule_primary_type_norm": "无明显风险",
+        "count": 30
+      },
+      {
+        "gold_type_norm": "异常行情波动风险",
+        "rule_primary_type_norm": "无明显风险",
+        "count": 10
+      },
+      {
+        "gold_type_norm": "交易所与系统运维风险",
+        "rule_primary_type_norm": "无明显风险",
+        "count": 4
+      },
+      {
+        "gold_type_norm": "宏观 / 政策冲击风险",
+        "rule_primary_type_norm": "无明显风险",
+        "count": 4
+      },
+      {
+        "gold_type_norm": "大额转账 / 巨鲸行为风险",
+        "rule_primary_type_norm": "无明显风险",
+        "count": 3
+      },
+      {
+        "gold_type_norm": "代币发行 / 异常增发风险",
+        "rule_primary_type_norm": "无明显风险",
+        "count": 3
+      },
+      {
+        "gold_type_norm": "爆仓 / 清算风险",
+        "rule_primary_type_norm": "无明显风险",
+        "count": 3
+      },
+      {
+        "gold_type_norm": "监管与法律风险",
+        "rule_primary_type_norm": "无明显风险",
+        "count": 3
+      },
+      {
+        "gold_type_norm": "综合风险",
+        "rule_primary_type_norm": "链上漏洞 / 攻击风险",
+        "count": 2
+      },
+      {
+        "gold_type_norm": "跨链桥 / 跨链资金风险",
+        "rule_primary_type_norm": "无明显风险",
+        "count": 2
+      },
+      {
+        "gold_type_norm": "异常行情波动风险",
+        "rule_primary_type_norm": "偿付能力 / 储备 / 流动性风险",
+        "count": 2
+      },
+      {
+        "gold_type_norm": "爆仓 / 清算风险",
+        "rule_primary_type_norm": "大额转账 / 巨鲸行为风险",
+        "count": 2
+      },
+      {
+        "gold_type_norm": "偿付能力 / 储备 / 流动性风险",
+        "rule_primary_type_norm": "链上漏洞 / 攻击风险",
+        "count": 2
+      },
+      {
+        "gold_type_norm": "偿付能力 / 储备 / 流动性风险",
+        "rule_primary_type_norm": "无明显风险",
+        "count": 2
+      },
+      {
+        "gold_type_norm": "链上漏洞 / 攻击风险",
+        "rule_primary_type_norm": "无明显风险",
+        "count": 2
+      },
+      {
+        "gold_type_norm": "宏观 / 政策冲击风险",
+        "rule_primary_type_norm": "链上漏洞 / 攻击风险",
+        "count": 1
+      },
+      {
+        "gold_type_norm": "偿付能力 / 储备 / 流动性风险",
+        "rule_primary_type_norm": "异常行情波动风险",
+        "count": 1
+      },
+      {
+        "gold_type_norm": "大额转账 / 巨鲸行为风险",
+        "rule_primary_type_norm": "宏观 / 政策冲击风险",
+        "count": 1
+      },
+      {
+        "gold_type_norm": "交易所与系统运维风险",
+        "rule_primary_type_norm": "偿付能力 / 储备 / 流动性风险",
+        "count": 1
+      },
+      {
+        "gold_type_norm": "交易所与系统运维风险",
+        "rule_primary_type_norm": "爆仓 / 清算风险",
+        "count": 1
+      }
+    ]
+  }
+}

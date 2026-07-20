@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "status": "recovered_snapshot_not_original_bytes",
+  "rows": 1000,
+  "output": "data/process/output/LLM_label_2_recovered.csv",
+  "output_sha256": "9242d80c02df3519b4afbbfc20b01561e4b44eca23eb6c2a571343861653866a",
+  "exact_fields_recovered_from_report": [
+    "新闻id",
+    "时间",
+    "内容",
+    "risk_score",
+    "risk_label",
+    "risk_types",
+    "primary_risk_type",
+    "reason",
+    "summary"
+  ],
+  "confidence_recovery": {
+    "conflict_rows": "copied exactly from historical review inputs",
+    "agreement_rows": "constrained reconstruction from rounded merged confidence plus the historically selected A/B reason and summary"
+  },
+  "inputs": [
+    {
+      "path": "data/input/raw_1000_news.csv",
+      "sha256": "e8174d3fa33f99eb409d621682da871f227e0a84402e4f2946e1fa7bd1671b9b"
+    },
+    {
+      "path": "data/process/output/LLM_label_1.csv",
+      "sha256": "7ed46b9e08ddbf71bdf3739cf6b57d8a50c896e0a6c73e33d48db66dac619e5d"
+    },
+    {
+      "path": "data/process/output/consistency_check/consistency_report.csv",
+      "sha256": "d17b7e62893d85629ac89cbf2cf9e96f5f20718165ac1447e080d3f8a3ebde2c"
+    },
+    {
+      "path": "data/process/output/consistency_check/candidate_gold_agreement.csv",
+      "sha256": "6321a6737b8b6be65e84554fc129ce94699493419972fb8d8502531ca331f1ce"
+    },
+    {
+      "path": "data/process/output/consistency_check/need_llm_adjudication.csv",
+      "sha256": "ffdb4949cc6f4ad31e33a9fb24ce25fc3c396d2b88c6f96c78f51b09a7eedd35"
+    },
+    {
+      "path": "data/process/output/consistency_check/need_human_review_priority.csv",
+      "sha256": "84afa5f560d54dce2b440f324fcad4c96acbfd0cc4d3269aaaac96fae730ca31"
+    }
+  ]
+}

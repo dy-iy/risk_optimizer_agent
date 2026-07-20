@@ -1,12 +1,25 @@
 .env
 .vscode
+risk_optimizer_agent.code-workspace
 
 # Python
 __pycache__/
 *.py[cod]
 .pytest_cache/
 
-# Local data and generated run artifacts
+# Local data
 raw_*.csv
 
+# Generated workflow artifacts
+/reports/
+/experiments/reports/
+/experiments/**/reports/
+/experiments/**/batch_runs/
+/versions/**/reports/
+/workflows/**/reports/
+/workflows/**/batch_runs/
 
+# Local archives and packaged snapshots
+*.tar
+*.tar.gz
+*.zip

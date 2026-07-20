@@ -1,0 +1,12 @@
+.env
+.vscode
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local data and generated run artifacts
+raw_*.csv
+
+risk_optimizer_agent.code-workspace
