@@ -1,0 +1,14 @@
+runs/
+prepared/
+.venv/
+tasks/*/prepared/
+tasks/*/runs/
+
+tasks/*/versions/
+tasks/*/checkpoint.json
+tasks/*/report.md
+tasks/*/iterations.csv
+tasks/*/tokens.csv
+tasks/*/changes.md
+tasks/*/iterations/
+tasks/*/final/

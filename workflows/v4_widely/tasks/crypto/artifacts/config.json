@@ -1,0 +1,40 @@
+{
+  "name": "crypto",
+  "description": "加密货币新闻：多标签风险类别及 low/medium/high 风险等级。",
+  "kind": "joint",
+  "labels": [
+    "链上漏洞 / 攻击风险",
+    "诈骗 / 跑路 / Rug Pull 风险",
+    "监管与法律风险",
+    "交易所与系统运维风险",
+    "稳定币异常风险",
+    "爆仓 / 清算风险",
+    "大额转账 / 巨鲸行为风险",
+    "异常行情波动风险",
+    "项目治理 / 团队异常风险",
+    "偿付能力 / 储备 / 流动性风险",
+    "基础设施 / 协议层异常风险",
+    "宏观 / 政策冲击风险"
+  ],
+  "field": "categories",
+  "language": "zh",
+  "positive": null,
+  "seed": 42,
+  "examples_per_label": 3,
+  "max_errors": 40,
+  "max_changes": 6,
+  "weights": {
+    "micro_f1": 0.25,
+    "macro_f1": 0.25,
+    "level_macro_f1": 0.2,
+    "high_recall": 0.1,
+    "high_f1": 0.2
+  },
+  "max_drops": {
+    "micro_f1": 0.02,
+    "macro_f1": 0.02,
+    "level_macro_f1": 0.03,
+    "high_recall": 0.3,
+    "high_f1": 0.03
+  }
+}

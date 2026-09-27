@@ -29,17 +29,11 @@ def resolve_workflow_dir(project_root: Path, workflow_name: str | None = None) -
 
 
 def resolve_versions_dir(project_root: Path, workflow_name: str | None = None) -> Path:
-    workflow_versions_dir = resolve_workflow_dir(project_root, workflow_name) / "versions"
-    if workflow_versions_dir.exists() or resolve_workflow_name(workflow_name) != "baseline":
-        return workflow_versions_dir
-    return project_root / "versions"
+    return resolve_workflow_dir(project_root, workflow_name) / "versions"
 
 
 def resolve_experiments_dir(project_root: Path, workflow_name: str | None = None) -> Path:
-    workflow_experiments_dir = resolve_workflow_dir(project_root, workflow_name) / "experiments"
-    if workflow_experiments_dir.exists() or resolve_workflow_name(workflow_name) != "baseline":
-        return workflow_experiments_dir
-    return project_root / "experiments"
+    return resolve_workflow_dir(project_root, workflow_name) / "experiments"
 
 
 def normalize_version_name(version: str | int) -> str:

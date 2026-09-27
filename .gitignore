@@ -10,6 +10,11 @@ __pycache__/
 # Local data
 raw_*.csv
 
+# Generated data and test artifacts
+/data/process/output/
+/data/process/output*.csv
+/test/reports/
+
 # Generated workflow artifacts
 /reports/
 /experiments/reports/
@@ -20,6 +25,8 @@ raw_*.csv
 /workflows/**/batch_runs/
 
 # Local archives and packaged snapshots
+/.tmp/
+/dist/
 *.tar
 *.tar.gz
 *.zip

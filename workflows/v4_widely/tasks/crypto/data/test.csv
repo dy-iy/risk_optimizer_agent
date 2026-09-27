@@ -1,0 +1,36 @@
+﻿id,text,categories,level,inputs,metadata
+989,"BTC OG 内幕巨鲸代理人对停火持悲观态度 4 月 12 日，BTC OG 内幕巨鲸代理人 Garrett Jin 发文表示，停火是裹着糖衣的毒药。据 BlockBeats 报道，市场认为短暂停火会带来持久和平，但他对此持悲观态度。
+
+他认为这种概率低于 10%，因为伊朗的条件与美国的要求不符，且没有停火条款在 24 小时内执行。历史上也无通过短暂停火解决大规模冲突的先例，实际概率可能更低于 10%。",[],low,{},"{""source"": ""workflows/v4/data/crypto_news_train.csv"", ""row"": 989, ""upstream_split"": ""pool"", ""raw_label"": null}"
+296,"链上 Perp DEX 市场交易量回落，Hyperliquid 下降 16% BlockBeats 消息，4 月 17 日，据 DefiLlama 数据，链上 Perp DEX 市场整体交易量普遍回落。
+
+据 BlockBeats链上侦探报道，Hyperliquid 交易量较昨日下降约 16%；TradeXYZ 本周交易量较低，已回落至 3 月初水平。Aster 目前位居交易量第二。
+
+当前主要 Perp DEX 交易量排名如下：Hyperliquid 24 小时交易量约 65.2 亿美元，未平仓合约量达 75.8 亿美元；TradeXYZ 24 小时交易量约 16 亿美元，未平仓合约量达 17.9 亿美元；Aster 24 小时交易量约 20.8 亿美元，未平仓合约量达 20.9 亿美元；EdgeX 24 小时交易量约 20.4 亿美元，未平仓合约量达 9.48 亿美元；Lighter 24 小时交易量约 15.9 亿美元，未平仓合约量达 6.94 亿美元；Pacifica 24 小时交易量约 4.82 亿美元，未平仓合约量达 8153 万美元。",[],low,{},"{""source"": ""workflows/v4/data/crypto_news_train.csv"", ""row"": 296, ""upstream_split"": ""pool"", ""raw_label"": null}"
+264,"BTC 突破 78,000 USDT，24 小时涨幅5.61% 据币安行情数据显示，BTC 突破 78,000 USDT，现报价 78,029.078125 USDT，24 小时涨幅5.61%。",[],low,{},"{""source"": ""workflows/v4/data/crypto_news_train.csv"", ""row"": 264, ""upstream_split"": ""pool"", ""raw_label"": null}"
+607,币安聊天室上线，提供即时沟通和红包功能 币安华语于 X 宣布，币安聊天室正式上线，提供即时沟通和红包功能。用户可以通过这一平台进行安全协作，享受全新的通讯体验。,[],low,{},"{""source"": ""workflows/v4/data/crypto_news_train.csv"", ""row"": 607, ""upstream_split"": ""pool"", ""raw_label"": null}"
+676,市场情绪积极！链上交易者重新实现盈利 Foresight News 消息，CryptoQuant 分析显示，链上交易者重新实现盈利。据 Foresight News 报道，利润 / 亏损率已升至 30 日平均水平上方，这是动能增强和比特币价格可能延续的信号。只要该指标保持，趋势仍将保持支撑。,[],low,{},"{""source"": ""workflows/v4/data/crypto_news_train.csv"", ""row"": 676, ""upstream_split"": ""pool"", ""raw_label"": null}"
+985,波场 TRON 调整 SELFDESTRUCT 指令，提升 TVM 兼容性 据 ChainCatcher 报道，波场 TRON 网络已于 4 月 10 日 20:00 正式通过第 106 号委员会提案。根据提案内容，主网已完成对 SELFDESTRUCT 指令行为及执行成本的调整：仅当该指令在合约创建的同一笔交易中被调用时，合约才会被真正从链上删除；在其他情况下，执行该指令仅会将合约内资产转移至指定地址，合约本身不会被删除。同时，SELFDESTRUCT 的能量消耗已由 0 调整为 5000。此次调整意味着，波场 TRON 在相关机制上进一步与 Ethereum 保持一致，有助于持续提升 TVM（TRON 虚拟机）兼容性，为多链开发和生态适配提供更稳定的底层支持。,[],low,{},"{""source"": ""workflows/v4/data/crypto_news_train.csv"", ""row"": 985, ""upstream_split"": ""pool"", ""raw_label"": null}"
+310,专家观点 | Bitcoin 长期持有者积累 306 万枚 BTC，未必是看涨信号 链上分析师 Axel Adler Jr. 表示，Bitcoin 长期持有者在过去三个月内积累了 306 万枚 BTC。据 NS3 报道，Adler Jr. 指出部分长期持有者正在亏损出售，他认为仅靠积累不足以构成明确的看涨信号。,[],low,{},"{""source"": ""workflows/v4/data/crypto_news_train.csv"", ""row"": 310, ""upstream_split"": ""pool"", ""raw_label"": null}"
+441,Drift Protocol 获得 Tether 1.275 亿美元资金支持 据官方博客披露，Drift Protocol 已获得 Tether 提供的最高 1.275 亿美元资金支持。据 PANews 报道，该资金将用于受影响用户的资金恢复与赔付。,"[""偿付能力 / 储备 / 流动性风险""]",low,{},"{""source"": ""workflows/v4/data/crypto_news_train.csv"", ""row"": 441, ""upstream_split"": ""pool"", ""raw_label"": null}"
+703,加密货币期货清算达2.608亿美元，Bitcoin领跌 据 NS3 报道，过去24小时内，加密货币期货清算总额估计达到2.608亿美元。Bitcoin以1.3505亿美元的清算额位居首位，其次是Ether，清算额为9640万美元。,"[""爆仓 / 清算风险"", ""异常行情波动风险""]",medium,{},"{""source"": ""workflows/v4/data/crypto_news_train.csv"", ""row"": 703, ""upstream_split"": ""pool"", ""raw_label"": null}"
+104,EasyDNS 承认 ENS 网关 eth.limo 短暂劫持事件 EasyDNS 承认对 ENS 网关 eth.limo 的短暂劫持负责，该网关的通配符 DNS 记录覆盖约 200 万个 .eth 域名。据 NS3 报道，攻击者在注册商处使用社会工程手段，但 eth.limo 表示 DNSSEC 阻止了恶意 DNS 答复，目前尚无用户受到影响。EasyDNS CEO Mark Jeftovic 表示，这是 28 年来首次成功针对 EasyDNS 客户的社会工程攻击。,"[""基础设施 / 协议层异常风险""]",low,{},"{""source"": ""workflows/v4/data/crypto_news_train.csv"", ""row"": 104, ""upstream_split"": ""pool"", ""raw_label"": null}"
+236,"俄罗斯政府提议对无证加密服务实施刑事责任 据 Cointelegraph 报道，俄罗斯政府向议会下院提交了一项法案，旨在修改法律代码，对未经监管批准或许可的加密服务附加刑事责任。
+
+法案建议，未获得俄罗斯央行许可的数字货币流通组织活动实体可能面临刑事责任。个人未注册可能被罚款最高4000美元，或监禁最长四年。
+
+若由组织团体实施或造成重大损害，可能被判强制劳动最长五年或监禁最长七年。法案还提议罚款最高100万卢布或相当于五年收入。
+
+俄罗斯最高法院称该法案缺乏合理依据，认为在数字货币和数字权利法实施前，该措施为时过早。若通过，政府将对加密行业有更多控制权。
+
+俄罗斯加密交易所Grinex因遭受约1370万美元黑客攻击暂停交易。公司已向执法机构提交相关信息并提出刑事投诉。","[""链上漏洞 / 攻击风险"", ""监管与法律风险"", ""交易所与系统运维风险""]",high,{},"{""source"": ""workflows/v4/data/crypto_news_train.csv"", ""row"": 236, ""upstream_split"": ""pool"", ""raw_label"": null}"
+815,"地缘政治 | 全球能源供应链不稳定影响市场 4 月 14 日，市场核心矛盾从能源价格上涨演变为能源运输权与供应可得性的博弈。据 BlockBeats 报道，美国对伊朗港口施压，沙特警告红海可能遭封锁，市场担忧全球能源供应链稳定性。WTI 对布伦特出现溢价，能源从商品转为战略资产。
+
+美联储官员指出，油价高位将扩散至其他价格，通胀可能转为广泛传导。欧盟准备推出能源价格与税收调整措施，OPEC 产量下降，供给端收缩与地缘风险叠加，能源价格难以快速回落。
+
+BTC 进入前高供应区与清算密集带，75000 附近形成压力，75600 为关键清算触发区，累计清算规模可能超 6 亿美元。RAVE 极端上涨显示市场由资金推动转向结构触发波动，价格延伸依赖杠杆与清算。
+
+市场进入实体供应风险主导阶段，能源、航运与地缘政治决定流动性与资产定价。BTC 波动是全球资金在不确定性中的再配置结果。","[""宏观 / 政策冲击风险"", ""爆仓 / 清算风险""]",medium,{},"{""source"": ""workflows/v4/data/crypto_news_train.csv"", ""row"": 815, ""upstream_split"": ""pool"", ""raw_label"": null}"
+77,Bless 项目方出售 3784 万枚 BLESS，跨链至 BSC 据 Foresight News 报道，Bless 项目方于 4 小时前将 1 亿枚 BLESS 从 Solana 跨至 BSC 并出售。目前其已卖出 3784 万枚 BLESS，换得 334 枚 BNB。,"[""项目治理 / 团队异常风险"", ""大额转账 / 巨鲸行为风险""]",medium,{},"{""source"": ""workflows/v4/data/crypto_news_train.csv"", ""row"": 77, ""upstream_split"": ""pool"", ""raw_label"": null}"
+809,悉尼创业者被控加密骗局，数百万美元损失 悉尼创业者Pasternak在纽约法院面临指控，涉嫌参与加密rug pull骗局。据PANews报道，该事件导致数百万美元损失。Solana生态应用Believe的创始人Pasternak被指控在加密领域实施欺诈行为，影响了投资者的信任和资金安全。,"[""诈骗 / 跑路 / Rug Pull 风险"", ""监管与法律风险""]",high,{},"{""source"": ""workflows/v4/data/crypto_news_train.csv"", ""row"": 809, ""upstream_split"": ""pool"", ""raw_label"": null}"
+12,KelpDAO 黑客攻击影响稳定币市场 KelpDAO 在周六遭遇黑客攻击后，其余波正在影响稳定币市场。据CoinDesk报道，这次攻击的影响并未立即显现，但正在逐渐扩散。,"[""链上漏洞 / 攻击风险"", ""稳定币异常风险""]",high,{},"{""source"": ""workflows/v4/data/crypto_news_train.csv"", ""row"": 12, ""upstream_split"": ""pool"", ""raw_label"": null}"

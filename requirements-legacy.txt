@@ -1,0 +1,4 @@
+﻿-r requirements.txt
+# Additional dependencies for historical workflows and data labeling.
+langchain-core>=0.3,<2
+langchain-openai>=0.2,<2

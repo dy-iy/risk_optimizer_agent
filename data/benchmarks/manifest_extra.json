@@ -1,0 +1,78 @@
+{
+  "downloaded_at_utc": "2026-09-16T15:24:29.883641+00:00",
+  "files": [
+    {
+      "path": "fincausal2020/AnnotationScheme.pdf",
+      "url": "https://raw.githubusercontent.com/yseop/YseopLab/33a933f1bebd3317ab67edcf447c1a333fe879f5/FNP_2020_FinCausal/AnnotationScheme.pdf",
+      "bytes": 161804,
+      "sha256": "854833298a174275007d5095a5626522bc7bc51c7ea5f638562e72fc6ecd2530"
+    },
+    {
+      "path": "fincausal2020/README.adoc",
+      "url": "https://raw.githubusercontent.com/yseop/YseopLab/33a933f1bebd3317ab67edcf447c1a333fe879f5/FNP_2020_FinCausal/README.adoc",
+      "bytes": 329,
+      "sha256": "054f2df533d1c7e4b0c97d89ad15051c54ab94b4d57e749e051886a5fa3a2cf0"
+    },
+    {
+      "path": "fincausal2020/data/README.adoc",
+      "url": "https://raw.githubusercontent.com/yseop/YseopLab/33a933f1bebd3317ab67edcf447c1a333fe879f5/FNP_2020_FinCausal/data/README.adoc",
+      "bytes": 401,
+      "sha256": "c57eb1b38865eb6c7cc895c63b18ea3c742e3373f9716da57af78d9247c24cf6"
+    },
+    {
+      "path": "fincausal2020/data/evaluation/task1_blind.csv",
+      "url": "https://raw.githubusercontent.com/yseop/YseopLab/33a933f1bebd3317ab67edcf447c1a333fe879f5/FNP_2020_FinCausal/data/evaluation/task1_blind.csv",
+      "bytes": 1453984,
+      "sha256": "f9ddb2e5b46341207a7ff4ce4bc9baec498fa1bfe841e1cab1858454402e3352"
+    },
+    {
+      "path": "fincausal2020/data/evaluation/task2_blind.csv",
+      "url": "https://raw.githubusercontent.com/yseop/YseopLab/33a933f1bebd3317ab67edcf447c1a333fe879f5/FNP_2020_FinCausal/data/evaluation/task2_blind.csv",
+      "bytes": 181376,
+      "sha256": "a37b0e2825138c66292233eb4c9ae9e4a267dc778d1cdc10db2e7e09e3a0bebc"
+    },
+    {
+      "path": "fincausal2020/data/practice/fnp2020-fincausal2-task1.csv",
+      "url": "https://raw.githubusercontent.com/yseop/YseopLab/33a933f1bebd3317ab67edcf447c1a333fe879f5/FNP_2020_FinCausal/data/practice/fnp2020-fincausal2-task1.csv",
+      "bytes": 3045746,
+      "sha256": "f473947ad6a38d90083eeb19319455d2c6022bf5786d25da529031bd53505310"
+    },
+    {
+      "path": "fincausal2020/data/practice/fnp2020-fincausal2-task2.csv",
+      "url": "https://raw.githubusercontent.com/yseop/YseopLab/33a933f1bebd3317ab67edcf447c1a333fe879f5/FNP_2020_FinCausal/data/practice/fnp2020-fincausal2-task2.csv",
+      "bytes": 877488,
+      "sha256": "3c587ca5afe0bd8532bc3cbe22fab40426f59d4a1c3efe37bcf14fee39dd0575"
+    },
+    {
+      "path": "fincausal2020/data/trial/fnp2020-fincausal-task1.csv",
+      "url": "https://raw.githubusercontent.com/yseop/YseopLab/33a933f1bebd3317ab67edcf447c1a333fe879f5/FNP_2020_FinCausal/data/trial/fnp2020-fincausal-task1.csv",
+      "bytes": 1963731,
+      "sha256": "ddfc7d1df79181abe10c4e4b906b206df67f0e611a8894649d6a5fb148a2cbfe"
+    },
+    {
+      "path": "fincausal2020/data/trial/fnp2020-fincausal-task2.csv",
+      "url": "https://raw.githubusercontent.com/yseop/YseopLab/33a933f1bebd3317ab67edcf447c1a333fe879f5/FNP_2020_FinCausal/data/trial/fnp2020-fincausal-task2.csv",
+      "bytes": 527787,
+      "sha256": "35bb48b6d1efaa0622aa9745501ee547e7ca6102eeec7c49d931779a4e710561"
+    },
+    {
+      "path": "edt/Event_detection/dev.txt",
+      "url": "https://drive.google.com/uc?export=download&id=17qTLsFn0vwThy_gaZTYQ5ssgw1fYRKEw",
+      "bytes": 7417821,
+      "sha256": "164b9e2a15f7dcb8bea48c86da880e64ad4a54cf2b376a4e7a08cbc26f8406cb"
+    },
+    {
+      "path": "edt/Event_detection/train.txt",
+      "url": "https://drive.google.com/uc?export=download&id=1eO3G6fcbRX-1Q5fEI_zghb3nYe7yejct",
+      "bytes": 29900186,
+      "sha256": "46d314ad03265a89a34cfb96335b1173c12418199cc42c64b8daacd676f528cf"
+    },
+    {
+      "path": "edt/UPSTREAM_README.md",
+      "url": "https://raw.githubusercontent.com/Zhihan1996/TradeTheEvent/main/data/README.md",
+      "bytes": 5640,
+      "sha256": "bee53fae8915931873c1419c45cfc9be26af58301302609a5a6bc9efaa19e6d9"
+    }
+  ],
+  "failures": []
+}

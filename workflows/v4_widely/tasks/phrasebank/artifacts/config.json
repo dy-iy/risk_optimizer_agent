@@ -1,0 +1,21 @@
+{
+  "name": "phrasebank",
+  "description": "Financial sentence sentiment from an investor's perspective.",
+  "kind": "single",
+  "labels": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "field": "label",
+  "language": "en",
+  "positive": null,
+  "seed": 42,
+  "examples_per_label": 3,
+  "max_errors": 40,
+  "max_changes": 6,
+  "weights": {
+    "macro_f1": 1.0
+  },
+  "max_drops": {}
+}

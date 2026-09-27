@@ -1,0 +1,3770 @@
+{
+  "task": {
+    "name": "phrasebank",
+    "description": "Financial sentence sentiment from an investor's perspective.",
+    "kind": "single",
+    "labels": [
+      "negative",
+      "neutral",
+      "positive"
+    ],
+    "field": "label",
+    "language": "en",
+    "positive": null,
+    "seed": 42,
+    "examples_per_label": 3,
+    "max_errors": 40,
+    "max_changes": 6,
+    "weights": {
+      "macro_f1": 1.0
+    },
+    "max_drops": {}
+  },
+  "sources": {
+    "data/benchmarks/financial_phrasebank/raw/FinancialPhraseBank-v1.0/Sentences_AllAgree.txt": "5fb370b3005b9a2759f708849a691ad2e4d2593d4c995c1afde229398a516594"
+  },
+  "mapping": null,
+  "grouping": "sha256 of exact text; joint label quotas; no group crosses splits",
+  "seed": 42,
+  "excluded": [
+    {
+      "id": "Sentences_AllAgree:1002",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1004",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1007",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1009",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1010",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1011",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1012",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1016",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1018",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1022",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1024",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1031",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1033",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1035",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1040",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1041",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1042",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1046",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1049",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1054",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1058",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1060",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1064",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1065",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1068",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1070",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1071",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1073",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1075",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1077",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1078",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1081",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1090",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1096",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1100",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1108",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1111",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1114",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1116",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1119",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1120",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1126",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1127",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1128",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1130",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1135",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1137",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1139",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1140",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1141",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1151",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1152",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1154",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1155",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1156",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1163",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1164",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1166",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1167",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1170",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1173",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1178",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1187",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1191",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1194",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1195",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1196",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1201",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1202",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1203",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1213",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1214",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1215",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1217",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1219",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1220",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1222",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1228",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1229",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1231",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1232",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1233",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1234",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1237",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1241",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1245",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1248",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1249",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1252",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1259",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1262",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1263",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1265",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1267",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1268",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1270",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1271",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1280",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1285",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1286",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1287",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1296",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1298",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1299",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1301",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1312",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1314",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1315",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1316",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1317",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1318",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1319",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1326",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1328",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1329",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1332",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1338",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1343",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1351",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1355",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1356",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1362",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1363",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1372",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1377",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1378",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1379",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1382",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1389",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1393",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1396",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1397",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1405",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1406",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1411",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1414",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1417",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1421",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1427",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1428",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1430",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1435",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1438",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1439",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1445",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1446",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1456",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1460",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1463",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1464",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1465",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1476",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1478",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1479",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1482",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1485",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1490",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1491",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1498",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1500",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1503",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1504",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1515",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1517",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1519",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1523",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1525",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1526",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1529",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1530",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1536",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1537",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1538",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1542",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1543",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1545",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1547",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1553",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1555",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1557",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1558",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1560",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1561",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1567",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1579",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1581",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1582",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1585",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1586",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1588",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1591",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1593",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1595",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1596",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1597",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1599",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1603",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1605",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1607",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1608",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1609",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1611",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1616",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1619",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1622",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1623",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1624",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1628",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1630",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1631",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1639",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1640",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1641",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1642",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1643",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1646",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1649",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1651",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1656",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1657",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1660",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1662",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1663",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1664",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1666",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1670",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1674",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1675",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1677",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1678",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1684",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1685",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1687",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1690",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1691",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1692",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1695",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1697",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1699",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1700",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1703",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1704",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1705",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1713",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1714",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1718",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1722",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1724",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1727",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1728",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1731",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1734",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1735",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1736",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1739",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1742",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1743",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1748",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1749",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1751",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1753",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1757",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1769",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1774",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1777",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1780",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1782",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1783",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1785",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1787",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1788",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1791",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1792",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1798",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1801",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1803",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1811",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1812",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1813",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1814",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1822",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1824",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1825",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1829",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1831",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1833",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1841",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1844",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1846",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1851",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1852",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1858",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1859",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1927",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1930",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1934",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1935",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1936",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1938",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1939",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1940",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1941",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1943",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1944",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1947",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1949",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1951",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1956",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1961",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1967",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1970",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1975",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1977",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1979",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1981",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1993",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1994",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:1996",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:2001",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:2002",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:2004",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:2006",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:2007",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:2008",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:2011",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:2069",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:2100",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:2101",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:2250",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:264",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:265",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:266",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:267",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:268",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:271",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:273",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:274",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:276",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:279",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:281",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:283",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:285",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:286",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:288",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:289",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:291",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:292",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:306",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:307",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:39",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:393",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:491",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:495",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:498",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:499",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:500",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:502",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:503",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:507",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:508",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:511",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:512",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:515",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:522",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:523",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:527",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:528",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:531",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:536",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:539",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:540",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:546",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:548",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:549",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:554",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:559",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:560",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:562",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:563",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:565",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:568",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:569",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:570",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:572",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:573",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:579",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:580",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:588",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:590",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:591",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:597",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:598",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:600",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:604",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:606",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:607",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:615",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:618",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:620",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:629",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:636",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:640",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:641",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:642",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:645",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:648",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:650",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:660",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:663",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:664",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:665",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:669",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:670",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:674",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:675",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:676",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:677",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:680",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:681",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:684",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:689",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:690",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:693",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:697",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:701",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:706",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:710",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:712",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:714",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:715",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:717",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:718",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:720",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:723",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:757",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:762",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:763",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:767",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:770",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:787",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:889",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:890",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:892",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:893",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:895",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:896",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:901",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:903",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:905",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:907",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:910",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:918",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:920",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:925",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:926",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:927",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:928",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:937",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:938",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:940",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:941",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:942",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:943",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:944",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:948",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:950",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:951",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:955",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:956",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:961",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:963",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:964",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:965",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:966",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:971",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:974",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:977",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:978",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:982",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:984",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:985",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    },
+    {
+      "id": "Sentences_AllAgree:992",
+      "reason": "label-balanced undersampling (max ratio 3:1)"
+    }
+  ],
+  "historically_exposed": true,
+  "splits": {
+    "train": {
+      "rows": 1425,
+      "sha256": "f6654d6a2f88a56d94d5d39f95e5b1b5c364b858cf5885b7684b80323f7dd0a9",
+      "ids": [
+        "Sentences_AllAgree:1340",
+        "Sentences_AllAgree:1206",
+        "Sentences_AllAgree:2131",
+        "Sentences_AllAgree:914",
+        "Sentences_AllAgree:1797",
+        "Sentences_AllAgree:2021",
+        "Sentences_AllAgree:1045",
+        "Sentences_AllAgree:1477",
+        "Sentences_AllAgree:552",
+        "Sentences_AllAgree:1570",
+        "Sentences_AllAgree:698",
+        "Sentences_AllAgree:343",
+        "Sentences_AllAgree:1",
+        "Sentences_AllAgree:1942",
+        "Sentences_AllAgree:1614",
+        "Sentences_AllAgree:1330",
+        "Sentences_AllAgree:1153",
+        "Sentences_AllAgree:66",
+        "Sentences_AllAgree:1982",
+        "Sentences_AllAgree:1863",
+        "Sentences_AllAgree:1434",
+        "Sentences_AllAgree:1871",
+        "Sentences_AllAgree:1437",
+        "Sentences_AllAgree:612",
+        "Sentences_AllAgree:260",
+        "Sentences_AllAgree:359",
+        "Sentences_AllAgree:147",
+        "Sentences_AllAgree:208",
+        "Sentences_AllAgree:516",
+        "Sentences_AllAgree:2174",
+        "Sentences_AllAgree:417",
+        "Sentences_AllAgree:141",
+        "Sentences_AllAgree:11",
+        "Sentences_AllAgree:2085",
+        "Sentences_AllAgree:1304",
+        "Sentences_AllAgree:236",
+        "Sentences_AllAgree:556",
+        "Sentences_AllAgree:1015",
+        "Sentences_AllAgree:1610",
+        "Sentences_AllAgree:823",
+        "Sentences_AllAgree:1819",
+        "Sentences_AllAgree:603",
+        "Sentences_AllAgree:1823",
+        "Sentences_AllAgree:980",
+        "Sentences_AllAgree:2016",
+        "Sentences_AllAgree:1733",
+        "Sentences_AllAgree:599",
+        "Sentences_AllAgree:619",
+        "Sentences_AllAgree:2192",
+        "Sentences_AllAgree:190",
+        "Sentences_AllAgree:1159",
+        "Sentences_AllAgree:90",
+        "Sentences_AllAgree:1050",
+        "Sentences_AllAgree:56",
+        "Sentences_AllAgree:883",
+        "Sentences_AllAgree:474",
+        "Sentences_AllAgree:538",
+        "Sentences_AllAgree:1470",
+        "Sentences_AllAgree:1847",
+        "Sentences_AllAgree:586",
+        "Sentences_AllAgree:384",
+        "Sentences_AllAgree:1661",
+        "Sentences_AllAgree:447",
+        "Sentences_AllAgree:1125",
+        "Sentences_AllAgree:2221",
+        "Sentences_AllAgree:1508",
+        "Sentences_AllAgree:2207",
+        "Sentences_AllAgree:395",
+        "Sentences_AllAgree:808",
+        "Sentences_AllAgree:1571",
+        "Sentences_AllAgree:1717",
+        "Sentences_AllAgree:894",
+        "Sentences_AllAgree:839",
+        "Sentences_AllAgree:1484",
+        "Sentences_AllAgree:252",
+        "Sentences_AllAgree:1305",
+        "Sentences_AllAgree:231",
+        "Sentences_AllAgree:1712",
+        "Sentences_AllAgree:1554",
+        "Sentences_AllAgree:1896",
+        "Sentences_AllAgree:1897",
+        "Sentences_AllAgree:1255",
+        "Sentences_AllAgree:874",
+        "Sentences_AllAgree:756",
+        "Sentences_AllAgree:1864",
+        "Sentences_AllAgree:248",
+        "Sentences_AllAgree:2151",
+        "Sentences_AllAgree:932",
+        "Sentences_AllAgree:1768",
+        "Sentences_AllAgree:1898",
+        "Sentences_AllAgree:1359",
+        "Sentences_AllAgree:534",
+        "Sentences_AllAgree:30",
+        "Sentences_AllAgree:584",
+        "Sentences_AllAgree:489",
+        "Sentences_AllAgree:1826",
+        "Sentences_AllAgree:740",
+        "Sentences_AllAgree:1176",
+        "Sentences_AllAgree:1572",
+        "Sentences_AllAgree:105",
+        "Sentences_AllAgree:1759",
+        "Sentences_AllAgree:1604",
+        "Sentences_AllAgree:2084",
+        "Sentences_AllAgree:483",
+        "Sentences_AllAgree:88",
+        "Sentences_AllAgree:1472",
+        "Sentences_AllAgree:1198",
+        "Sentences_AllAgree:431",
+        "Sentences_AllAgree:206",
+        "Sentences_AllAgree:1683",
+        "Sentences_AllAgree:1238",
+        "Sentences_AllAgree:1815",
+        "Sentences_AllAgree:2119",
+        "Sentences_AllAgree:1618",
+        "Sentences_AllAgree:1659",
+        "Sentences_AllAgree:1413",
+        "Sentences_AllAgree:332",
+        "Sentences_AllAgree:103",
+        "Sentences_AllAgree:564",
+        "Sentences_AllAgree:1802",
+        "Sentences_AllAgree:1920",
+        "Sentences_AllAgree:1306",
+        "Sentences_AllAgree:2150",
+        "Sentences_AllAgree:3",
+        "Sentences_AllAgree:1291",
+        "Sentences_AllAgree:2145",
+        "Sentences_AllAgree:1598",
+        "Sentences_AllAgree:1224",
+        "Sentences_AllAgree:2261",
+        "Sentences_AllAgree:294",
+        "Sentences_AllAgree:583",
+        "Sentences_AllAgree:1303",
+        "Sentences_AllAgree:871",
+        "Sentences_AllAgree:535",
+        "Sentences_AllAgree:2225",
+        "Sentences_AllAgree:933",
+        "Sentences_AllAgree:200",
+        "Sentences_AllAgree:1352",
+        "Sentences_AllAgree:1223",
+        "Sentences_AllAgree:251",
+        "Sentences_AllAgree:917",
+        "Sentences_AllAgree:504",
+        "Sentences_AllAgree:1832",
+        "Sentences_AllAgree:1462",
+        "Sentences_AllAgree:94",
+        "Sentences_AllAgree:959",
+        "Sentences_AllAgree:144",
+        "Sentences_AllAgree:2020",
+        "Sentences_AllAgree:738",
+        "Sentences_AllAgree:609",
+        "Sentences_AllAgree:806",
+        "Sentences_AllAgree:70",
+        "Sentences_AllAgree:436",
+        "Sentences_AllAgree:774",
+        "Sentences_AllAgree:65",
+        "Sentences_AllAgree:541",
+        "Sentences_AllAgree:308",
+        "Sentences_AllAgree:1711",
+        "Sentences_AllAgree:741",
+        "Sentences_AllAgree:1021",
+        "Sentences_AllAgree:1048",
+        "Sentences_AllAgree:593",
+        "Sentences_AllAgree:2135",
+        "Sentences_AllAgree:73",
+        "Sentences_AllAgree:1133",
+        "Sentences_AllAgree:1369",
+        "Sentences_AllAgree:622",
+        "Sentences_AllAgree:1886",
+        "Sentences_AllAgree:1418",
+        "Sentences_AllAgree:1424",
+        "Sentences_AllAgree:1246",
+        "Sentences_AllAgree:1592",
+        "Sentences_AllAgree:161",
+        "Sentences_AllAgree:1171",
+        "Sentences_AllAgree:26",
+        "Sentences_AllAgree:54",
+        "Sentences_AllAgree:628",
+        "Sentences_AllAgree:1339",
+        "Sentences_AllAgree:2203",
+        "Sentences_AllAgree:21",
+        "Sentences_AllAgree:1069",
+        "Sentences_AllAgree:759",
+        "Sentences_AllAgree:349",
+        "Sentences_AllAgree:1673",
+        "Sentences_AllAgree:769",
+        "Sentences_AllAgree:1284",
+        "Sentences_AllAgree:2035",
+        "Sentences_AllAgree:832",
+        "Sentences_AllAgree:40",
+        "Sentences_AllAgree:1313",
+        "Sentences_AllAgree:1878",
+        "Sentences_AllAgree:196",
+        "Sentences_AllAgree:101",
+        "Sentences_AllAgree:154",
+        "Sentences_AllAgree:193",
+        "Sentences_AllAgree:189",
+        "Sentences_AllAgree:1183",
+        "Sentences_AllAgree:2042",
+        "Sentences_AllAgree:1853",
+        "Sentences_AllAgree:106",
+        "Sentences_AllAgree:1110",
+        "Sentences_AllAgree:391",
+        "Sentences_AllAgree:2068",
+        "Sentences_AllAgree:1854",
+        "Sentences_AllAgree:911",
+        "Sentences_AllAgree:1906",
+        "Sentences_AllAgree:1020",
+        "Sentences_AllAgree:988",
+        "Sentences_AllAgree:1366",
+        "Sentences_AllAgree:28",
+        "Sentences_AllAgree:682",
+        "Sentences_AllAgree:1889",
+        "Sentences_AllAgree:1548",
+        "Sentences_AllAgree:750",
+        "Sentences_AllAgree:1466",
+        "Sentences_AllAgree:1627",
+        "Sentences_AllAgree:2161",
+        "Sentences_AllAgree:1103",
+        "Sentences_AllAgree:1827",
+        "Sentences_AllAgree:2243",
+        "Sentences_AllAgree:1518",
+        "Sentences_AllAgree:2139",
+        "Sentences_AllAgree:1489",
+        "Sentences_AllAgree:1186",
+        "Sentences_AllAgree:1786",
+        "Sentences_AllAgree:847",
+        "Sentences_AllAgree:807",
+        "Sentences_AllAgree:1324",
+        "Sentences_AllAgree:1053",
+        "Sentences_AllAgree:2122",
+        "Sentences_AllAgree:2165",
+        "Sentences_AllAgree:350",
+        "Sentences_AllAgree:421",
+        "Sentences_AllAgree:699",
+        "Sentences_AllAgree:1997",
+        "Sentences_AllAgree:381",
+        "Sentences_AllAgree:216",
+        "Sentences_AllAgree:494",
+        "Sentences_AllAgree:232",
+        "Sentences_AllAgree:1422",
+        "Sentences_AllAgree:1879",
+        "Sentences_AllAgree:1613",
+        "Sentences_AllAgree:1310",
+        "Sentences_AllAgree:2072",
+        "Sentences_AllAgree:1087",
+        "Sentences_AllAgree:1781",
+        "Sentences_AllAgree:2005",
+        "Sentences_AllAgree:338",
+        "Sentences_AllAgree:919",
+        "Sentences_AllAgree:1210",
+        "Sentences_AllAgree:442",
+        "Sentences_AllAgree:553",
+        "Sentences_AllAgree:51",
+        "Sentences_AllAgree:1085",
+        "Sentences_AllAgree:1109",
+        "Sentences_AllAgree:167",
+        "Sentences_AllAgree:830",
+        "Sentences_AllAgree:678",
+        "Sentences_AllAgree:1725",
+        "Sentences_AllAgree:514",
+        "Sentences_AllAgree:2141",
+        "Sentences_AllAgree:1452",
+        "Sentences_AllAgree:1044",
+        "Sentences_AllAgree:385",
+        "Sentences_AllAgree:1097",
+        "Sentences_AllAgree:228",
+        "Sentences_AllAgree:2199",
+        "Sentences_AllAgree:1954",
+        "Sentences_AllAgree:277",
+        "Sentences_AllAgree:1559",
+        "Sentences_AllAgree:278",
+        "Sentences_AllAgree:778",
+        "Sentences_AllAgree:102",
+        "Sentences_AllAgree:1520",
+        "Sentences_AllAgree:638",
+        "Sentences_AllAgree:1384",
+        "Sentences_AllAgree:1331",
+        "Sentences_AllAgree:1679",
+        "Sentences_AllAgree:1454",
+        "Sentences_AllAgree:2055",
+        "Sentences_AllAgree:280",
+        "Sentences_AllAgree:2233",
+        "Sentences_AllAgree:468",
+        "Sentences_AllAgree:2077",
+        "Sentences_AllAgree:1037",
+        "Sentences_AllAgree:624",
+        "Sentences_AllAgree:970",
+        "Sentences_AllAgree:657",
+        "Sentences_AllAgree:761",
+        "Sentences_AllAgree:410",
+        "Sentences_AllAgree:1193",
+        "Sentences_AllAgree:1952",
+        "Sentences_AllAgree:760",
+        "Sentences_AllAgree:1354",
+        "Sentences_AllAgree:2066",
+        "Sentences_AllAgree:275",
+        "Sentences_AllAgree:493",
+        "Sentences_AllAgree:115",
+        "Sentences_AllAgree:2128",
+        "Sentences_AllAgree:1036",
+        "Sentences_AllAgree:1810",
+        "Sentences_AllAgree:1074",
+        "Sentences_AllAgree:13",
+        "Sentences_AllAgree:1367",
+        "Sentences_AllAgree:574",
+        "Sentences_AllAgree:2049",
+        "Sentences_AllAgree:983",
+        "Sentences_AllAgree:199",
+        "Sentences_AllAgree:666",
+        "Sentences_AllAgree:1055",
+        "Sentences_AllAgree:98",
+        "Sentences_AllAgree:634",
+        "Sentences_AllAgree:1101",
+        "Sentences_AllAgree:169",
+        "Sentences_AllAgree:2170",
+        "Sentences_AllAgree:1991",
+        "Sentences_AllAgree:1960",
+        "Sentences_AllAgree:630",
+        "Sentences_AllAgree:353",
+        "Sentences_AllAgree:633",
+        "Sentences_AllAgree:1057",
+        "Sentences_AllAgree:960",
+        "Sentences_AllAgree:611",
+        "Sentences_AllAgree:1051",
+        "Sentences_AllAgree:1094",
+        "Sentences_AllAgree:1124",
+        "Sentences_AllAgree:479",
+        "Sentences_AllAgree:330",
+        "Sentences_AllAgree:2196",
+        "Sentences_AllAgree:1966",
+        "Sentences_AllAgree:595",
+        "Sentences_AllAgree:53",
+        "Sentences_AllAgree:2264",
+        "Sentences_AllAgree:594",
+        "Sentences_AllAgree:797",
+        "Sentences_AllAgree:1272",
+        "Sentences_AllAgree:1876",
+        "Sentences_AllAgree:1799",
+        "Sentences_AllAgree:954",
+        "Sentences_AllAgree:2246",
+        "Sentences_AllAgree:2153",
+        "Sentences_AllAgree:688",
+        "Sentences_AllAgree:2023",
+        "Sentences_AllAgree:1974",
+        "Sentences_AllAgree:1274",
+        "Sentences_AllAgree:1158",
+        "Sentences_AllAgree:725",
+        "Sentences_AllAgree:1149",
+        "Sentences_AllAgree:1816",
+        "Sentences_AllAgree:2013",
+        "Sentences_AllAgree:1972",
+        "Sentences_AllAgree:1039",
+        "Sentences_AllAgree:2231",
+        "Sentences_AllAgree:296",
+        "Sentences_AllAgree:1157",
+        "Sentences_AllAgree:1894",
+        "Sentences_AllAgree:1302",
+        "Sentences_AllAgree:581",
+        "Sentences_AllAgree:721",
+        "Sentences_AllAgree:1528",
+        "Sentences_AllAgree:2079",
+        "Sentences_AllAgree:1535",
+        "Sentences_AllAgree:1226",
+        "Sentences_AllAgree:1132",
+        "Sentences_AllAgree:1400",
+        "Sentences_AllAgree:22",
+        "Sentences_AllAgree:1584",
+        "Sentences_AllAgree:2123",
+        "Sentences_AllAgree:472",
+        "Sentences_AllAgree:1701",
+        "Sentences_AllAgree:1192",
+        "Sentences_AllAgree:811",
+        "Sentences_AllAgree:1200",
+        "Sentences_AllAgree:2156",
+        "Sentences_AllAgree:50",
+        "Sentences_AllAgree:1079",
+        "Sentences_AllAgree:976",
+        "Sentences_AllAgree:1003",
+        "Sentences_AllAgree:2149",
+        "Sentences_AllAgree:2154",
+        "Sentences_AllAgree:1475",
+        "Sentences_AllAgree:297",
+        "Sentences_AllAgree:1322",
+        "Sentences_AllAgree:1208",
+        "Sentences_AllAgree:547",
+        "Sentences_AllAgree:979",
+        "Sentences_AllAgree:77",
+        "Sentences_AllAgree:835",
+        "Sentences_AllAgree:771",
+        "Sentences_AllAgree:1189",
+        "Sentences_AllAgree:63",
+        "Sentences_AllAgree:643",
+        "Sentences_AllAgree:732",
+        "Sentences_AllAgree:2121",
+        "Sentences_AllAgree:857",
+        "Sentences_AllAgree:967",
+        "Sentences_AllAgree:854",
+        "Sentences_AllAgree:1804",
+        "Sentences_AllAgree:1549",
+        "Sentences_AllAgree:138",
+        "Sentences_AllAgree:1495",
+        "Sentences_AllAgree:1426",
+        "Sentences_AllAgree:656",
+        "Sentences_AllAgree:2064",
+        "Sentences_AllAgree:1869",
+        "Sentences_AllAgree:1205",
+        "Sentences_AllAgree:1334",
+        "Sentences_AllAgree:1008",
+        "Sentences_AllAgree:1235",
+        "Sentences_AllAgree:2019",
+        "Sentences_AllAgree:182",
+        "Sentences_AllAgree:2179",
+        "Sentences_AllAgree:998",
+        "Sentences_AllAgree:513",
+        "Sentences_AllAgree:1539",
+        "Sentences_AllAgree:438",
+        "Sentences_AllAgree:957",
+        "Sentences_AllAgree:746",
+        "Sentences_AllAgree:2248",
+        "Sentences_AllAgree:203",
+        "Sentences_AllAgree:575",
+        "Sentences_AllAgree:49",
+        "Sentences_AllAgree:1654",
+        "Sentences_AllAgree:1063",
+        "Sentences_AllAgree:1527",
+        "Sentences_AllAgree:939",
+        "Sentences_AllAgree:2103",
+        "Sentences_AllAgree:1509",
+        "Sentences_AllAgree:923",
+        "Sentences_AllAgree:80",
+        "Sentences_AllAgree:1309",
+        "Sentences_AllAgree:345",
+        "Sentences_AllAgree:1738",
+        "Sentences_AllAgree:1866",
+        "Sentences_AllAgree:1253",
+        "Sentences_AllAgree:834",
+        "Sentences_AllAgree:317",
+        "Sentences_AllAgree:1023",
+        "Sentences_AllAgree:1131",
+        "Sentences_AllAgree:2059",
+        "Sentences_AllAgree:2143",
+        "Sentences_AllAgree:828",
+        "Sentences_AllAgree:1969",
+        "Sentences_AllAgree:204",
+        "Sentences_AllAgree:1862",
+        "Sentences_AllAgree:1350",
+        "Sentences_AllAgree:1511",
+        "Sentences_AllAgree:487",
+        "Sentences_AllAgree:406",
+        "Sentences_AllAgree:1839",
+        "Sentences_AllAgree:1681",
+        "Sentences_AllAgree:1637",
+        "Sentences_AllAgree:1390",
+        "Sentences_AllAgree:2087",
+        "Sentences_AllAgree:1083",
+        "Sentences_AllAgree:1501",
+        "Sentences_AllAgree:1634",
+        "Sentences_AllAgree:1937",
+        "Sentences_AllAgree:440",
+        "Sentences_AllAgree:354",
+        "Sentences_AllAgree:567",
+        "Sentences_AllAgree:1502",
+        "Sentences_AllAgree:387",
+        "Sentences_AllAgree:913",
+        "Sentences_AllAgree:14",
+        "Sentences_AllAgree:1576",
+        "Sentences_AllAgree:2052",
+        "Sentences_AllAgree:249",
+        "Sentences_AllAgree:2098",
+        "Sentences_AllAgree:772",
+        "Sentences_AllAgree:1644",
+        "Sentences_AllAgree:4",
+        "Sentences_AllAgree:221",
+        "Sentences_AllAgree:61",
+        "Sentences_AllAgree:1443",
+        "Sentences_AllAgree:1076",
+        "Sentences_AllAgree:1325",
+        "Sentences_AllAgree:2217",
+        "Sentences_AllAgree:1635",
+        "Sentences_AllAgree:1842",
+        "Sentences_AllAgree:2114",
+        "Sentences_AllAgree:990",
+        "Sentences_AllAgree:654",
+        "Sentences_AllAgree:1327",
+        "Sentences_AllAgree:1565",
+        "Sentences_AllAgree:1429",
+        "Sentences_AllAgree:1174",
+        "Sentences_AllAgree:1169",
+        "Sentences_AllAgree:2022",
+        "Sentences_AllAgree:2127",
+        "Sentences_AllAgree:2242",
+        "Sentences_AllAgree:1295",
+        "Sentences_AllAgree:298",
+        "Sentences_AllAgree:2091",
+        "Sentences_AllAgree:1115",
+        "Sentences_AllAgree:1225",
+        "Sentences_AllAgree:749",
+        "Sentences_AllAgree:2086",
+        "Sentences_AllAgree:1669",
+        "Sentences_AllAgree:1017",
+        "Sentences_AllAgree:1521",
+        "Sentences_AllAgree:935",
+        "Sentences_AllAgree:1790",
+        "Sentences_AllAgree:2115",
+        "Sentences_AllAgree:1469",
+        "Sentences_AllAgree:1744",
+        "Sentences_AllAgree:1552",
+        "Sentences_AllAgree:2129",
+        "Sentences_AllAgree:850",
+        "Sentences_AllAgree:1968",
+        "Sentences_AllAgree:1311",
+        "Sentences_AllAgree:1221",
+        "Sentences_AllAgree:529",
+        "Sentences_AllAgree:1499",
+        "Sentences_AllAgree:1093",
+        "Sentences_AllAgree:803",
+        "Sentences_AllAgree:1347",
+        "Sentences_AllAgree:422",
+        "Sentences_AllAgree:2045",
+        "Sentences_AllAgree:1647",
+        "Sentences_AllAgree:987",
+        "Sentences_AllAgree:1107",
+        "Sentences_AllAgree:1516",
+        "Sentences_AllAgree:2057",
+        "Sentences_AllAgree:1034",
+        "Sentences_AllAgree:1838",
+        "Sentences_AllAgree:1112",
+        "Sentences_AllAgree:484",
+        "Sentences_AllAgree:707",
+        "Sentences_AllAgree:2256",
+        "Sentences_AllAgree:1855",
+        "Sentences_AllAgree:99",
+        "Sentences_AllAgree:1793",
+        "Sentences_AllAgree:2117",
+        "Sentences_AllAgree:1532",
+        "Sentences_AllAgree:551",
+        "Sentences_AllAgree:1236",
+        "Sentences_AllAgree:791",
+        "Sentences_AllAgree:904",
+        "Sentences_AllAgree:691",
+        "Sentences_AllAgree:109",
+        "Sentences_AllAgree:1025",
+        "Sentences_AllAgree:452",
+        "Sentences_AllAgree:2240",
+        "Sentences_AllAgree:1668",
+        "Sentences_AllAgree:2032",
+        "Sentences_AllAgree:1963",
+        "Sentences_AllAgree:1959",
+        "Sentences_AllAgree:314",
+        "Sentences_AllAgree:1239",
+        "Sentences_AllAgree:337",
+        "Sentences_AllAgree:444",
+        "Sentences_AllAgree:755",
+        "Sentences_AllAgree:862",
+        "Sentences_AllAgree:812",
+        "Sentences_AllAgree:647",
+        "Sentences_AllAgree:1962",
+        "Sentences_AllAgree:793",
+        "Sentences_AllAgree:1099",
+        "Sentences_AllAgree:1912",
+        "Sentences_AllAgree:302",
+        "Sentences_AllAgree:57",
+        "Sentences_AllAgree:1999",
+        "Sentences_AllAgree:1602",
+        "Sentences_AllAgree:1756",
+        "Sentences_AllAgree:2043",
+        "Sentences_AllAgree:1066",
+        "Sentences_AllAgree:1741",
+        "Sentences_AllAgree:423",
+        "Sentences_AllAgree:1682",
+        "Sentences_AllAgree:999",
+        "Sentences_AllAgree:1113",
+        "Sentences_AllAgree:810",
+        "Sentences_AllAgree:1082",
+        "Sentences_AllAgree:1436",
+        "Sentences_AllAgree:1892",
+        "Sentences_AllAgree:1745",
+        "Sentences_AllAgree:44",
+        "Sentences_AllAgree:1364",
+        "Sentences_AllAgree:1260",
+        "Sentences_AllAgree:730",
+        "Sentences_AllAgree:1589",
+        "Sentences_AllAgree:1905",
+        "Sentences_AllAgree:1698",
+        "Sentences_AllAgree:1136",
+        "Sentences_AllAgree:1890",
+        "Sentences_AllAgree:582",
+        "Sentences_AllAgree:2014",
+        "Sentences_AllAgree:1461",
+        "Sentences_AllAgree:1442",
+        "Sentences_AllAgree:2215",
+        "Sentences_AllAgree:1416",
+        "Sentences_AllAgree:1415",
+        "Sentences_AllAgree:1955",
+        "Sentences_AllAgree:685",
+        "Sentences_AllAgree:1374",
+        "Sentences_AllAgree:703",
+        "Sentences_AllAgree:1254",
+        "Sentences_AllAgree:91",
+        "Sentences_AllAgree:1655",
+        "Sentences_AllAgree:795",
+        "Sentences_AllAgree:517",
+        "Sentences_AllAgree:1904",
+        "Sentences_AllAgree:150",
+        "Sentences_AllAgree:110",
+        "Sentences_AllAgree:995",
+        "Sentences_AllAgree:1182",
+        "Sentences_AllAgree:786",
+        "Sentences_AllAgree:702",
+        "Sentences_AllAgree:1150",
+        "Sentences_AllAgree:310",
+        "Sentences_AllAgree:1837",
+        "Sentences_AllAgree:1336",
+        "Sentences_AllAgree:1433",
+        "Sentences_AllAgree:2000",
+        "Sentences_AllAgree:2030",
+        "Sentences_AllAgree:188",
+        "Sentences_AllAgree:1867",
+        "Sentences_AllAgree:97",
+        "Sentences_AllAgree:637",
+        "Sentences_AllAgree:855",
+        "Sentences_AllAgree:537",
+        "Sentences_AllAgree:713",
+        "Sentences_AllAgree:1546",
+        "Sentences_AllAgree:2107",
+        "Sentences_AllAgree:1732",
+        "Sentences_AllAgree:1117",
+        "Sentences_AllAgree:160",
+        "Sentences_AllAgree:37",
+        "Sentences_AllAgree:323",
+        "Sentences_AllAgree:1771",
+        "Sentences_AllAgree:800",
+        "Sentences_AllAgree:501",
+        "Sentences_AllAgree:2155",
+        "Sentences_AllAgree:1264",
+        "Sentences_AllAgree:1800",
+        "Sentences_AllAgree:245",
+        "Sentences_AllAgree:235",
+        "Sentences_AllAgree:1471",
+        "Sentences_AllAgree:1072",
+        "Sentences_AllAgree:328",
+        "Sentences_AllAgree:1250",
+        "Sentences_AllAgree:218",
+        "Sentences_AllAgree:1719",
+        "Sentences_AllAgree:2116",
+        "Sentences_AllAgree:555",
+        "Sentences_AllAgree:729",
+        "Sentences_AllAgree:2061",
+        "Sentences_AllAgree:1467",
+        "Sentences_AllAgree:1577",
+        "Sentences_AllAgree:949",
+        "Sentences_AllAgree:1652",
+        "Sentences_AllAgree:958",
+        "Sentences_AllAgree:243",
+        "Sentences_AllAgree:123",
+        "Sentences_AllAgree:1933",
+        "Sentences_AllAgree:1458",
+        "Sentences_AllAgree:254",
+        "Sentences_AllAgree:2159",
+        "Sentences_AllAgree:1754",
+        "Sentences_AllAgree:858",
+        "Sentences_AllAgree:41",
+        "Sentences_AllAgree:2060",
+        "Sentences_AllAgree:118",
+        "Sentences_AllAgree:1784",
+        "Sentences_AllAgree:571",
+        "Sentences_AllAgree:711",
+        "Sentences_AllAgree:1216",
+        "Sentences_AllAgree:433",
+        "Sentences_AllAgree:284",
+        "Sentences_AllAgree:1180",
+        "Sentences_AllAgree:1686",
+        "Sentences_AllAgree:2075",
+        "Sentences_AllAgree:369",
+        "Sentences_AllAgree:1888",
+        "Sentences_AllAgree:1740",
+        "Sentences_AllAgree:655",
+        "Sentences_AllAgree:596",
+        "Sentences_AllAgree:2237",
+        "Sentences_AllAgree:1850",
+        "Sentences_AllAgree:326",
+        "Sentences_AllAgree:2249",
+        "Sentences_AllAgree:71",
+        "Sentences_AllAgree:198",
+        "Sentences_AllAgree:1043",
+        "Sentences_AllAgree:708",
+        "Sentences_AllAgree:2062",
+        "Sentences_AllAgree:34",
+        "Sentences_AllAgree:981",
+        "Sentences_AllAgree:587",
+        "Sentences_AllAgree:1376",
+        "Sentences_AllAgree:2130",
+        "Sentences_AllAgree:1580",
+        "Sentences_AllAgree:2134",
+        "Sentences_AllAgree:934",
+        "Sentences_AllAgree:899",
+        "Sentences_AllAgree:134",
+        "Sentences_AllAgree:1720",
+        "Sentences_AllAgree:879",
+        "Sentences_AllAgree:1279",
+        "Sentences_AllAgree:813",
+        "Sentences_AllAgree:1913",
+        "Sentences_AllAgree:164",
+        "Sentences_AllAgree:1089",
+        "Sentences_AllAgree:2036",
+        "Sentences_AllAgree:239",
+        "Sentences_AllAgree:1341",
+        "Sentences_AllAgree:521",
+        "Sentences_AllAgree:407",
+        "Sentences_AllAgree:1019",
+        "Sentences_AllAgree:1562",
+        "Sentences_AllAgree:1752",
+        "Sentences_AllAgree:446",
+        "Sentences_AllAgree:222",
+        "Sentences_AllAgree:1638",
+        "Sentences_AllAgree:16",
+        "Sentences_AllAgree:2257",
+        "Sentences_AllAgree:383",
+        "Sentences_AllAgree:1266",
+        "Sentences_AllAgree:1102",
+        "Sentences_AllAgree:908",
+        "Sentences_AllAgree:226",
+        "Sentences_AllAgree:1084",
+        "Sentences_AllAgree:783",
+        "Sentences_AllAgree:829",
+        "Sentences_AllAgree:1807",
+        "Sentences_AllAgree:42",
+        "Sentences_AllAgree:550",
+        "Sentences_AllAgree:1723",
+        "Sentences_AllAgree:1496",
+        "Sentences_AllAgree:1747",
+        "Sentences_AllAgree:882",
+        "Sentences_AllAgree:1013",
+        "Sentences_AllAgree:430",
+        "Sentences_AllAgree:311",
+        "Sentences_AllAgree:1696",
+        "Sentences_AllAgree:429",
+        "Sentences_AllAgree:1817",
+        "Sentences_AllAgree:2168",
+        "Sentences_AllAgree:1809",
+        "Sentences_AllAgree:2080",
+        "Sentences_AllAgree:509",
+        "Sentences_AllAgree:47",
+        "Sentences_AllAgree:1211",
+        "Sentences_AllAgree:1105",
+        "Sentences_AllAgree:174",
+        "Sentences_AllAgree:1425",
+        "Sentences_AllAgree:176",
+        "Sentences_AllAgree:1524",
+        "Sentences_AllAgree:2169",
+        "Sentences_AllAgree:1544",
+        "Sentences_AllAgree:1531",
+        "Sentences_AllAgree:545",
+        "Sentences_AllAgree:1550",
+        "Sentences_AllAgree:1946",
+        "Sentences_AllAgree:1088",
+        "Sentences_AllAgree:1615",
+        "Sentences_AllAgree:335",
+        "Sentences_AllAgree:1056",
+        "Sentences_AllAgree:1353",
+        "Sentences_AllAgree:1514",
+        "Sentences_AllAgree:852",
+        "Sentences_AllAgree:886",
+        "Sentences_AllAgree:608",
+        "Sentences_AllAgree:261",
+        "Sentences_AllAgree:2191",
+        "Sentences_AllAgree:1278",
+        "Sentences_AllAgree:2142",
+        "Sentences_AllAgree:804",
+        "Sentences_AllAgree:1162",
+        "Sentences_AllAgree:108",
+        "Sentences_AllAgree:1348",
+        "Sentences_AllAgree:82",
+        "Sentences_AllAgree:1106",
+        "Sentences_AllAgree:1760",
+        "Sentences_AllAgree:1726",
+        "Sentences_AllAgree:1891",
+        "Sentences_AllAgree:578",
+        "Sentences_AllAgree:1455",
+        "Sentences_AllAgree:860",
+        "Sentences_AllAgree:2097",
+        "Sentences_AllAgree:1450",
+        "Sentences_AllAgree:1767",
+        "Sentences_AllAgree:1551",
+        "Sentences_AllAgree:946",
+        "Sentences_AllAgree:1873",
+        "Sentences_AllAgree:2148",
+        "Sentences_AllAgree:1432",
+        "Sentences_AllAgree:1578",
+        "Sentences_AllAgree:100",
+        "Sentences_AllAgree:213",
+        "Sentences_AllAgree:848",
+        "Sentences_AllAgree:859",
+        "Sentences_AllAgree:1273",
+        "Sentences_AllAgree:1395",
+        "Sentences_AllAgree:1702",
+        "Sentences_AllAgree:1300",
+        "Sentences_AllAgree:993",
+        "Sentences_AllAgree:1958",
+        "Sentences_AllAgree:1244",
+        "Sentences_AllAgree:1038",
+        "Sentences_AllAgree:922",
+        "Sentences_AllAgree:282",
+        "Sentences_AllAgree:906",
+        "Sentences_AllAgree:129",
+        "Sentences_AllAgree:1492",
+        "Sentences_AllAgree:486",
+        "Sentences_AllAgree:428",
+        "Sentences_AllAgree:1365",
+        "Sentences_AllAgree:827",
+        "Sentences_AllAgree:915",
+        "Sentences_AllAgree:1308",
+        "Sentences_AllAgree:2009",
+        "Sentences_AllAgree:525",
+        "Sentences_AllAgree:1758",
+        "Sentences_AllAgree:496",
+        "Sentences_AllAgree:1887",
+        "Sentences_AllAgree:851",
+        "Sentences_AllAgree:1541",
+        "Sentences_AllAgree:1843",
+        "Sentences_AllAgree:969",
+        "Sentences_AllAgree:435",
+        "Sentences_AllAgree:1333",
+        "Sentences_AllAgree:1575",
+        "Sentences_AllAgree:2137",
+        "Sentences_AllAgree:18",
+        "Sentences_AllAgree:1080",
+        "Sentences_AllAgree:1402",
+        "Sentences_AllAgree:748",
+        "Sentences_AllAgree:1408",
+        "Sentences_AllAgree:777",
+        "Sentences_AllAgree:434",
+        "Sentences_AllAgree:1293",
+        "Sentences_AllAgree:790",
+        "Sentences_AllAgree:1294",
+        "Sentences_AllAgree:1907",
+        "Sentences_AllAgree:788",
+        "Sentences_AllAgree:679",
+        "Sentences_AllAgree:924",
+        "Sentences_AllAgree:2140",
+        "Sentences_AllAgree:1540",
+        "Sentences_AllAgree:696",
+        "Sentences_AllAgree:219",
+        "Sentences_AllAgree:191",
+        "Sentences_AllAgree:909",
+        "Sentences_AllAgree:111",
+        "Sentences_AllAgree:842",
+        "Sentences_AllAgree:2081",
+        "Sentences_AllAgree:1978",
+        "Sentences_AllAgree:1337",
+        "Sentences_AllAgree:989",
+        "Sentences_AllAgree:1566",
+        "Sentences_AllAgree:2003",
+        "Sentences_AllAgree:2175",
+        "Sentences_AllAgree:1403",
+        "Sentences_AllAgree:184",
+        "Sentences_AllAgree:1030",
+        "Sentences_AllAgree:463",
+        "Sentences_AllAgree:269",
+        "Sentences_AllAgree:1650",
+        "Sentences_AllAgree:449",
+        "Sentences_AllAgree:1440",
+        "Sentences_AllAgree:441",
+        "Sentences_AllAgree:671",
+        "Sentences_AllAgree:1242",
+        "Sentences_AllAgree:1763",
+        "Sentences_AllAgree:613",
+        "Sentences_AllAgree:867",
+        "Sentences_AllAgree:2067",
+        "Sentences_AllAgree:1275",
+        "Sentences_AllAgree:488",
+        "Sentences_AllAgree:861",
+        "Sentences_AllAgree:460",
+        "Sentences_AllAgree:425",
+        "Sentences_AllAgree:1457",
+        "Sentences_AllAgree:38",
+        "Sentences_AllAgree:1620",
+        "Sentences_AllAgree:2110",
+        "Sentences_AllAgree:1204",
+        "Sentences_AllAgree:324",
+        "Sentences_AllAgree:1282",
+        "Sentences_AllAgree:1480",
+        "Sentences_AllAgree:2058",
+        "Sentences_AllAgree:1973",
+        "Sentences_AllAgree:705",
+        "Sentences_AllAgree:1990",
+        "Sentences_AllAgree:1707",
+        "Sentences_AllAgree:1908",
+        "Sentences_AllAgree:1625",
+        "Sentences_AllAgree:492",
+        "Sentences_AllAgree:2247",
+        "Sentences_AllAgree:121",
+        "Sentences_AllAgree:2209",
+        "Sentences_AllAgree:2015",
+        "Sentences_AllAgree:557",
+        "Sentences_AllAgree:156",
+        "Sentences_AllAgree:1387",
+        "Sentences_AllAgree:1861",
+        "Sentences_AllAgree:471",
+        "Sentences_AllAgree:526",
+        "Sentences_AllAgree:1773",
+        "Sentences_AllAgree:1118",
+        "Sentences_AllAgree:1297",
+        "Sentences_AllAgree:2050",
+        "Sentences_AllAgree:1849",
+        "Sentences_AllAgree:327",
+        "Sentences_AllAgree:589",
+        "Sentences_AllAgree:1104",
+        "Sentences_AllAgree:253",
+        "Sentences_AllAgree:1420",
+        "Sentences_AllAgree:2083",
+        "Sentences_AllAgree:12",
+        "Sentences_AllAgree:722",
+        "Sentences_AllAgree:1147",
+        "Sentences_AllAgree:470",
+        "Sentences_AllAgree:662",
+        "Sentences_AllAgree:764",
+        "Sentences_AllAgree:1061",
+        "Sentences_AllAgree:1556",
+        "Sentences_AllAgree:2157",
+        "Sentences_AllAgree:1808",
+        "Sentences_AllAgree:888",
+        "Sentences_AllAgree:1988",
+        "Sentences_AllAgree:635",
+        "Sentences_AllAgree:728",
+        "Sentences_AllAgree:1818",
+        "Sentences_AllAgree:1989",
+        "Sentences_AllAgree:2244",
+        "Sentences_AllAgree:1392",
+        "Sentences_AllAgree:2102",
+        "Sentences_AllAgree:1005",
+        "Sentences_AllAgree:1600",
+        "Sentences_AllAgree:1289",
+        "Sentences_AllAgree:1998",
+        "Sentences_AllAgree:1569",
+        "Sentences_AllAgree:1197",
+        "Sentences_AllAgree:1914",
+        "Sentences_AllAgree:453",
+        "Sentences_AllAgree:659",
+        "Sentences_AllAgree:20",
+        "Sentences_AllAgree:651",
+        "Sentences_AllAgree:165",
+        "Sentences_AllAgree:775",
+        "Sentences_AllAgree:2227",
+        "Sentences_AllAgree:742",
+        "Sentences_AllAgree:1645",
+        "Sentences_AllAgree:186",
+        "Sentences_AllAgree:1026",
+        "Sentences_AllAgree:1361",
+        "Sentences_AllAgree:1805",
+        "Sentences_AllAgree:146",
+        "Sentences_AllAgree:773",
+        "Sentences_AllAgree:445",
+        "Sentences_AllAgree:1882",
+        "Sentences_AllAgree:1806",
+        "Sentences_AllAgree:639",
+        "Sentences_AllAgree:1209",
+        "Sentences_AllAgree:1358",
+        "Sentences_AllAgree:1796",
+        "Sentences_AllAgree:2133",
+        "Sentences_AllAgree:878",
+        "Sentences_AllAgree:322",
+        "Sentences_AllAgree:1821",
+        "Sentences_AllAgree:1877",
+        "Sentences_AllAgree:1772",
+        "Sentences_AllAgree:735",
+        "Sentences_AllAgree:340",
+        "Sentences_AllAgree:2230",
+        "Sentences_AllAgree:776",
+        "Sentences_AllAgree:1123",
+        "Sentences_AllAgree:1820",
+        "Sentences_AllAgree:625",
+        "Sentences_AllAgree:258",
+        "Sentences_AllAgree:1399",
+        "Sentences_AllAgree:320",
+        "Sentences_AllAgree:2029",
+        "Sentences_AllAgree:876",
+        "Sentences_AllAgree:341",
+        "Sentences_AllAgree:185",
+        "Sentences_AllAgree:2031",
+        "Sentences_AllAgree:653",
+        "Sentences_AllAgree:1459",
+        "Sentences_AllAgree:1750",
+        "Sentences_AllAgree:2152",
+        "Sentences_AllAgree:402",
+        "Sentences_AllAgree:1344",
+        "Sentences_AllAgree:709",
+        "Sentences_AllAgree:1730",
+        "Sentences_AllAgree:1680",
+        "Sentences_AllAgree:2093",
+        "Sentences_AllAgree:1423",
+        "Sentences_AllAgree:994",
+        "Sentences_AllAgree:1606",
+        "Sentences_AllAgree:973",
+        "Sentences_AllAgree:2184",
+        "Sentences_AllAgree:1453",
+        "Sentences_AllAgree:1658",
+        "Sentences_AllAgree:181",
+        "Sentences_AllAgree:1276",
+        "Sentences_AllAgree:2216",
+        "Sentences_AllAgree:1902",
+        "Sentences_AllAgree:704",
+        "Sentences_AllAgree:412",
+        "Sentences_AllAgree:1710",
+        "Sentences_AllAgree:1512",
+        "Sentences_AllAgree:931",
+        "Sentences_AllAgree:1067",
+        "Sentences_AllAgree:617",
+        "Sentences_AllAgree:1921",
+        "Sentences_AllAgree:1765",
+        "Sentences_AllAgree:975",
+        "Sentences_AllAgree:1534",
+        "Sentences_AllAgree:544",
+        "Sentences_AllAgree:1391",
+        "Sentences_AllAgree:2241",
+        "Sentences_AllAgree:623",
+        "Sentences_AllAgree:524",
+        "Sentences_AllAgree:67",
+        "Sentences_AllAgree:392",
+        "Sentences_AllAgree:1766",
+        "Sentences_AllAgree:1590",
+        "Sentences_AllAgree:1380",
+        "Sentences_AllAgree:601",
+        "Sentences_AllAgree:377",
+        "Sentences_AllAgree:357",
+        "Sentences_AllAgree:868",
+        "Sentences_AllAgree:1129",
+        "Sentences_AllAgree:1449",
+        "Sentences_AllAgree:1708",
+        "Sentences_AllAgree:1227",
+        "Sentences_AllAgree:986",
+        "Sentences_AllAgree:1986",
+        "Sentences_AllAgree:1398",
+        "Sentences_AllAgree:1207",
+        "Sentences_AllAgree:76",
+        "Sentences_AllAgree:912",
+        "Sentences_AllAgree:1778",
+        "Sentences_AllAgree:1845",
+        "Sentences_AllAgree:300",
+        "Sentences_AllAgree:1134",
+        "Sentences_AllAgree:1323",
+        "Sentences_AllAgree:375",
+        "Sentences_AllAgree:1381",
+        "Sentences_AllAgree:1098",
+        "Sentences_AllAgree:378",
+        "Sentences_AllAgree:120",
+        "Sentences_AllAgree:1950",
+        "Sentences_AllAgree:2213",
+        "Sentences_AllAgree:2183",
+        "Sentences_AllAgree:891",
+        "Sentences_AllAgree:1165",
+        "Sentences_AllAgree:1473",
+        "Sentences_AllAgree:566",
+        "Sentences_AllAgree:1218",
+        "Sentences_AllAgree:1688",
+        "Sentences_AllAgree:1385",
+        "Sentences_AllAgree:846",
+        "Sentences_AllAgree:2160",
+        "Sentences_AllAgree:692",
+        "Sentences_AllAgree:695",
+        "Sentences_AllAgree:1497",
+        "Sentences_AllAgree:952",
+        "Sentences_AllAgree:2028",
+        "Sentences_AllAgree:333",
+        "Sentences_AllAgree:743",
+        "Sentences_AllAgree:1506",
+        "Sentences_AllAgree:1834",
+        "Sentences_AllAgree:2078",
+        "Sentences_AllAgree:727",
+        "Sentences_AllAgree:1761",
+        "Sentences_AllAgree:972",
+        "Sentences_AllAgree:178",
+        "Sentences_AllAgree:52",
+        "Sentences_AllAgree:784",
+        "Sentences_AllAgree:1431",
+        "Sentences_AllAgree:2177",
+        "Sentences_AllAgree:1828",
+        "Sentences_AllAgree:1006",
+        "Sentences_AllAgree:2071",
+        "Sentences_AllAgree:744",
+        "Sentences_AllAgree:419",
+        "Sentences_AllAgree:576",
+        "Sentences_AllAgree:62",
+        "Sentences_AllAgree:205",
+        "Sentences_AllAgree:1573",
+        "Sentences_AllAgree:127",
+        "Sentences_AllAgree:1676",
+        "Sentences_AllAgree:2132",
+        "Sentences_AllAgree:1307",
+        "Sentences_AllAgree:826",
+        "Sentences_AllAgree:768",
+        "Sentences_AllAgree:81",
+        "Sentences_AllAgree:2112",
+        "Sentences_AllAgree:304",
+        "Sentences_AllAgree:448",
+        "Sentences_AllAgree:476",
+        "Sentences_AllAgree:1251",
+        "Sentences_AllAgree:1375",
+        "Sentences_AllAgree:287",
+        "Sentences_AllAgree:195",
+        "Sentences_AllAgree:2220",
+        "Sentences_AllAgree:1199",
+        "Sentences_AllAgree:668",
+        "Sentences_AllAgree:352",
+        "Sentences_AllAgree:443",
+        "Sentences_AllAgree:841",
+        "Sentences_AllAgree:1342",
+        "Sentences_AllAgree:683",
+        "Sentences_AllAgree:344",
+        "Sentences_AllAgree:1716",
+        "Sentences_AllAgree:2229",
+        "Sentences_AllAgree:2056",
+        "Sentences_AllAgree:766",
+        "Sentences_AllAgree:413",
+        "Sentences_AllAgree:1985",
+        "Sentences_AllAgree:74",
+        "Sentences_AllAgree:238",
+        "Sentences_AllAgree:454",
+        "Sentences_AllAgree:230",
+        "Sentences_AllAgree:192",
+        "Sentences_AllAgree:1505",
+        "Sentences_AllAgree:237",
+        "Sentences_AllAgree:497",
+        "Sentences_AllAgree:209",
+        "Sentences_AllAgree:866",
+        "Sentences_AllAgree:1412",
+        "Sentences_AllAgree:1563",
+        "Sentences_AllAgree:1729",
+        "Sentences_AllAgree:331",
+        "Sentences_AllAgree:1138",
+        "Sentences_AllAgree:870",
+        "Sentences_AllAgree:1770",
+        "Sentences_AllAgree:1929",
+        "Sentences_AllAgree:1095",
+        "Sentences_AllAgree:1983",
+        "Sentences_AllAgree:1794",
+        "Sentences_AllAgree:246",
+        "Sentences_AllAgree:751",
+        "Sentences_AllAgree:334",
+        "Sentences_AllAgree:652",
+        "Sentences_AllAgree:1507",
+        "Sentences_AllAgree:661",
+        "Sentences_AllAgree:1870",
+        "Sentences_AllAgree:143",
+        "Sentences_AllAgree:1014",
+        "Sentences_AllAgree:1621",
+        "Sentences_AllAgree:424",
+        "Sentences_AllAgree:921",
+        "Sentences_AllAgree:530",
+        "Sentences_AllAgree:1626",
+        "Sentences_AllAgree:1122",
+        "Sentences_AllAgree:2099",
+        "Sentences_AllAgree:506",
+        "Sentences_AllAgree:1721",
+        "Sentences_AllAgree:1160",
+        "Sentences_AllAgree:131",
+        "Sentences_AllAgree:1486",
+        "Sentences_AllAgree:309",
+        "Sentences_AllAgree:1488",
+        "Sentences_AllAgree:1243",
+        "Sentences_AllAgree:1574",
+        "Sentences_AllAgree:1257",
+        "Sentences_AllAgree:162",
+        "Sentences_AllAgree:602",
+        "Sentences_AllAgree:1493",
+        "Sentences_AllAgree:2178",
+        "Sentences_AllAgree:758",
+        "Sentences_AllAgree:817",
+        "Sentences_AllAgree:719",
+        "Sentences_AllAgree:789",
+        "Sentences_AllAgree:416",
+        "Sentences_AllAgree:1059",
+        "Sentences_AllAgree:270",
+        "Sentences_AllAgree:482",
+        "Sentences_AllAgree:1836",
+        "Sentences_AllAgree:731",
+        "Sentences_AllAgree:616",
+        "Sentences_AllAgree:1568",
+        "Sentences_AllAgree:1292",
+        "Sentences_AllAgree:133",
+        "Sentences_AllAgree:1923",
+        "Sentences_AllAgree:432",
+        "Sentences_AllAgree:153",
+        "Sentences_AllAgree:1177",
+        "Sentences_AllAgree:1161",
+        "Sentences_AllAgree:1510",
+        "Sentences_AllAgree:1926",
+        "Sentences_AllAgree:2171",
+        "Sentences_AllAgree:2206",
+        "Sentences_AllAgree:1269",
+        "Sentences_AllAgree:1789",
+        "Sentences_AllAgree:379",
+        "Sentences_AllAgree:240",
+        "Sentences_AllAgree:262",
+        "Sentences_AllAgree:2259",
+        "Sentences_AllAgree:510",
+        "Sentences_AllAgree:1121",
+        "Sentences_AllAgree:490",
+        "Sentences_AllAgree:2245",
+        "Sentences_AllAgree:358",
+        "Sentences_AllAgree:947",
+        "Sentences_AllAgree:2090",
+        "Sentences_AllAgree:112",
+        "Sentences_AllAgree:945",
+        "Sentences_AllAgree:1583",
+        "Sentences_AllAgree:1346",
+        "Sentences_AllAgree:1240",
+        "Sentences_AllAgree:140",
+        "Sentences_AllAgree:1835",
+        "Sentences_AllAgree:2025",
+        "Sentences_AllAgree:250",
+        "Sentences_AllAgree:1883",
+        "Sentences_AllAgree:805",
+        "Sentences_AllAgree:779",
+        "Sentences_AllAgree:820",
+        "Sentences_AllAgree:2104",
+        "Sentences_AllAgree:819",
+        "Sentences_AllAgree:365",
+        "Sentences_AllAgree:234",
+        "Sentences_AllAgree:351",
+        "Sentences_AllAgree:869",
+        "Sentences_AllAgree:241",
+        "Sentences_AllAgree:299",
+        "Sentences_AllAgree:313",
+        "Sentences_AllAgree:86",
+        "Sentences_AllAgree:1917",
+        "Sentences_AllAgree:2",
+        "Sentences_AllAgree:734",
+        "Sentences_AllAgree:2181",
+        "Sentences_AllAgree:2040",
+        "Sentences_AllAgree:2167",
+        "Sentences_AllAgree:426",
+        "Sentences_AllAgree:119",
+        "Sentences_AllAgree:405",
+        "Sentences_AllAgree:187",
+        "Sentences_AllAgree:6",
+        "Sentences_AllAgree:211",
+        "Sentences_AllAgree:465",
+        "Sentences_AllAgree:202",
+        "Sentences_AllAgree:796",
+        "Sentences_AllAgree:1901",
+        "Sentences_AllAgree:315",
+        "Sentences_AllAgree:456",
+        "Sentences_AllAgree:2210",
+        "Sentences_AllAgree:856",
+        "Sentences_AllAgree:1868",
+        "Sentences_AllAgree:128",
+        "Sentences_AllAgree:2182",
+        "Sentences_AllAgree:79",
+        "Sentences_AllAgree:780",
+        "Sentences_AllAgree:23",
+        "Sentences_AllAgree:415",
+        "Sentences_AllAgree:2054",
+        "Sentences_AllAgree:255",
+        "Sentences_AllAgree:72",
+        "Sentences_AllAgree:89",
+        "Sentences_AllAgree:2034",
+        "Sentences_AllAgree:1900",
+        "Sentences_AllAgree:321",
+        "Sentences_AllAgree:356",
+        "Sentences_AllAgree:1922",
+        "Sentences_AllAgree:130",
+        "Sentences_AllAgree:2092",
+        "Sentences_AllAgree:2234",
+        "Sentences_AllAgree:781",
+        "Sentences_AllAgree:2258",
+        "Sentences_AllAgree:214",
+        "Sentences_AllAgree:201",
+        "Sentences_AllAgree:2200",
+        "Sentences_AllAgree:865",
+        "Sentences_AllAgree:125",
+        "Sentences_AllAgree:2120",
+        "Sentences_AllAgree:2188",
+        "Sentences_AllAgree:84",
+        "Sentences_AllAgree:2147",
+        "Sentences_AllAgree:2186",
+        "Sentences_AllAgree:305",
+        "Sentences_AllAgree:380",
+        "Sentences_AllAgree:1911",
+        "Sentences_AllAgree:2118",
+        "Sentences_AllAgree:316",
+        "Sentences_AllAgree:2044",
+        "Sentences_AllAgree:388",
+        "Sentences_AllAgree:318",
+        "Sentences_AllAgree:166",
+        "Sentences_AllAgree:207",
+        "Sentences_AllAgree:2026",
+        "Sentences_AllAgree:880",
+        "Sentences_AllAgree:376",
+        "Sentences_AllAgree:2228",
+        "Sentences_AllAgree:397",
+        "Sentences_AllAgree:1925",
+        "Sentences_AllAgree:78",
+        "Sentences_AllAgree:409",
+        "Sentences_AllAgree:27",
+        "Sentences_AllAgree:455",
+        "Sentences_AllAgree:346",
+        "Sentences_AllAgree:754",
+        "Sentences_AllAgree:113",
+        "Sentences_AllAgree:478",
+        "Sentences_AllAgree:466",
+        "Sentences_AllAgree:220",
+        "Sentences_AllAgree:1899",
+        "Sentences_AllAgree:2254",
+        "Sentences_AllAgree:887",
+        "Sentences_AllAgree:159",
+        "Sentences_AllAgree:386",
+        "Sentences_AllAgree:2253",
+        "Sentences_AllAgree:398",
+        "Sentences_AllAgree:831",
+        "Sentences_AllAgree:2190",
+        "Sentences_AllAgree:360",
+        "Sentences_AllAgree:5",
+        "Sentences_AllAgree:399",
+        "Sentences_AllAgree:451",
+        "Sentences_AllAgree:15",
+        "Sentences_AllAgree:411",
+        "Sentences_AllAgree:96",
+        "Sentences_AllAgree:1919",
+        "Sentences_AllAgree:2096",
+        "Sentences_AllAgree:10",
+        "Sentences_AllAgree:799",
+        "Sentences_AllAgree:1893",
+        "Sentences_AllAgree:48",
+        "Sentences_AllAgree:2138",
+        "Sentences_AllAgree:2204",
+        "Sentences_AllAgree:864",
+        "Sentences_AllAgree:212",
+        "Sentences_AllAgree:215",
+        "Sentences_AllAgree:845",
+        "Sentences_AllAgree:132",
+        "Sentences_AllAgree:863",
+        "Sentences_AllAgree:2051",
+        "Sentences_AllAgree:43",
+        "Sentences_AllAgree:840",
+        "Sentences_AllAgree:194",
+        "Sentences_AllAgree:816",
+        "Sentences_AllAgree:373",
+        "Sentences_AllAgree:1910",
+        "Sentences_AllAgree:821",
+        "Sentences_AllAgree:1884",
+        "Sentences_AllAgree:180",
+        "Sentences_AllAgree:347",
+        "Sentences_AllAgree:2252",
+        "Sentences_AllAgree:437",
+        "Sentences_AllAgree:35",
+        "Sentences_AllAgree:177",
+        "Sentences_AllAgree:2173",
+        "Sentences_AllAgree:1895",
+        "Sentences_AllAgree:875",
+        "Sentences_AllAgree:69",
+        "Sentences_AllAgree:2105",
+        "Sentences_AllAgree:374",
+        "Sentences_AllAgree:2046",
+        "Sentences_AllAgree:256",
+        "Sentences_AllAgree:75",
+        "Sentences_AllAgree:818",
+        "Sentences_AllAgree:17",
+        "Sentences_AllAgree:873",
+        "Sentences_AllAgree:2012",
+        "Sentences_AllAgree:2180",
+        "Sentences_AllAgree:2166",
+        "Sentences_AllAgree:247",
+        "Sentences_AllAgree:2238",
+        "Sentences_AllAgree:2164",
+        "Sentences_AllAgree:157",
+        "Sentences_AllAgree:2176",
+        "Sentences_AllAgree:210",
+        "Sentences_AllAgree:336",
+        "Sentences_AllAgree:814",
+        "Sentences_AllAgree:355",
+        "Sentences_AllAgree:242",
+        "Sentences_AllAgree:881",
+        "Sentences_AllAgree:726",
+        "Sentences_AllAgree:2124",
+        "Sentences_AllAgree:2255",
+        "Sentences_AllAgree:126",
+        "Sentences_AllAgree:319",
+        "Sentences_AllAgree:2088",
+        "Sentences_AllAgree:2198",
+        "Sentences_AllAgree:227",
+        "Sentences_AllAgree:2211",
+        "Sentences_AllAgree:9",
+        "Sentences_AllAgree:2235",
+        "Sentences_AllAgree:404",
+        "Sentences_AllAgree:2094",
+        "Sentences_AllAgree:2201",
+        "Sentences_AllAgree:2222",
+        "Sentences_AllAgree:31",
+        "Sentences_AllAgree:2109",
+        "Sentences_AllAgree:55",
+        "Sentences_AllAgree:7",
+        "Sentences_AllAgree:342",
+        "Sentences_AllAgree:414",
+        "Sentences_AllAgree:122",
+        "Sentences_AllAgree:173",
+        "Sentences_AllAgree:104",
+        "Sentences_AllAgree:58",
+        "Sentences_AllAgree:83",
+        "Sentences_AllAgree:2073",
+        "Sentences_AllAgree:32",
+        "Sentences_AllAgree:1909",
+        "Sentences_AllAgree:462",
+        "Sentences_AllAgree:877",
+        "Sentences_AllAgree:2047",
+        "Sentences_AllAgree:1865",
+        "Sentences_AllAgree:2126",
+        "Sentences_AllAgree:885",
+        "Sentences_AllAgree:172",
+        "Sentences_AllAgree:394",
+        "Sentences_AllAgree:2236",
+        "Sentences_AllAgree:838",
+        "Sentences_AllAgree:752",
+        "Sentences_AllAgree:2260",
+        "Sentences_AllAgree:171",
+        "Sentences_AllAgree:2251",
+        "Sentences_AllAgree:745",
+        "Sentences_AllAgree:175",
+        "Sentences_AllAgree:45",
+        "Sentences_AllAgree:24",
+        "Sentences_AllAgree:480",
+        "Sentences_AllAgree:2041",
+        "Sentences_AllAgree:477",
+        "Sentences_AllAgree:124",
+        "Sentences_AllAgree:361"
+      ]
+    },
+    "test": {
+      "rows": 357,
+      "sha256": "a9cf016a8cdd185aeef6d67d9dffa7fc127580a63fb1d4f51083dc55ab7180db",
+      "ids": [
+        "Sentences_AllAgree:626",
+        "Sentences_AllAgree:627",
+        "Sentences_AllAgree:1027",
+        "Sentences_AllAgree:1028",
+        "Sentences_AllAgree:1715",
+        "Sentences_AllAgree:1419",
+        "Sentences_AllAgree:1594",
+        "Sentences_AllAgree:1168",
+        "Sentences_AllAgree:2010",
+        "Sentences_AllAgree:543",
+        "Sentences_AllAgree:1481",
+        "Sentences_AllAgree:902",
+        "Sentences_AllAgree:561",
+        "Sentences_AllAgree:1987",
+        "Sentences_AllAgree:1601",
+        "Sentences_AllAgree:1247",
+        "Sentences_AllAgree:2070",
+        "Sentences_AllAgree:1487",
+        "Sentences_AllAgree:1321",
+        "Sentences_AllAgree:649",
+        "Sentences_AllAgree:1984",
+        "Sentences_AllAgree:1175",
+        "Sentences_AllAgree:1032",
+        "Sentences_AllAgree:991",
+        "Sentences_AllAgree:1653",
+        "Sentences_AllAgree:1370",
+        "Sentences_AllAgree:1283",
+        "Sentences_AllAgree:1671",
+        "Sentences_AllAgree:686",
+        "Sentences_AllAgree:1840",
+        "Sentences_AllAgree:1931",
+        "Sentences_AllAgree:898",
+        "Sentences_AllAgree:1277",
+        "Sentences_AllAgree:1709",
+        "Sentences_AllAgree:765",
+        "Sentences_AllAgree:897",
+        "Sentences_AllAgree:1976",
+        "Sentences_AllAgree:533",
+        "Sentences_AllAgree:1513",
+        "Sentences_AllAgree:1665",
+        "Sentences_AllAgree:658",
+        "Sentences_AllAgree:644",
+        "Sentences_AllAgree:1964",
+        "Sentences_AllAgree:1693",
+        "Sentences_AllAgree:485",
+        "Sentences_AllAgree:1146",
+        "Sentences_AllAgree:997",
+        "Sentences_AllAgree:1145",
+        "Sentences_AllAgree:1261",
+        "Sentences_AllAgree:1179",
+        "Sentences_AllAgree:592",
+        "Sentences_AllAgree:632",
+        "Sentences_AllAgree:953",
+        "Sentences_AllAgree:1672",
+        "Sentences_AllAgree:1629",
+        "Sentences_AllAgree:724",
+        "Sentences_AllAgree:1474",
+        "Sentences_AllAgree:1360",
+        "Sentences_AllAgree:1441",
+        "Sentences_AllAgree:646",
+        "Sentences_AllAgree:585",
+        "Sentences_AllAgree:1091",
+        "Sentences_AllAgree:687",
+        "Sentences_AllAgree:996",
+        "Sentences_AllAgree:1143",
+        "Sentences_AllAgree:1689",
+        "Sentences_AllAgree:1185",
+        "Sentences_AllAgree:1047",
+        "Sentences_AllAgree:1992",
+        "Sentences_AllAgree:1447",
+        "Sentences_AllAgree:1632",
+        "Sentences_AllAgree:1795",
+        "Sentences_AllAgree:1965",
+        "Sentences_AllAgree:1188",
+        "Sentences_AllAgree:1373",
+        "Sentences_AllAgree:1371",
+        "Sentences_AllAgree:1857",
+        "Sentences_AllAgree:505",
+        "Sentences_AllAgree:1776",
+        "Sentences_AllAgree:1617",
+        "Sentences_AllAgree:1971",
+        "Sentences_AllAgree:1394",
+        "Sentences_AllAgree:1451",
+        "Sentences_AllAgree:272",
+        "Sentences_AllAgree:1830",
+        "Sentences_AllAgree:1345",
+        "Sentences_AllAgree:558",
+        "Sentences_AllAgree:785",
+        "Sentences_AllAgree:1533",
+        "Sentences_AllAgree:1775",
+        "Sentences_AllAgree:1320",
+        "Sentences_AllAgree:1764",
+        "Sentences_AllAgree:610",
+        "Sentences_AllAgree:532",
+        "Sentences_AllAgree:1181",
+        "Sentences_AllAgree:1755",
+        "Sentences_AllAgree:1779",
+        "Sentences_AllAgree:1995",
+        "Sentences_AllAgree:1144",
+        "Sentences_AllAgree:1148",
+        "Sentences_AllAgree:936",
+        "Sentences_AllAgree:792",
+        "Sentences_AllAgree:1062",
+        "Sentences_AllAgree:1368",
+        "Sentences_AllAgree:1000",
+        "Sentences_AllAgree:1349",
+        "Sentences_AllAgree:1980",
+        "Sentences_AllAgree:1564",
+        "Sentences_AllAgree:2076",
+        "Sentences_AllAgree:1335",
+        "Sentences_AllAgree:900",
+        "Sentences_AllAgree:631",
+        "Sentences_AllAgree:621",
+        "Sentences_AllAgree:916",
+        "Sentences_AllAgree:1737",
+        "Sentences_AllAgree:1190",
+        "Sentences_AllAgree:1612",
+        "Sentences_AllAgree:1383",
+        "Sentences_AllAgree:1694",
+        "Sentences_AllAgree:667",
+        "Sentences_AllAgree:1945",
+        "Sentences_AllAgree:968",
+        "Sentences_AllAgree:1086",
+        "Sentences_AllAgree:605",
+        "Sentences_AllAgree:1928",
+        "Sentences_AllAgree:1746",
+        "Sentences_AllAgree:1483",
+        "Sentences_AllAgree:672",
+        "Sentences_AllAgree:1256",
+        "Sentences_AllAgree:1401",
+        "Sentences_AllAgree:1212",
+        "Sentences_AllAgree:1444",
+        "Sentences_AllAgree:1957",
+        "Sentences_AllAgree:1633",
+        "Sentences_AllAgree:962",
+        "Sentences_AllAgree:1667",
+        "Sentences_AllAgree:716",
+        "Sentences_AllAgree:1648",
+        "Sentences_AllAgree:1587",
+        "Sentences_AllAgree:1281",
+        "Sentences_AllAgree:694",
+        "Sentences_AllAgree:1948",
+        "Sentences_AllAgree:1357",
+        "Sentences_AllAgree:1230",
+        "Sentences_AllAgree:1386",
+        "Sentences_AllAgree:1706",
+        "Sentences_AllAgree:673",
+        "Sentences_AllAgree:1407",
+        "Sentences_AllAgree:1092",
+        "Sentences_AllAgree:518",
+        "Sentences_AllAgree:1522",
+        "Sentences_AllAgree:1636",
+        "Sentences_AllAgree:1953",
+        "Sentences_AllAgree:577",
+        "Sentences_AllAgree:1288",
+        "Sentences_AllAgree:1860",
+        "Sentences_AllAgree:1932",
+        "Sentences_AllAgree:1142",
+        "Sentences_AllAgree:700",
+        "Sentences_AllAgree:1494",
+        "Sentences_AllAgree:1468",
+        "Sentences_AllAgree:1404",
+        "Sentences_AllAgree:1029",
+        "Sentences_AllAgree:542",
+        "Sentences_AllAgree:290",
+        "Sentences_AllAgree:1290",
+        "Sentences_AllAgree:614",
+        "Sentences_AllAgree:1848",
+        "Sentences_AllAgree:1184",
+        "Sentences_AllAgree:1172",
+        "Sentences_AllAgree:1388",
+        "Sentences_AllAgree:1448",
+        "Sentences_AllAgree:1052",
+        "Sentences_AllAgree:1762",
+        "Sentences_AllAgree:1258",
+        "Sentences_AllAgree:1001",
+        "Sentences_AllAgree:1856",
+        "Sentences_AllAgree:794",
+        "Sentences_AllAgree:2162",
+        "Sentences_AllAgree:2027",
+        "Sentences_AllAgree:2218",
+        "Sentences_AllAgree:2263",
+        "Sentences_AllAgree:844",
+        "Sentences_AllAgree:1916",
+        "Sentences_AllAgree:29",
+        "Sentences_AllAgree:2202",
+        "Sentences_AllAgree:458",
+        "Sentences_AllAgree:339",
+        "Sentences_AllAgree:370",
+        "Sentences_AllAgree:233",
+        "Sentences_AllAgree:368",
+        "Sentences_AllAgree:2189",
+        "Sentences_AllAgree:401",
+        "Sentences_AllAgree:1880",
+        "Sentences_AllAgree:244",
+        "Sentences_AllAgree:1881",
+        "Sentences_AllAgree:739",
+        "Sentences_AllAgree:85",
+        "Sentences_AllAgree:2208",
+        "Sentences_AllAgree:149",
+        "Sentences_AllAgree:2082",
+        "Sentences_AllAgree:2095",
+        "Sentences_AllAgree:2194",
+        "Sentences_AllAgree:1903",
+        "Sentences_AllAgree:1872",
+        "Sentences_AllAgree:2185",
+        "Sentences_AllAgree:2158",
+        "Sentences_AllAgree:95",
+        "Sentences_AllAgree:2074",
+        "Sentences_AllAgree:2136",
+        "Sentences_AllAgree:822",
+        "Sentences_AllAgree:168",
+        "Sentences_AllAgree:179",
+        "Sentences_AllAgree:2219",
+        "Sentences_AllAgree:372",
+        "Sentences_AllAgree:92",
+        "Sentences_AllAgree:461",
+        "Sentences_AllAgree:390",
+        "Sentences_AllAgree:2223",
+        "Sentences_AllAgree:2125",
+        "Sentences_AllAgree:747",
+        "Sentences_AllAgree:2048",
+        "Sentences_AllAgree:117",
+        "Sentences_AllAgree:833",
+        "Sentences_AllAgree:467",
+        "Sentences_AllAgree:2037",
+        "Sentences_AllAgree:2108",
+        "Sentences_AllAgree:2065",
+        "Sentences_AllAgree:295",
+        "Sentences_AllAgree:2214",
+        "Sentences_AllAgree:389",
+        "Sentences_AllAgree:93",
+        "Sentences_AllAgree:2146",
+        "Sentences_AllAgree:152",
+        "Sentences_AllAgree:753",
+        "Sentences_AllAgree:2232",
+        "Sentences_AllAgree:2187",
+        "Sentences_AllAgree:464",
+        "Sentences_AllAgree:137",
+        "Sentences_AllAgree:1885",
+        "Sentences_AllAgree:348",
+        "Sentences_AllAgree:802",
+        "Sentences_AllAgree:459",
+        "Sentences_AllAgree:114",
+        "Sentences_AllAgree:2024",
+        "Sentences_AllAgree:736",
+        "Sentences_AllAgree:19",
+        "Sentences_AllAgree:325",
+        "Sentences_AllAgree:136",
+        "Sentences_AllAgree:362",
+        "Sentences_AllAgree:1918",
+        "Sentences_AllAgree:139",
+        "Sentences_AllAgree:158",
+        "Sentences_AllAgree:1874",
+        "Sentences_AllAgree:2193",
+        "Sentences_AllAgree:170",
+        "Sentences_AllAgree:2144",
+        "Sentences_AllAgree:145",
+        "Sentences_AllAgree:1924",
+        "Sentences_AllAgree:475",
+        "Sentences_AllAgree:2212",
+        "Sentences_AllAgree:403",
+        "Sentences_AllAgree:469",
+        "Sentences_AllAgree:367",
+        "Sentences_AllAgree:450",
+        "Sentences_AllAgree:163",
+        "Sentences_AllAgree:1875",
+        "Sentences_AllAgree:2017",
+        "Sentences_AllAgree:293",
+        "Sentences_AllAgree:2018",
+        "Sentences_AllAgree:25",
+        "Sentences_AllAgree:257",
+        "Sentences_AllAgree:420",
+        "Sentences_AllAgree:382",
+        "Sentences_AllAgree:849",
+        "Sentences_AllAgree:183",
+        "Sentences_AllAgree:2172",
+        "Sentences_AllAgree:371",
+        "Sentences_AllAgree:155",
+        "Sentences_AllAgree:301",
+        "Sentences_AllAgree:363",
+        "Sentences_AllAgree:929",
+        "Sentences_AllAgree:930",
+        "Sentences_AllAgree:815",
+        "Sentences_AllAgree:1915",
+        "Sentences_AllAgree:259",
+        "Sentences_AllAgree:224",
+        "Sentences_AllAgree:68",
+        "Sentences_AllAgree:303",
+        "Sentences_AllAgree:427",
+        "Sentences_AllAgree:872",
+        "Sentences_AllAgree:2195",
+        "Sentences_AllAgree:364",
+        "Sentences_AllAgree:2224",
+        "Sentences_AllAgree:837",
+        "Sentences_AllAgree:853",
+        "Sentences_AllAgree:457",
+        "Sentences_AllAgree:312",
+        "Sentences_AllAgree:60",
+        "Sentences_AllAgree:223",
+        "Sentences_AllAgree:782",
+        "Sentences_AllAgree:473",
+        "Sentences_AllAgree:2226",
+        "Sentences_AllAgree:884",
+        "Sentences_AllAgree:519",
+        "Sentences_AllAgree:520",
+        "Sentences_AllAgree:2113",
+        "Sentences_AllAgree:1409",
+        "Sentences_AllAgree:1410",
+        "Sentences_AllAgree:396",
+        "Sentences_AllAgree:116",
+        "Sentences_AllAgree:148",
+        "Sentences_AllAgree:2111",
+        "Sentences_AllAgree:2039",
+        "Sentences_AllAgree:263",
+        "Sentences_AllAgree:2038",
+        "Sentences_AllAgree:408",
+        "Sentences_AllAgree:2205",
+        "Sentences_AllAgree:151",
+        "Sentences_AllAgree:418",
+        "Sentences_AllAgree:481",
+        "Sentences_AllAgree:135",
+        "Sentences_AllAgree:87",
+        "Sentences_AllAgree:217",
+        "Sentences_AllAgree:2089",
+        "Sentences_AllAgree:824",
+        "Sentences_AllAgree:33",
+        "Sentences_AllAgree:836",
+        "Sentences_AllAgree:366",
+        "Sentences_AllAgree:2053",
+        "Sentences_AllAgree:59",
+        "Sentences_AllAgree:2262",
+        "Sentences_AllAgree:107",
+        "Sentences_AllAgree:229",
+        "Sentences_AllAgree:809",
+        "Sentences_AllAgree:64",
+        "Sentences_AllAgree:142",
+        "Sentences_AllAgree:329",
+        "Sentences_AllAgree:197",
+        "Sentences_AllAgree:801",
+        "Sentences_AllAgree:400",
+        "Sentences_AllAgree:2063",
+        "Sentences_AllAgree:2163",
+        "Sentences_AllAgree:36",
+        "Sentences_AllAgree:2197",
+        "Sentences_AllAgree:46",
+        "Sentences_AllAgree:2033",
+        "Sentences_AllAgree:8",
+        "Sentences_AllAgree:225",
+        "Sentences_AllAgree:737",
+        "Sentences_AllAgree:798",
+        "Sentences_AllAgree:2106",
+        "Sentences_AllAgree:439",
+        "Sentences_AllAgree:2239",
+        "Sentences_AllAgree:825",
+        "Sentences_AllAgree:733",
+        "Sentences_AllAgree:843"
+      ]
+    }
+  },
+  "protocol": "train-only selection; test report-only",
+  "format": "csv",
+  "balance": {
+    "method": "label-balanced-group-allocation-v1",
+    "max_class_ratio": 3,
+    "test_fraction": 0.2,
+    "seed_role": "stable ordering within label combinations only",
+    "rounding": "at most one text group per label and total",
+    "input_rows": 2264,
+    "retained_rows": 1782,
+    "dropped_rows": 482,
+    "absent_labels": []
+  },
+  "previous_manifest_sha256": "062115945892ecd69b9496e5819961b76cf8cf37be4927119077e53730d73397"
+}

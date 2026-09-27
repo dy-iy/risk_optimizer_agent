@@ -1,0 +1,38 @@
+{
+  "task": "finnsp",
+  "approved": true,
+  "version": "automated-conservative-v1",
+  "reviewer": "deterministic automated curation authorized by user; not human annotation",
+  "sources": {
+    "data/benchmarks/finnsp/raw/train_list.json": "36ac38ca702c59f854f19eaec9fa936d0ebb81f0ffcd640bf910aaffa6435f42",
+    "data/benchmarks/finnsp/raw/eval_list.json": "22ccbab6b287e52c963d3d378de5092a65affbf44780ef79756f1af2fd0df6cb"
+  },
+  "labels": [
+    "0",
+    "1"
+  ],
+  "label_mapping": {},
+  "record_gold_overrides": {},
+  "override_reasons": {},
+  "excluded_records": {
+    "train:577daf1d": "missing candidate entities for entity-conditioned task",
+    "train:a46c98cd": "missing candidate entities for entity-conditioned task",
+    "train:a73b13e9": "missing candidate entities for entity-conditioned task",
+    "train:81332076": "missing candidate entities for entity-conditioned task",
+    "train:﻿id": "embedded header row, not a labeled sample",
+    "train:c7b63839": "missing candidate entities for entity-conditioned task",
+    "train:119d74c0": "missing candidate entities for entity-conditioned task",
+    "train:72d35027": "missing candidate entities for entity-conditioned task",
+    "train:e1e5e0b4": "missing candidate entities for entity-conditioned task",
+    "train:3a080d6e": "missing candidate entities for entity-conditioned task",
+    "train:0fa4a462": "missing candidate entities for entity-conditioned task",
+    "train:f313ed51": "missing candidate entities for entity-conditioned task",
+    "train:5b2840fc": "missing candidate entities for entity-conditioned task",
+    "train:982e5921": "missing candidate entities for entity-conditioned task",
+    "train:74d3849f": "missing candidate entities for entity-conditioned task",
+    "eval:1c39a0fa": "missing candidate entities for entity-conditioned task",
+    "eval:230c9277": "missing candidate entities for entity-conditioned task",
+    "train:8a9bf6cf": "exact duplicate; retained eval:73e63587"
+  },
+  "policy": "fixed vocabulary; unique format repairs; quarantine unknown/conflicting gold; exact deduplication"
+}
