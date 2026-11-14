@@ -3,6 +3,8 @@
 risk_optimizer_agent.code-workspace
 
 # Python
+.venv/
+venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -10,19 +12,11 @@ __pycache__/
 # Local data
 raw_*.csv
 
-# Generated data and test artifacts
-/data/process/output/
-/data/process/output*.csv
-/test/reports/
+# Local LF versions, models and experiment artifacts
+versions/
 
-# Generated workflow artifacts
-/reports/
-/experiments/reports/
-/experiments/**/reports/
-/experiments/**/batch_runs/
-/versions/**/reports/
-/workflows/**/reports/
-/workflows/**/batch_runs/
+# Plotting caches
+.mpl-*/
 
 # Local archives and packaged snapshots
 /.tmp/

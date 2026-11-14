@@ -1,0 +1,83 @@
+{
+  "dataset": "IMDb",
+  "scheme": "preserve_local_source_split_v1",
+  "sources": {
+    "train": {
+      "path": "../raw/train.json",
+      "sha256": "6c415ba520bb77b92f2dd3ba458c6a04ddffac03f506094cd24f25d1b9a28f21",
+      "n_samples": 20000
+    },
+    "valid": {
+      "path": "../raw/valid.json",
+      "sha256": "7eb9f99bc2bbd161b02c861ba76dbf184b8f3a2330dbe9cb2c9e74b78265446a",
+      "n_samples": 2500
+    },
+    "test": {
+      "path": "../raw/test.json",
+      "sha256": "4e98c2f35aa3c0acf81db7a07b1df918bd921c1e02f51785ccab8533b1e7cbf3",
+      "n_samples": 2500
+    }
+  },
+  "raw_files_sha256": {
+    "train.json": "6c415ba520bb77b92f2dd3ba458c6a04ddffac03f506094cd24f25d1b9a28f21",
+    "valid.json": "7eb9f99bc2bbd161b02c861ba76dbf184b8f3a2330dbe9cb2c9e74b78265446a",
+    "test.json": "4e98c2f35aa3c0acf81db7a07b1df918bd921c1e02f51785ccab8533b1e7cbf3",
+    "label.json": "967b828cc8be19e8c086d420344eb245e008069972c09127b0d046dae4ea2b95",
+    "readme.txt": "4d099f3fe5bfcf2889b2e85ec2b9ae094c7cfa2b0605fcef0d033de58f48df82"
+  },
+  "n_samples": 25000,
+  "counts": {
+    "train": 20000,
+    "valid": 2500,
+    "test": 2500
+  },
+  "csv_sha256": {
+    "train": "1b023638fb351f5d3cd0b20337015494fe28c728dee9df0b664603dece58d510",
+    "valid": "bd8494ebe16510fecd9dec170507b62dd03d01856b04414c2998df72ef7bd943",
+    "test": "70b74c0e816949c7f70d3755cadd9d9de27484789d3906f0ff6d62be8ea13906"
+  },
+  "csv_schema": {
+    "train": [
+      "id",
+      "text"
+    ],
+    "valid": [
+      "id",
+      "text",
+      "label"
+    ],
+    "test": [
+      "id",
+      "text",
+      "label"
+    ]
+  },
+  "csv_encoding": "utf-8-sig",
+  "label_mapping": {
+    "0": "Negative",
+    "1": "Positive"
+  },
+  "class_counts": {
+    "valid": {
+      "Negative": 1250,
+      "Positive": 1250
+    },
+    "test": {
+      "Negative": 1250,
+      "Positive": 1250
+    }
+  },
+  "roles": {
+    "train": "??? id,text?? LF ???????????????????",
+    "valid": "????????????LF ????????????",
+    "test": "??????????????????? agent ???"
+  },
+  "sampling": "???????????????????dev ??? valid?????????????????",
+  "training_source_gold_usage": "excluded_from_training_csv; original labels remain in ../raw only",
+  "raw_directory_role": "??????????????????????????",
+  "source_format": "json_object_keyed_by_sample_id",
+  "source_text_field": "data.text",
+  "source_label_field": "label",
+  "id_scheme": "imdb_<split>_<original_json_key>",
+  "source_weak_labels_used": false
+}

@@ -1,0 +1,41 @@
+{
+  "task": "financial_phrasebank",
+  "seed": 42,
+  "test_fraction": 0.2,
+  "source": "financial_phrasebank.csv",
+  "source_sha256": "2c220430b590bcc02850c09728805be8254f699ee49c5cfbbe0c4e119a08cba8",
+  "n_samples": 4836,
+  "label_mapping": {
+    "negative": 0,
+    "neutral": 1,
+    "positive": 2
+  },
+  "labeled_budget": 100,
+  "counts": {
+    "labeled": 100,
+    "unlabeled": 3769,
+    "test": 967
+  },
+  "labeled_class_counts": {
+    "negative": 34,
+    "neutral": 33,
+    "positive": 33
+  },
+  "test_class_counts": {
+    "negative": 121,
+    "neutral": 574,
+    "positive": 272
+  },
+  "split_sha256": {
+    "labeled": "e1e9688c25cba6eded37f85b9b587df1dc72e1a14615dddb9ce78afa15c8dfdf",
+    "unlabeled": "9bf9d9e17e2d3bf456de5bd4993db546171c54fade4c6992e3e1000eba4d8e24",
+    "test": "27db48c36061a51f971907cfe6998fd5e9ad27ce3dc8ad82b68923648dba1054"
+  },
+  "group_key": "正文去除空白后相同，整组分配，不跨集合",
+  "sampling": "先按类别抽约20%测试集，再抽负面34/中性33/正面33条固定标注样本，其余隐藏标签。",
+  "excluded_input_fields": [
+    "label_name",
+    "agreement_level",
+    "source_line"
+  ]
+}

@@ -1,0 +1,2 @@
+# Shared task dependencies, maintained at the repository root.
+-r ../../requirements.txt

@@ -1,0 +1,31 @@
+{
+  "checked_on": "2026-11-11",
+  "repository": "https://github.com/supersymmetry-technologies/BBT-FinCUGE-Applications",
+  "revision": "3b686ca79e2184b36498ba15fd1e9609d9eda3cb",
+  "confirmed_counts": {
+    "train": 3499,
+    "valid": 500,
+    "test": 500
+  },
+  "sources": {
+    "train_list.json": {
+      "raw_count": 4000,
+      "removed_embedded_headers": 1,
+      "n_samples": 3999,
+      "roles": [
+        "train",
+        "valid"
+      ],
+      "sha256": "8e8e84ae7ced4ba5b636a86f9332747d3c93df61c18c1c7f71ddb1d28547460d"
+    },
+    "eval_list.json": {
+      "n_samples": 500,
+      "role": "test",
+      "has_gold": true,
+      "sha256": "722b4b942fcd5ff2b24a1ab8e0b1e8c1c8905e2dc13a07179293757f4cce92b7"
+    }
+  },
+  "status": "confirmed_custom_split_imported",
+  "migration_complete": true,
+  "note": "按用户确认方案：官方 train 剔除混入表头后，以 seed=42 按标签分层划分为 3499 条训练与 500 条验证；官方 dev 全部 500 条作测试。未补造样本，不使用无标签官方测试文件。"
+}

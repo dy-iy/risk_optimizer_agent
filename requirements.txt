@@ -1,7 +1,8 @@
-﻿# V4 core dependencies; tested versions: docs/HANDOFF_CHECK.md
+# Shared dependencies for tasks/*; task requirements include this file.
 numpy>=1.26,<3
-pandas>=2.2,<4
+snorkel==0.10.0
+torch>=2,<3
+scikit-learn>=1.4,<2
+matplotlib>=3.8,<4
 python-dotenv>=1.0,<2
 openai>=1.0,<3
-tqdm>=4.66,<5
-scipy>=1.11,<2  # Label-balanced train/test preparation in v4_widely

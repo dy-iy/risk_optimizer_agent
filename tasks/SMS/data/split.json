@@ -1,0 +1,46 @@
+{
+  "dataset": "WRENCH/SMS",
+  "revision": "d1185f6cfba8d5ace2a39229799cb3f1c136bf66",
+  "sources": {
+    "train": {
+      "url": "https://huggingface.co/datasets/jieyuz2/WRENCH/resolve/d1185f6cfba8d5ace2a39229799cb3f1c136bf66/classification/sms/train.json",
+      "sha256": "9d77f52d2af078dbcecffad72c6b22cb6f8fe89c68db0ad99e811be06ec46800"
+    },
+    "valid": {
+      "url": "https://huggingface.co/datasets/jieyuz2/WRENCH/resolve/d1185f6cfba8d5ace2a39229799cb3f1c136bf66/classification/sms/valid.json",
+      "sha256": "977a3b91bdbdb12186b44ee422a51eac85de343b8159e4973b16cf4b3d245d32"
+    },
+    "test": {
+      "url": "https://huggingface.co/datasets/jieyuz2/WRENCH/resolve/d1185f6cfba8d5ace2a39229799cb3f1c136bf66/classification/sms/test.json",
+      "sha256": "7a3fad03b9ad609e91a276e92b3bc31fbb8a48eacbc1bf42853cd440a4f6c080"
+    }
+  },
+  "n_samples": 5571,
+  "counts": {
+    "train": 4571,
+    "valid": 500,
+    "test": 500
+  },
+  "csv_sha256": {
+    "train": "c394fb91f5ec9876dd627989481f26acfe691c0dd7aa51c88ffd6622c23735d0",
+    "valid": "b2c45c025ca057169be628d0a264da2efad212ef11be8effe41f648b992b94b9",
+    "test": "8ffbefa7a075e18877cb011022985327809dd69f05e804ca3c8e31f63a9f8625"
+  },
+  "class_counts": {
+    "valid": {
+      "ham": 436,
+      "spam": 64
+    },
+    "test": {
+      "ham": 433,
+      "spam": 67
+    }
+  },
+  "roles": {
+    "train": "仅用 LF 投票拟合弱监督模型，不保存金标",
+    "valid": "向 agent 提供指标、错例和 LF 质量反馈",
+    "test": "仅评价，不进入 agent 反馈或模型拟合"
+  },
+  "sampling": "直接使用官方 train/valid/test 的正文、顺序和样本归属；不抽样、不去重。",
+  "original_csv_used": false
+}

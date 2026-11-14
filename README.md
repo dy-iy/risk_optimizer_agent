@@ -1,93 +1,110 @@
-﻿# Risk Optimizer Agent｜加密新闻风险规则迭代项目
+# Risk Optimizer Agent｜LLM 引导的弱监督规则迭代
 
-本项目通过“运行规则 → 评估 → 错误切分 → LLM 分析 → 局部修改 → 版本比较”改进加密货币新闻风险识别规则。交接包保留源码、数据、已有实验报告及论文框架图，建议先从 **V4** 阅读和运行。
+本仓库通过“LF 投票 → Snorkel 聚合 → 验证反馈 → LLM 分析 → 修改 LF → 下一版评估”迭代文本分类规则，并保存弱标签、评估报告、Token 用量和下游模型。当前按任务组织在 `tasks/` 下。
 
-## 项目结构
+## 目录导航
 
 | 路径 | 内容 |
 | --- | --- |
-| `workflows/v4/` | V4：12 个 Label Function，多标签风险类别及 low / medium / high 等级，不输出风险分数 |
-| `workflows/v4/versions/v1` 至 `v12` | 已有规则快照；较大版本号不代表效果一定更好 |
-| `workflows/v4/data/crypto_news_train.csv` | V4 自带的 1000 条标注新闻 |
-| `workflows/v4/artifacts/` | 固定风险词表和初始化参考样例 |
-| `workflows/baseline/` | 原始评分、等级及主风险类型工作流 |
-| `workflows/v2/`、`workflows/v3/` | 历史实验；V3 优先修复主风险类型错误 |
-| `data/input/`、`data/gold/` | 原始输入、标注数据、来源审计文件 |
-| `data/process/` | 标注、裁决、复核、校验脚本及已有中间结果 |
-| `docs/` | 迭代流程、实验说明和交接验证记录 |
-| `test/` | 旧版规则及评估脚本，并非完整自动化测试集 |
-| `workflow_v4_论文框架图.pptx` | V4 论文框架图 |
+| [tasks/AGnews](tasks/AGnews/README.md) | 英文新闻主题四分类：World / Sports / Business / Sci/Tech |
+| [tasks/CHECKED](tasks/CHECKED/README.md) | 中文新闻真实性二分类：real / fake |
+| [tasks/EDOS](tasks/EDOS/README.md) | 英文性别歧视二分类：not sexist / sexist |
+| [tasks/financial_phrasebank](tasks/financial_phrasebank/README.md) | 英文金融情感三分类：negative / neutral / positive，固定 100 条标注预算 |
+| [tasks/Finnsp](tasks/Finnsp/README.md) | 中文金融负面消息二分类，输入正文和候选实体 |
+| [tasks/IMDb](tasks/IMDb/README.md) | 英文电影评论情感二分类 |
+| [tasks/SMS](tasks/SMS/README.md) | 短信垃圾信息二分类：ham / spam |
+| [tasks/Yelp](tasks/Yelp/README.md) | 英文评论情感二分类 |
+| [tasks/YouTube](tasks/YouTube/README.md) | YouTube 评论垃圾信息二分类：ham / spam |
+| [tasks/report](tasks/report/README.md) | 跨任务 Global Acc 图表和下游逻辑回归汇总 |
+| [指标笔记.md](指标笔记.md) | 评估指标笔记 |
+| [requirements.txt](requirements.txt) | 当前任务共用依赖，各任务依赖文件引用此文件 |
+| [.env.example](.env.example) | LLM 配置模板 |
 
-工作流版本 V4 与其内部规则版本 v1–v12 是两个不同概念。
+任务目录通常包含：
 
-## 安装与快速运行（无需 API Key）
+```text
+tasks/<任务>/
+├── orchestrator.py        # 评价起点、调用 LLM、生成后续版本
+├── requirements.txt       # 引用根目录共用依赖
+├── tools/                 # 数据、LF 执行、聚合、评估、分析与修改
+├── data/                  # 固定 CSV 划分和 split.json
+├── raw/                   # 部分任务保留的来源归档
+├── versions/vN/
+│   ├── lfs.py             # 当前版本的标签函数
+│   ├── results/           # 指标、投票、弱标签、分析、模型和错误记录
+│   └── tfidf_lr_results/  # 下游模型结果（部分版本）
+├── picture/               # 绘图脚本及 PNG / SVG
+├── iterations.csv         # 已完成版本的指标汇总（运行后生成）
+└── tokens.csv / tokens.md # 真实 API 调用用量（运行后生成）
+```
 
-在解压后的项目根目录执行。建议 Python 3.11 或更新版本，本次本地验证使用 Python 3.14。规则运行使用 CPU，无需 PyTorch、CUDA 或 GPU。
+`versions/` 由 `.gitignore` 排除，包含 LF 源码和实验产物；只克隆 Git 仓库不会自动获得这些本地文件，交接时需单独保留。目录存在不代表评估成功，应检查 `results/metrics.json` 和 `errors.json`。较大版本号也不代表效果更好。
 
-Windows PowerShell：
+## 环境与依赖
+
+从项目根目录、已安装 PyTorch / scikit-learn 的 Python 环境中执行：
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m workflows.v4.tools.runner
+python -m pip install -r requirements.txt
 ```
 
-macOS / Linux：
+下文的 `python` 必须指向实际实验环境；例如本机可用 `& D:/Miniconda/python.exe` 替换。系统默认 Python 可能属于另一个环境。当前 Snorkel LabelModel 使用 CPU；单独的 BERT 训练脚本可使用 CUDA，不属于核心依赖。
 
-```bash
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
-.venv/bin/python -m workflows.v4.tools.runner
-```
+各任务的 `requirements.txt` 引用根目录依赖，也可按任务安装，例如 `python -m pip install -r tasks/IMDb/requirements.txt`。
 
-下文以 `python` 简写，请替换成虚拟环境 Python 路径或先激活环境。`requirements.txt` 是 V4 核心依赖；历史工作流还需 `python -m pip install -r requirements-legacy.txt`。依赖范围不是完整锁文件，实际验证版本见 [交接检查记录](docs/HANDOFF_CHECK.md)。
+## 离线校验与评价
 
-已附规则，不需要重新初始化。默认命令运行 v1；运行 v12：
+从根目录直接执行脚本，以 IMDb 为例：
 
 ```powershell
-python -c "from workflows.v4.tools.runner import run_version; run_version('v12')"
+# 核验固定数据的哈希、字段、条数和标签，不训练、不调用 LLM。
+python -B tasks/IMDb/tools/data.py
+
+# 评价已有 v1，写入该版本 results/，更新 iterations.csv，不调用 LLM。
+python -B tasks/IMDb/orchestrator.py --version v1 --iterations 0
+
+# 单独评价某版，不更新 iterations.csv。
+python -B tasks/IMDb/tools/runner.py --version v10
+
+# 从已有结果绘图。
+python -B tasks/IMDb/picture/plot_metrics.py
 ```
 
-输出会更新对应的 `workflows/v4/versions/vN/reports/`：
+多数任务支持 `--version` 和 `--iterations`；SMS 的 orchestrator 使用交互输入，单版评价可用 `python -B tasks/SMS/tools/runner.py --version v1`。请使用实际存在且包含 `lfs.py` 的版本。重跑评价会更新该版本结果；从旧版本继续迭代可能覆盖已有后续版本，需先备份相应目录。
 
-- `predictions/predictions.csv`：预测结果。
-- `merged/merged.csv`：预测与标注对齐结果。
-- `evals/category_metrics.json`：类别 Micro-F1、Macro-F1 及各类别 Precision / Recall / F1。
-- `evals/level_metrics.json`：等级 Accuracy、Macro-F1、高风险 Recall / F1。
-- `errors/type_mismatch.csv`、`errors/level_mismatch.csv`：错误样本。
+各任务 `data/split.json` 固定来源、划分与哈希，正常运行复用现有数据，不因迁移目录重新抽样。数据缺失或变化应先核对清单；部分任务在整套数据均不存在时会触发首次导入。Financial PhraseBank 使用 `labeled / unlabeled / test`，其余任务使用 `train / valid / test`。
 
-V4 输入 CSV 使用 UTF-8，字段为 `新闻id, 时间, 内容, 风险等级, 风险类别, 原因`。等级为 `low / medium / high`，类别为 JSON 数组字符串。完整评估需要标注列。换数据可修改 `workflows/v4/tools/paths.py` 中的 `input_csv`，类别应与固定词表一致。
+## LLM 自动迭代
 
-## LLM 自动迭代（可选）
+首次配置时，将 `.env.example` 复制为根目录 `.env`，填写：
 
-复制模板并填写自己的密钥和实际可用的模型名：
+```dotenv
+DEEPSEEK_API_KEY=你的密钥
+DEEPSEEK_BASE_URL=https://api.deepseek.com
+DEEPSEEK_MODEL=实际可用的模型名
+```
+
+已有 `.env` 可直接复用。任务从 `tasks/<任务>/` 定位根目录配置；离线评价不需要 API Key。追加迭代示例：
 
 ```powershell
-Copy-Item .env.example .env
+# 不带参数时交互询问起点和轮数。
+python -B tasks/IMDb/orchestrator.py
+
+# 从已有 v10 追加一轮，调用配置的 API 并产生费用。
+python -B tasks/IMDb/orchestrator.py --version v10 --iterations 1
 ```
 
-macOS / Linux 使用 `cp .env.example .env`。V4 读取 `DEEPSEEK_API_KEY`、`DEEPSEEK_BASE_URL`、`DEEPSEEK_MODEL`；仅设置 `OPENAI_API_KEY` 不满足 V4 当前实现。代码内置模型名不代表服务端可用性已验证。
+Analyzer 根据开发反馈选择增、改、删 LF，Patcher 输出候选规则并经过本地 AST 和执行校验。部分任务另有 JSON 格式检查 Agent。每轮操作数、反馈预算、类别先验和错误处理存在任务差异，以各任务 README 和 `orchestrator.py` 为准。
 
-```powershell
-python -m workflows.v4.orchestrator
-```
+## 报告与下游模型
 
-按提示输入当前版本和迭代轮数。已附 v1–v12，建议另存项目副本后，从 `v12` 开始尝试一轮，生成 v13。自动迭代会将新闻样例及规则代码发送给配置的 API 服务，并产生该服务的调用费用。
+- 单版指标、报告、投票、弱标签和 Snorkel 模型位于 `tasks/<任务>/versions/vN/results/`。
+- [Global Acc 汇总](tasks/report/README.md) 展示 SMS、YouTube、Finnsp、Financial PhraseBank 的已评估版本；重建命令为 `python -B tasks/report/plot_global_acc.py`。
+- [四任务下游 LR 汇总](tasks/report/downstream_lr_summary.md) 覆盖 Yelp、IMDb、CHECKED、AGnews；[Finnsp 下游汇总](tasks/Finnsp/downstream_lr_summary.md) 单独保留。
+- 下游模型用非弃权训练硬弱标签拟合 TF-IDF + Logistic Regression，验证金标选 C，测试集仅作最终评价。可先执行 `python -B tasks/IMDb/tools/train_logistic.py --version v10 --check-data` 核验输入；训练时应指定新的 `--output-dir`。
 
-Analyzer 选择 1–6 个目标函数，Patcher 局部替换并校验；候选版须通过综合质量分和关键指标下降限制，连续失败则保留当前版本并停止。詳见 [V4 说明](workflows/v4/README.md)。
+测试样本和测试指标不进入 Analyzer / Patcher。Finnsp、AGnews、CHECKED、EDOS、IMDb、Yelp 的验证类别比例用于上游 Snorkel 先验；SMS、YouTube、Financial PhraseBank 使用固定均匀先验。全量指标包含弃权，与仅已覆盖样本的准确率应分别解读。冻结划分保留的正文重叠及其他实验限制见各任务报告。
 
-只有需要重新生成首版时才执行 `python -m workflows.v4.init`：它会调用 12 次 LLM，并覆盖 `versions/v1/script_v1.py`。从旧版本启动迭代也可能覆盖已有下一版本脚本，请先另存副本。
+## 维护约定
 
-## 历史实验与数据说明
-
-各历史工作流入口及参数见其目录内 README，实验比较见 [docs/EXPERIMENTS.md](docs/EXPERIMENTS.md)。已有报告按原样保留，可能含原机器绝对路径，仅在数据和评估口径一致时比较结果。
-
-**已知缺项：** 当前项目缺少历史默认文件 `data/gold/crypto_news_risk_gold_1000.csv`。本次没有擅自重建金标；运行历史流程前，需参考 [数据说明](data/gold/DATASET_CARD.md) 和 [处理说明](data/process/README.md)，核对带来源数据及中间结果，恢复默认文件或显式指定兼容金标。此缺项不影响使用独立数据的 V4。
-
-标注包含 LLM 标注、裁决及 Codex AI 复核，不能描述为纯人工金标。V4 在同一批数据上评估、诊断和迭代，指标不能视为独立测试集上的泛化表现。
-
-## 交接包与验证
-
-包含源码、数据、已有实验输出和框架图；排除真实 `.env`、Git 历史、编辑器配置、临时目录、Python 缓存及旧压缩包。`.env.example` 仅含占位配置。
-
-验证结果见 [docs/HANDOFF_CHECK.md](docs/HANDOFF_CHECK.md)。本次没有调用在线 LLM，也没有重新验证全部历史实验。
+保留任务目录的实际大小写，尤其是 `YouTube`、`IMDb`、`Finnsp` 和 `AGnews`。迁移任务时同步检查根目录 `.env` 定位、文档命令及汇总脚本路径。历史结果中的绝对路径是运行时审计记录，不应为了迁移而改写输入哈希或实验配置。每次工作结束清理本次产生的临时文件、测试文件和缓存；实验数据、模型与正式报告按需保留。

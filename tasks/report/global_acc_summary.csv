@@ -1,0 +1,5 @@
+﻿dataset,first_version,first_global_acc,first_correct,first_n_samples,first_source,latest_version,latest_global_acc,latest_correct,latest_n_samples,latest_source,improvement_pp
+SMS,v1,0.02,10,500,SMS/versions/v1/results/metrics.json,v15,0.876,438,500,SMS/versions/v15/results/metrics.json,85.6
+YouTube,v1,0.28,70,250,YouTube/versions/v1/results/metrics.json,v10,0.816,204,250,YouTube/versions/v10/results/metrics.json,53.599999999999994
+FinnSP,v1,0.168,84,500,Finnsp/versions/v1/results/metrics.json,v10,0.858,429,500,Finnsp/versions/v10/results/metrics.json,69.0
+Financial PhraseBank,v1,0.09513960703205791,92,967,financial_phrasebank/versions/v1/results/metrics.json,v13,0.3474663908996898,336,967,financial_phrasebank/versions/v13/results/metrics.json,25.232678386763187
