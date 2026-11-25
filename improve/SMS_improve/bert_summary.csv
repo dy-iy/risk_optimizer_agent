@@ -1,0 +1,3 @@
+﻿task,version,aggregator,model,lf_valid_macro_f1,train_used,valid_macro_f1,test_accuracy,test_macro_f1,report
+SMS,v5,Snorkel,bert,0.8718509916026442,3359,0.9582835052979948,0.986,0.9688498473642522,versions/v5/Snorkel/bert_base_cased_results/report.md
+SMS,v5,simple_vote,bert,0.911131780323849,3340,0.9636773092150667,0.99,0.9777498909744657,versions/v5/simple_vote/bert_base_cased_results/report.md

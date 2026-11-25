@@ -1,0 +1,3 @@
+# Shared task dependencies plus the benchmark workflow.
+-r ../../requirements.txt
+langgraph==1.1.10

@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-11-18T22:00:31+08:00",
+  "results": [
+    {
+      "task": "YouTube",
+      "version": "v5",
+      "aggregator": "Snorkel",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.8544985941893158,
+      "train_used": 1067,
+      "valid_macro_f1": 0.9411723510049723,
+      "test_accuracy": 0.94,
+      "test_macro_f1": 0.93948782495038,
+      "report": "versions/v5/Snorkel/bert_base_cased_results/report.md"
+    },
+    {
+      "task": "YouTube",
+      "version": "v5",
+      "aggregator": "simple_vote",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.9477098941839808,
+      "train_used": 1059,
+      "valid_macro_f1": 0.9496503496503497,
+      "test_accuracy": 0.94,
+      "test_macro_f1": 0.93948782495038,
+      "report": "versions/v5/simple_vote/bert_base_cased_results/report.md"
+    }
+  ]
+}

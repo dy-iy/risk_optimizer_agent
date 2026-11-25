@@ -1,0 +1,81 @@
+{
+  "dataset": "CHECKED",
+  "scheme": "preserve_local_source_split_v1",
+  "sources": {
+    "train": {
+      "path": "../raw/new_train.txt",
+      "sha256": "060747c948080717927920f64f7dcf210b36fa435911b6fc8b51282f270abafb",
+      "n_samples": 1485
+    },
+    "valid": {
+      "path": "../raw/new_dev.txt",
+      "sha256": "91bcf95aded1804b47a9ecd7eb2a4404e7bc26156ddb4fdbb6e96f9fe6c7072f",
+      "n_samples": 212
+    },
+    "test": {
+      "path": "../raw/new_test.txt",
+      "sha256": "1f2e301564d09edfa9435a019d448236816887f71c268a8a6b2b8a568418c197",
+      "n_samples": 425
+    }
+  },
+  "raw_files_sha256": {
+    "new_train.txt": "060747c948080717927920f64f7dcf210b36fa435911b6fc8b51282f270abafb",
+    "new_dev.txt": "91bcf95aded1804b47a9ecd7eb2a4404e7bc26156ddb4fdbb6e96f9fe6c7072f",
+    "new_test.txt": "1f2e301564d09edfa9435a019d448236816887f71c268a8a6b2b8a568418c197"
+  },
+  "n_samples": 2122,
+  "counts": {
+    "train": 1485,
+    "valid": 212,
+    "test": 425
+  },
+  "csv_sha256": {
+    "train": "44a8f8493fe10ce25b3a7e07c1421858b81b5c9c21a14a29fb0208e94cf8c8d4",
+    "valid": "e08e56cd1cc24d7aeac742af977f2d207daf6ae44a206b9df894da152db32f39",
+    "test": "daed7655bac5821cd2252fe899c61a6f84e55df648f02f7697968002714a9751"
+  },
+  "csv_schema": {
+    "train": [
+      "id",
+      "text"
+    ],
+    "valid": [
+      "id",
+      "text",
+      "label"
+    ],
+    "test": [
+      "id",
+      "text",
+      "label"
+    ]
+  },
+  "csv_encoding": "utf-8-sig",
+  "label_mapping": {
+    "0": "real",
+    "1": "fake"
+  },
+  "class_counts": {
+    "valid": {
+      "real": 181,
+      "fake": 31
+    },
+    "test": {
+      "real": 414,
+      "fake": 11
+    }
+  },
+  "roles": {
+    "train": "??? id,text?? LF ???????????????????",
+    "valid": "????????????LF ????????????",
+    "test": "??????????????????? agent ???"
+  },
+  "sampling": "???????????????????dev ??? valid?????????????????",
+  "training_source_gold_usage": "excluded_from_training_csv; original labels remain in ../raw only",
+  "raw_directory_role": "??????????????????????????",
+  "source_format": "text_and_label_separated_by_final_tab",
+  "source_text_field": "text before final tab; whitespace preserved",
+  "source_label_field": "label after final tab",
+  "id_scheme": "checked_<split>_<1-based_source_line_number>",
+  "label_mapping_origin": "local convention: real=0, fake=1"
+}

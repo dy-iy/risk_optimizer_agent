@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-11-18T12:20:34+08:00",
+  "results": [
+    {
+      "task": "Youtube_Collusion_Scam",
+      "version": "v5",
+      "aggregator": "Snorkel",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.8728299467350562,
+      "train_used": 968,
+      "valid_macro_f1": 0.9573020527859237,
+      "test_accuracy": 0.9530516431924883,
+      "test_macro_f1": 0.952590811965812,
+      "report": "versions/v5/Snorkel/bert_base_cased_results/report.md"
+    },
+    {
+      "task": "Youtube_Collusion_Scam",
+      "version": "v5",
+      "aggregator": "simple_vote",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.87972486906039,
+      "train_used": 942,
+      "valid_macro_f1": 0.983443530613342,
+      "test_accuracy": 0.9780907668231612,
+      "test_macro_f1": 0.977801048159765,
+      "report": "versions/v5/simple_vote/bert_base_cased_results/report.md"
+    }
+  ]
+}

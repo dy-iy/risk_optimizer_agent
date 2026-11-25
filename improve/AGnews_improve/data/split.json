@@ -1,0 +1,89 @@
+{
+  "dataset": "AGnews",
+  "scheme": "preserve_local_source_split_v1",
+  "sources": {
+    "train": {
+      "path": "../raw/train.json",
+      "sha256": "6aa806387c07ad0ee53d3ecebcc47dc0c22c2961cd34e248656d32441ba079a3",
+      "n_samples": 96000
+    },
+    "valid": {
+      "path": "../raw/valid.json",
+      "sha256": "b063b0eb549603a6db17e9f84e4695dd65bff3764f8af2404c12519aaef177e7",
+      "n_samples": 12000
+    },
+    "test": {
+      "path": "../raw/test.json",
+      "sha256": "f25140fee5149b14c4ec9ad6981acb7357d552f282ace1478bff536b6ddcac08",
+      "n_samples": 12000
+    }
+  },
+  "raw_files_sha256": {
+    "train.json": "6aa806387c07ad0ee53d3ecebcc47dc0c22c2961cd34e248656d32441ba079a3",
+    "valid.json": "b063b0eb549603a6db17e9f84e4695dd65bff3764f8af2404c12519aaef177e7",
+    "test.json": "f25140fee5149b14c4ec9ad6981acb7357d552f282ace1478bff536b6ddcac08",
+    "label.json": "182fba2ed534fb447a61efa19ddcf951264db946bcf7d5bdb0284f0b39fb23f9",
+    "readme.txt": "ea6e5525903b8d60ca8eb56dd66146926bc948f0fbbe6cc8774782098dd6bfae"
+  },
+  "n_samples": 120000,
+  "counts": {
+    "train": 96000,
+    "valid": 12000,
+    "test": 12000
+  },
+  "csv_sha256": {
+    "train": "49136820d08d21086cddd5ed8a3c4c71d8dfac57924ab4bd89afcb272ec147e6",
+    "valid": "082052f2628f04057bf24c2fd6764966f6a63e1f84bf4c52f5d128d02ee6d7ad",
+    "test": "96e5d941ce270f22b93aca04df7361662cf9a20f2e16593150a1caa1c4b43e99"
+  },
+  "csv_schema": {
+    "train": [
+      "id",
+      "text"
+    ],
+    "valid": [
+      "id",
+      "text",
+      "label"
+    ],
+    "test": [
+      "id",
+      "text",
+      "label"
+    ]
+  },
+  "csv_encoding": "utf-8-sig",
+  "label_mapping": {
+    "0": "World",
+    "1": "Sports",
+    "2": "Business",
+    "3": "Sci/Tech"
+  },
+  "class_counts": {
+    "valid": {
+      "World": 2968,
+      "Sports": 3271,
+      "Business": 3054,
+      "Sci/Tech": 2707
+    },
+    "test": {
+      "World": 2858,
+      "Sports": 3025,
+      "Business": 3186,
+      "Sci/Tech": 2931
+    }
+  },
+  "roles": {
+    "train": "??? id,text?? LF ???????????????????",
+    "valid": "????????????LF ????????????",
+    "test": "??????????????????? agent ???"
+  },
+  "sampling": "???????????????????dev ??? valid?????????????????",
+  "training_source_gold_usage": "excluded_from_training_csv; original labels remain in ../raw only",
+  "raw_directory_role": "??????????????????????????",
+  "source_format": "json_object_keyed_by_sample_id",
+  "source_text_field": "data.text",
+  "source_label_field": "label",
+  "id_scheme": "agnews_<split>_<original_json_key>",
+  "source_weak_labels_used": false
+}

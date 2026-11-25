@@ -1,0 +1,3 @@
+﻿task,version,aggregator,model,lf_valid_macro_f1,train_used,valid_macro_f1,test_accuracy,test_macro_f1,report
+Youtube_Collusion_Scam,v5,Snorkel,bert,0.8728299467350562,968,0.9573020527859237,0.9530516431924883,0.952590811965812,versions/v5/Snorkel/bert_base_cased_results/report.md
+Youtube_Collusion_Scam,v5,simple_vote,bert,0.87972486906039,942,0.983443530613342,0.9780907668231612,0.977801048159765,versions/v5/simple_vote/bert_base_cased_results/report.md

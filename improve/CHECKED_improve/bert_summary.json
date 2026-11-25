@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-11-18T13:21:43+08:00",
+  "results": [
+    {
+      "task": "CHECKED",
+      "version": "v5",
+      "aggregator": "Snorkel",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.716728525980912,
+      "train_used": 1137,
+      "valid_macro_f1": 0.46055979643765904,
+      "test_accuracy": 0.9741176470588235,
+      "test_macro_f1": 0.4934445768772348,
+      "report": "versions/v5/Snorkel/bert_base_chinese_results/report.md"
+    },
+    {
+      "task": "CHECKED",
+      "version": "v5",
+      "aggregator": "simple_vote",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.9146264908976773,
+      "train_used": 1125,
+      "valid_macro_f1": 0.7164872954212571,
+      "test_accuracy": 0.9811764705882353,
+      "test_macro_f1": 0.709501025290499,
+      "report": "versions/v5/simple_vote/bert_base_chinese_results/report.md"
+    }
+  ]
+}

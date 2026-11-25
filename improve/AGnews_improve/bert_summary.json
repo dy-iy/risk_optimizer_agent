@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-11-18T21:43:53+08:00",
+  "results": [
+    {
+      "task": "AGnews",
+      "version": "v5",
+      "aggregator": "Snorkel",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.5128639775853774,
+      "train_used": 38372,
+      "valid_macro_f1": 0.8440798592520944,
+      "test_accuracy": 0.8646666666666667,
+      "test_macro_f1": 0.8641855964449089,
+      "report": "versions/v5/Snorkel/bert_base_cased_results/report.md"
+    },
+    {
+      "task": "AGnews",
+      "version": "v5",
+      "aggregator": "simple_vote",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.5098066486804439,
+      "train_used": 37955,
+      "valid_macro_f1": 0.8489939643527893,
+      "test_accuracy": 0.8610833333333333,
+      "test_macro_f1": 0.860457866841005,
+      "report": "versions/v5/simple_vote/bert_base_cased_results/report.md"
+    }
+  ]
+}

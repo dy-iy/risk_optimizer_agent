@@ -1,0 +1,3 @@
+﻿task,version,aggregator,model,lf_valid_macro_f1,train_used,valid_macro_f1,test_accuracy,test_macro_f1,report
+Yelp,v4,simple_vote,bert,0.7697673689615422,23030,0.8660402392047021,0.878421052631579,0.8770725624783112,versions/v4/simple_vote/bert_base_cased_results/report.md
+Yelp,v4,Snorkel,bert,0.7873362595653932,24594,0.8652631205715016,0.8689473684210526,0.8688165483584738,versions/v4/Snorkel/bert_base_cased_results/report.md

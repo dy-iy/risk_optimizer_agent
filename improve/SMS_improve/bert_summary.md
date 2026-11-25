@@ -1,0 +1,6 @@
+# BERT 下游结果
+
+| LF 版本 | 聚合器 | 训练数 | 验证 Macro-F1 | 测试 Accuracy | 测试 Macro-F1 |
+| --- | --- | ---: | ---: | ---: | ---: |
+| [v5](versions/v5/Snorkel/bert_base_cased_results/report.md) | Snorkel | 3,359 | 95.83% | 98.60% | 96.88% |
+| [v5](versions/v5/simple_vote/bert_base_cased_results/report.md) | simple_vote | 3,340 | 96.37% | 99.00% | 97.77% |

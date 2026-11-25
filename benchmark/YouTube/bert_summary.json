@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-11-17T15:39:43+08:00",
+  "results": [
+    {
+      "task": "YouTube",
+      "version": "v5",
+      "aggregator": "simple_vote",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.9520453500842654,
+      "train_used": 977,
+      "valid_macro_f1": 0.9579802507178374,
+      "test_accuracy": 0.94,
+      "test_macro_f1": 0.9395736315441756,
+      "report": "versions/v5/simple_vote/bert_base_cased_results/report.md"
+    },
+    {
+      "task": "YouTube",
+      "version": "v5",
+      "aggregator": "Snorkel",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.9520453500842654,
+      "train_used": 997,
+      "valid_macro_f1": 0.9494949494949495,
+      "test_accuracy": 0.948,
+      "test_macro_f1": 0.9474747474747475,
+      "report": "versions/v5/Snorkel/bert_base_cased_results/report.md"
+    }
+  ]
+}

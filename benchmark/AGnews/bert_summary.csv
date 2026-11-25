@@ -1,0 +1,3 @@
+﻿task,version,aggregator,model,lf_valid_macro_f1,train_used,valid_macro_f1,test_accuracy,test_macro_f1,report
+AGnews,v4,simple_vote,bert,0.6019657023684692,53092,0.8233668620292934,0.8405833333333333,0.8412009472259103,versions/v4/simple_vote/bert_base_cased_results/report.md
+AGnews,v4,Snorkel,bert,0.6055566989246831,54661,0.8089563306259855,0.8326666666666667,0.8324208350528067,versions/v4/Snorkel/bert_base_cased_results/report.md

@@ -1,0 +1,83 @@
+{
+  "dataset": "Yelp",
+  "scheme": "preserve_local_source_split_v1",
+  "sources": {
+    "train": {
+      "path": "../raw/train.json",
+      "sha256": "91420e26dc8ab12de7fec32602d9082778ee6fcf107546e2b7f1bee1c4741801",
+      "n_samples": 30400
+    },
+    "valid": {
+      "path": "../raw/valid.json",
+      "sha256": "e8e9583d4e4b60f22c76d530b84ec6a678fee05760eb8cf5ff7e2b98dfab7c47",
+      "n_samples": 3800
+    },
+    "test": {
+      "path": "../raw/test.json",
+      "sha256": "0f53e11f520881fa339ed9eba0f6e5a5a63549f7f3cf4e267cc832eb0e2c0f09",
+      "n_samples": 3800
+    }
+  },
+  "raw_files_sha256": {
+    "train.json": "91420e26dc8ab12de7fec32602d9082778ee6fcf107546e2b7f1bee1c4741801",
+    "valid.json": "e8e9583d4e4b60f22c76d530b84ec6a678fee05760eb8cf5ff7e2b98dfab7c47",
+    "test.json": "0f53e11f520881fa339ed9eba0f6e5a5a63549f7f3cf4e267cc832eb0e2c0f09",
+    "label.json": "967b828cc8be19e8c086d420344eb245e008069972c09127b0d046dae4ea2b95",
+    "readme.txt": "9b29fa0ede501b47def1c91b556ba8df89e8014251d871360c8eb962e408c3c2"
+  },
+  "n_samples": 38000,
+  "counts": {
+    "train": 30400,
+    "valid": 3800,
+    "test": 3800
+  },
+  "csv_sha256": {
+    "train": "22f744f9099617ee9207240859949a75cd209f8d5d4b3cf972becfd3f61717b6",
+    "valid": "102d976270662df1637e14dbc2204b4f03ab35435c0b60d30917a5008bee9b32",
+    "test": "5269f1f46279edd506621b6568a419d521cffbc006c6561f72621518ae0325c6"
+  },
+  "csv_schema": {
+    "train": [
+      "id",
+      "text"
+    ],
+    "valid": [
+      "id",
+      "text",
+      "label"
+    ],
+    "test": [
+      "id",
+      "text",
+      "label"
+    ]
+  },
+  "csv_encoding": "utf-8-sig",
+  "label_mapping": {
+    "0": "Negative",
+    "1": "Positive"
+  },
+  "class_counts": {
+    "valid": {
+      "Negative": 1873,
+      "Positive": 1927
+    },
+    "test": {
+      "Negative": 1816,
+      "Positive": 1984
+    }
+  },
+  "roles": {
+    "train": "??? id,text?? LF ???????????????????",
+    "valid": "????????????LF ????????????",
+    "test": "??????????????????? agent ???"
+  },
+  "sampling": "???????????????????dev ??? valid?????????????????",
+  "training_source_gold_usage": "excluded_from_training_csv; original labels remain in ../raw only",
+  "raw_directory_role": "??????????????????????????",
+  "source_format": "json_object_keyed_by_sample_id",
+  "source_text_field": "data.text",
+  "source_label_field": "label",
+  "id_scheme": "yelp_<split>_<original_json_key>",
+  "source_weak_labels_used": false
+}

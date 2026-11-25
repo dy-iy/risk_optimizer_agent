@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-11-18T20:34:39+08:00",
+  "results": [
+    {
+      "task": "EDOS",
+      "version": "v2",
+      "aggregator": "Snorkel",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.49648969852704994,
+      "train_used": 6079,
+      "valid_macro_f1": 0.6744791666666667,
+      "test_accuracy": 0.82275,
+      "test_macro_f1": 0.6717452400455529,
+      "report": "versions/v2/Snorkel/bert_base_cased_results/report.md"
+    },
+    {
+      "task": "EDOS",
+      "version": "v2",
+      "aggregator": "simple_vote",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.4969000269197119,
+      "train_used": 6034,
+      "valid_macro_f1": 0.674448490040694,
+      "test_accuracy": 0.824,
+      "test_macro_f1": 0.6863269284321916,
+      "report": "versions/v2/simple_vote/bert_base_cased_results/report.md"
+    }
+  ]
+}

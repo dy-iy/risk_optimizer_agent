@@ -1,0 +1,3 @@
+﻿task,version,aggregator,model,lf_valid_macro_f1,train_used,valid_macro_f1,test_accuracy,test_macro_f1,report
+IMDb,v3,simple_vote,bert,0.39147098391732404,5345,0.8242244775943466,0.8304,0.8298966028104933,versions/v3/simple_vote/bert_base_cased_results/report.md
+IMDb,v3,Snorkel,bert,0.4016444161104028,5593,0.8263812213929058,0.832,0.8319272850205913,versions/v3/Snorkel/bert_base_cased_results/report.md

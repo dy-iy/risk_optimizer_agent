@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-11-17T15:55:40+08:00",
+  "results": [
+    {
+      "task": "IMDb",
+      "version": "v3",
+      "aggregator": "simple_vote",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.39147098391732404,
+      "train_used": 5345,
+      "valid_macro_f1": 0.8242244775943466,
+      "test_accuracy": 0.8304,
+      "test_macro_f1": 0.8298966028104933,
+      "report": "versions/v3/simple_vote/bert_base_cased_results/report.md"
+    },
+    {
+      "task": "IMDb",
+      "version": "v3",
+      "aggregator": "Snorkel",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.4016444161104028,
+      "train_used": 5593,
+      "valid_macro_f1": 0.8263812213929058,
+      "test_accuracy": 0.832,
+      "test_macro_f1": 0.8319272850205913,
+      "report": "versions/v3/Snorkel/bert_base_cased_results/report.md"
+    }
+  ]
+}

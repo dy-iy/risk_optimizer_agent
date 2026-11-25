@@ -1,0 +1,46 @@
+{
+  "dataset": "WRENCH/YouTube",
+  "revision": "d1185f6cfba8d5ace2a39229799cb3f1c136bf66",
+  "sources": {
+    "train": {
+      "url": "https://huggingface.co/datasets/jieyuz2/WRENCH/resolve/d1185f6cfba8d5ace2a39229799cb3f1c136bf66/classification/youtube/train.json",
+      "sha256": "8c487acf4e3e16b340e28f3633d5613f83c4db2d3b287e4341c86ff8f2192705"
+    },
+    "valid": {
+      "url": "https://huggingface.co/datasets/jieyuz2/WRENCH/resolve/d1185f6cfba8d5ace2a39229799cb3f1c136bf66/classification/youtube/valid.json",
+      "sha256": "01d28d71c48e34bdde0566a9eead1d9694baa4eae176cea6d979bb59c4516df3"
+    },
+    "test": {
+      "url": "https://huggingface.co/datasets/jieyuz2/WRENCH/resolve/d1185f6cfba8d5ace2a39229799cb3f1c136bf66/classification/youtube/test.json",
+      "sha256": "ef04412aee047657e41d7ad1411f11d05fce13b642bf1bec8897d138343ee12d"
+    }
+  },
+  "n_samples": 2056,
+  "counts": {
+    "train": 1686,
+    "valid": 120,
+    "test": 250
+  },
+  "csv_sha256": {
+    "train": "a5f18c66c9e16034e4c65c8635f0b02488a44938e5bcea21d7dab315bcbebdb7",
+    "valid": "19be4ba450cdaa734701e4501b2765deb0d5c802499713c6adff96f55acda58d",
+    "test": "0f9cf4f3c86f406a49a17a48fd6ac55009369337bdffb61a8784e1e488caf598"
+  },
+  "class_counts": {
+    "valid": {
+      "ham": 64,
+      "spam": 56
+    },
+    "test": {
+      "ham": 132,
+      "spam": 118
+    }
+  },
+  "roles": {
+    "train": "仅用 LF 投票拟合弱监督模型，不保存金标",
+    "valid": "向 agent 提供指标、错例和 LF 质量反馈",
+    "test": "仅评价，不进入 agent 反馈或模型拟合"
+  },
+  "sampling": "直接使用官方 train/valid/test 的正文、顺序和样本归属；不抽样、不去重。",
+  "original_csv_used": false
+}

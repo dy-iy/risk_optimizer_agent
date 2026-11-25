@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-11-18T22:41:25+08:00",
+  "results": [
+    {
+      "task": "Yelp",
+      "version": "v4",
+      "aggregator": "Snorkel",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.5362919146008376,
+      "train_used": 12439,
+      "valid_macro_f1": 0.8510693590869184,
+      "test_accuracy": 0.8552631578947368,
+      "test_macro_f1": 0.8518108851640716,
+      "report": "versions/v4/Snorkel/bert_base_cased_results/report.md"
+    },
+    {
+      "task": "Yelp",
+      "version": "v4",
+      "aggregator": "simple_vote",
+      "model": "bert",
+      "lf_valid_macro_f1": 0.5334425183202521,
+      "train_used": 12180,
+      "valid_macro_f1": 0.8586895525442289,
+      "test_accuracy": 0.861578947368421,
+      "test_macro_f1": 0.8586609818041218,
+      "report": "versions/v4/simple_vote/bert_base_cased_results/report.md"
+    }
+  ]
+}

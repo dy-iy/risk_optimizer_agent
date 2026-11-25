@@ -1,281 +1,579 @@
-"""参考 SMS：非弃权训练弱标签 -> 字符 TF-IDF + LR -> 验证正类 F1 选 C -> 完整测试评价。"""
+"""Train TF-IDF + logistic regression for this task using simple_vote and Snorkel hard weak labels.
+
+Run this file directly to train two LR models, one per aggregator.
+By default each aggregator selects its best LF version using validation Macro-F1.
+Examples:
+    python tools/train_logistic.py
+    python tools/train_logistic.py --version v5 --aggregator Snorkel
+    python tools/train_logistic.py --plan
+    python tools/train_logistic.py --check-data
+
+Only non-abstained training weak labels are fitted. Test labels are for final evaluation.
+Results: versions/vN/{simple_vote,Snorkel}/tfidf_lr_results/.
+Existing results are replaced only after successful training and reload verification.
+Use --no-overwrite to prevent replacement, or --no-resume to retrain completed models.
+"""
+
+from __future__ import annotations
 
 import argparse
 from collections import Counter
 import csv
+from datetime import datetime
+from functools import lru_cache
+import gc
 import hashlib
+import importlib
 import json
+import math
+import os
 from pathlib import Path
 import re
+import shutil
 import sys
+import tempfile
 import warnings
+from zoneinfo import ZoneInfo
 
 sys.dont_write_bytecode = True
 
-if __package__:
-    from .data import load_data, parse_inputs
-else:
-    from data import load_data, parse_inputs
+import numpy as np
+
+TASK_DIR = Path(__file__).resolve().parents[1]
+TASK_NAME = TASK_DIR.name
+AGGREGATORS = ("simple_vote", "Snorkel")
+SPLITS = ("train", "valid", "test")
+OUTPUTS = {"lr": "tfidf_lr_results"}
+MODEL = "lr"
+SCHEMA = 1
 
 
-FINNSP_DIR = Path(__file__).resolve().parents[1]
-LABEL2ID = {"0": 0, "1": 1}
-ID2LABEL = {value: key for key, value in LABEL2ID.items()}
-INPUT_FORMAT = "正文：{text}\n候选实体：{entities joined by ；}"
-
-
-def parse_args(version_dir=None):
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--version", default=version_dir.name if version_dir else None)
-    parser.add_argument("--weak-labels", type=Path)
-    parser.add_argument("--data-dir", type=Path, default=FINNSP_DIR / "data")
-    parser.add_argument("--output-dir", type=Path)
-    parser.add_argument("--c-values", type=float, nargs="+", default=[0.1, 1.0, 10.0],
-                        help="按完整 valid 的正类 1 F1 选择 C，与 SMS 的正类 F1 口径一致")
-    parser.add_argument("--ngram-max", type=int, default=2,
-                        help="中文字符 1-gram 到 n-gram，默认 2")
-    parser.add_argument("--max-features", type=int, default=100000)
-    parser.add_argument("--max-iter", type=int, default=2000)
-    parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--check-data", action="store_true", help="只校验输入，不训练、不写文件")
-    args = parser.parse_args()
-    if not args.version or not re.fullmatch(r"v[1-9]\d*", args.version):
-        parser.error("请指定 --version v4 等有效版本")
-    if (any(not (0 < c < float("inf")) for c in args.c_values)
-            or min(args.ngram_max, args.max_features, args.max_iter) < 1):
-        parser.error("C 必须有限且大于 0，ngram-max/max-features/max-iter 必须为正整数")
-    args.version_dir = FINNSP_DIR / "versions" / args.version
-    args.weak_labels = args.weak_labels or args.version_dir / "results/weak_labels.csv"
-    args.output_dir = args.output_dir or args.version_dir / "tfidf_lr_results"
-    return args
-
-
-def read_weak_labels(path):
-    with path.open(encoding="utf-8-sig", newline="") as stream:
-        reader = csv.DictReader(stream)
-        required = {"split", "id", "text", "inputs", "weak_label"}
-        if not required <= set(reader.fieldnames or []):
-            raise ValueError(f"{path} 缺少弱标签字段 {sorted(required)}")
-        rows = list(reader)
-    if not rows or any(None in row or any(value is None for value in row.values()) for row in rows):
-        raise ValueError("弱标签文件为空或列数不一致")
-    ids = [row["id"] for row in rows]
-    if len(ids) != len(set(ids)) or any(not value.strip() for value in ids):
-        raise ValueError("弱标签文件存在重复或空 ID")
-    if any(row["split"] not in {"train", "valid", "test"} for row in rows):
-        raise ValueError("弱标签文件存在未知 split")
-    return rows
-
-
-def model_input(row):
-    """只序列化正文与候选实体，不包含标签、概率、编号或来源。"""
-    entities = parse_inputs(row["inputs"])["entities"]
-    return "正文：" + row["text"] + "\n候选实体：" + "；".join(entities)
-
-
-def overlap_count(left, right, key):
-    seen = {key(row) for row in left}
-    return sum(key(row) in seen for row in right)
-
-
-def prepare_data(args):
-    # 复用清单校验，防止版本弱标签与已冻结划分混用。
-    if args.data_dir.resolve().name != "data":
-        raise ValueError("--data-dir 必须指向包含固定清单的 data 目录")
-    splits = load_data(args.data_dir.resolve().parent)
-    metadata_path = args.data_dir / "split.json"
-    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
-    metrics_path = args.version_dir / "results/metrics.json"
-    source_metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
-    expected = {key: metadata[key] for key in ("dataset", "revision", "counts", "csv_sha256")}
-    if source_metrics.get("lf_version") != args.version or source_metrics.get("data_split") != expected:
-        raise ValueError("版本指标与当前数据划分不一致，请先评价对应 LF 版本")
-    weak = read_weak_labels(args.weak_labels)
-    by_split = {name: {row["id"]: row for row in weak if row["split"] == name} for name in splits}
-    for name, rows in splits.items():
-        by_id = by_split[name]
-        if set(by_id) != {row["id"] for row in rows}:
-            raise ValueError(f"弱标签 {name} ID 与固定数据不一致")
-        for row in rows:
-            weak_row = by_id[row["id"]]
-            if (weak_row["text"] != row["text"]
-                    or parse_inputs(weak_row["inputs"]) != row["inputs"]):
-                raise ValueError(f"弱标签 {name} 正文或候选实体与固定数据不一致")
-    counts = Counter(row["weak_label"] for row in by_split["train"].values())
-    if set(counts) - {"0", "1", "abstain"}:
-        raise ValueError("训练弱标签只能是 0、1、abstain")
-    cleaned = []
-    for source in splits["train"]:
-        row = by_split["train"][source["id"]]
-        if row["weak_label"] == "abstain":
-            continue
-        cleaned.append({"split": "train", "id": source["id"], "text": source["text"],
-                        "inputs": json.dumps(source["inputs"], ensure_ascii=False),
-                        "model_input": model_input(source), "weak_label": row["weak_label"],
-                        "label_id": LABEL2ID[row["weak_label"]]})
-    if {row["label_id"] for row in cleaned} != {0, 1}:
-        raise ValueError("非弃权的训练弱标签必须同时包含 0 和 1")
-    exact_input = lambda row: (row["text"], tuple(parse_inputs(row["inputs"])["entities"]))
-    source_paths = [args.weak_labels, metrics_path, metadata_path,
-                    *[args.data_dir / f"{name}.csv" for name in splits]]
-    summary = {
-        "lf_version": args.version,
-        "train_rows_before_cleaning": len(splits["train"]),
-        "train_abstain_removed": counts["abstain"], "train_rows_after_cleaning": len(cleaned),
-        "train_class_counts": {label: counts[label] for label in LABEL2ID},
-        "ignored_weak_rows": len(weak) - len(splits["train"]),
-        "valid_rows": len(splits["valid"]), "test_rows": len(splits["test"]),
-        "label2id": LABEL2ID, "model_input_format": INPUT_FORMAT,
-        "training_target": "hard weak_label from train only; p_0/p_1 are not training targets",
-        "validation_role": "gold selects C only; not used to fit TF-IDF or logistic coefficients",
-        "upstream_weak_label_validation_gold_usage": source_metrics["label_model"].get("validation_gold_usage"),
-        "test_role": "predict all 500 rows after C selection; gold for final metrics only",
-        "data_split": expected,
-        "overlap_audit": {
-            "test_rows_with_exact_text_and_entities_in_cleaned_train": overlap_count(cleaned, splits["test"], exact_input),
-            "valid_rows_with_exact_text_and_entities_in_cleaned_train": overlap_count(cleaned, splits["valid"], exact_input),
-            "valid_rows_with_same_text_ignoring_whitespace_in_cleaned_train": overlap_count(
-                cleaned, splits["valid"], lambda row: re.sub(r"\s+", "", row["text"])),
-            "policy": "retain the confirmed frozen split; report existing source overlap without resplitting",
-        },
-        "input_sha256": {str(path.resolve()): hashlib.sha256(path.read_bytes()).hexdigest() for path in source_paths},
-    }
-    return cleaned, splits["valid"], splits["test"], summary
+def read_json(path):
+    return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
 def write_json(path, value):
-    path.write_text(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    Path(path).write_text(json.dumps(value, ensure_ascii=False, indent=2,
+                                    allow_nan=False) + "\n", encoding="utf-8")
+
+
+def read_csv(path):
+    with Path(path).open(encoding="utf-8-sig", newline="") as stream:
+        reader = csv.DictReader(stream)
+        rows = list(reader)
+    if not rows or any(None in r or any(v is None for v in r.values()) for r in rows):
+        raise ValueError(f"Empty or malformed CSV: {path}")
+    return rows
 
 
 def write_csv(path, rows):
-    with path.open("w", encoding="utf-8-sig", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(rows[0]), extrasaction="raise")
+    with Path(path).open("w", encoding="utf-8-sig", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
         writer.writeheader()
         writer.writerows(rows)
 
 
-def classification_metrics(labels, probabilities):
-    from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
-    predicted = probabilities.argmax(axis=1)
-    return {
-        "n_samples": len(labels), "accuracy": float(accuracy_score(labels, predicted)),
-        "positive_f1": float(f1_score(labels, predicted, pos_label=1, zero_division=0)),
-        "macro_f1": float(f1_score(labels, predicted, labels=[0, 1], average="macro", zero_division=0)),
-        "classification_report": classification_report(labels, predicted, labels=[0, 1],
-                                                         target_names=["0", "1"], output_dict=True, zero_division=0),
-        "confusion_matrix_labels": ["0", "1"],
-        "confusion_matrix_rows_true_columns_predicted": confusion_matrix(labels, predicted, labels=[0, 1]).tolist(),
-    }
+def digest(path):
+    hasher = hashlib.sha256()
+    with Path(path).open("rb") as stream:
+        for block in iter(lambda: stream.read(4 * 1024 * 1024), b""):
+            hasher.update(block)
+    return hasher.hexdigest()
 
 
-def prediction_rows(rows, probabilities):
-    predicted = probabilities.argmax(axis=1)
-    return [{"id": row["id"], "text": row["text"],
-             "inputs": json.dumps(row["inputs"], ensure_ascii=False),
-             "pred_label": ID2LABEL[int(predicted[i])], "pred_label_id": int(predicted[i]),
-             "p_0": float(probabilities[i, 0]), "p_1": float(probabilities[i, 1]),
-             "true_label": row["label"], "correct": bool(predicted[i] == int(row["label"]))}
-            for i, row in enumerate(rows)]
+def object_digest(value):
+    return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False,
+                                     allow_nan=False).encode("utf-8")).hexdigest()
 
 
-def train_and_predict(args, prepared):
-    import joblib
-    import numpy as np
+def relative(path):
+    return Path(path).resolve().relative_to(TASK_DIR).as_posix()
+
+
+def now():
+    return datetime.now(ZoneInfo("Asia/Shanghai")).isoformat(timespec="seconds")
+
+
+@lru_cache(maxsize=1)
+def load_task():
+    """???????????????????? python -m ???"""
+    folder = TASK_DIR
+    for filename in ("split.json", "train.csv", "valid.csv", "test.csv"):
+        if not (folder / "data" / filename).is_file():
+            raise FileNotFoundError(folder / "data" / filename)
+    data_module = (importlib.import_module(".data", __package__) if __package__
+                   else importlib.import_module("data"))
+    splits = data_module.load_data(folder)
+    metadata = read_json(folder / "data/split.json")
+    if TASK_NAME in ("benchmark", "YouTube"):
+        names = titles = ("ham", "spam")
+    elif TASK_NAME == "Finnsp":
+        names = titles = ("0", "1")
+    else:
+        module = (importlib.import_module(".task", __package__) if __package__
+                  else importlib.import_module("task"))
+        names, titles = module.CLASS_NAMES, module.CLASS_TITLES
+    if any("label" in row for row in splits["train"]):
+        raise ValueError(f"{TASK_NAME}: training data must not contain gold labels")
+    lookup = {**{s: i for i, s in enumerate(titles)},
+              **{s: i for i, s in enumerate(names)}}
+    return {"task": TASK_NAME, "folder": folder, "splits": splits, "metadata": metadata,
+            "names": list(names), "titles": list(titles), "lookup": lookup}
+
+
+def score(gold, predictions, names):
+    """Explicit class metrics: upstream abstention is a false negative."""
+    gold, predictions = np.asarray(gold), np.asarray(predictions)
+    if len(gold) == 0 or gold.shape != predictions.shape:
+        raise ValueError("Gold/prediction length mismatch")
+    if not np.isin(gold, range(len(names))).all():
+        raise ValueError("Unknown gold class")
+    if not np.isin(predictions, [-1, *range(len(names))]).all():
+        raise ValueError("Unknown predicted class")
+    result = {"n_samples": len(gold), "accuracy": float((gold == predictions).mean())}
+    for i, name in enumerate(names):
+        tp = int(((gold == i) & (predictions == i)).sum())
+        fp = int(((gold != i) & (predictions == i)).sum())
+        fn = int(((gold == i) & (predictions != i)).sum())
+        result[name] = {"precision": tp / (tp + fp) if tp + fp else 0.0,
+                        "recall": tp / (tp + fn) if tp + fn else 0.0,
+                        "f1": 2 * tp / (2 * tp + fp + fn) if 2 * tp + fp + fn else 0.0}
+    result["macro_f1"] = float(np.mean([result[n]["f1"] for n in names]))
+    result["confusion_matrix"] = [
+        [int(((gold == i) & (predictions == j)).sum()) for j in range(len(names))]
+        for i in range(len(names))]
+    return result
+
+
+def gold_labels(task, split):
+    return np.array([task["lookup"][r["label"]] for r in task["splits"][split]])
+
+
+def validate_upstream(task, version, aggregator):
+    path = version / aggregator / "metrics.json"
+    if task["task"] == "Finnsp" and not path.exists():
+        path = version / "results/metrics.json"
+    metrics = read_json(path)
+    if metrics["lf_version"] != version.name:
+        raise ValueError(f"Wrong LF version: {path}")
+    if metrics["data_split"]["csv_sha256"] != task["metadata"]["csv_sha256"]:
+        raise ValueError(f"Frozen split mismatch: {path}")
+    if metrics.get("aggregator", aggregator) != aggregator:
+        raise ValueError(f"Wrong aggregator: {path}")
+    return path, metrics
+
+
+def finnsp_votes(task, version):
+    """Reconstruct unweighted majority vote; ties and no votes abstain."""
+    rows = read_csv(version / "results/lf_votes.csv")
+    columns = [key for key in rows[0] if key not in ("split", "id")]
+    upstream = read_json(version / "results/metrics.json")
+    if not columns or len(columns) != upstream["n_lfs"]:
+        raise ValueError(f"LF column count mismatch: {version}")
+    expected = {(split, r["id"]) for split in SPLITS for r in task["splits"][split]}
+    actual = [(r["split"], r["id"]) for r in rows]
+    if len(set(actual)) != len(actual) or set(actual) != expected:
+        raise ValueError(f"LF vote ID mismatch: {version}")
+    result = {}
+    for split in SPLITS:
+        selected = [r for r in rows if r["split"] == split]
+        matrix = np.asarray([[int(r[c]) for c in columns] for r in selected])
+        if not np.isin(matrix, [-1, 0, 1]).all():
+            raise ValueError(f"Invalid LF votes: {version}")
+        counts = np.column_stack([(matrix == i).sum(axis=1) for i in (0, 1)])
+        totals = counts.sum(axis=1, keepdims=True)
+        probs = np.full(counts.shape, 0.5, dtype=float)
+        np.divide(counts, totals, out=probs, where=totals != 0)
+        predicted = counts.argmax(axis=1)
+        predicted[counts[:, 0] == counts[:, 1]] = -1
+        result[split] = {r["id"]: (int(p), probability.tolist())
+                         for r, p, probability in zip(selected, predicted, probs)}
+    return result
+
+
+def select_versions(aggregators, version_name=None):
+    selections = []
+    name = TASK_NAME
+    task = load_task()
+    versions = sorted((p for p in (task["folder"] / "versions").iterdir()
+                       if p.is_dir() and re.fullmatch(r"v[1-9]\d*", p.name)),
+                      key=lambda p: int(p.name[1:]))
+    if version_name is not None:
+        versions = [v for v in versions if v.name == version_name]
+    for aggregator in aggregators:
+        candidates = []
+        for version in versions:
+            # Incomplete LF iterations are not valid selection candidates.
+            legacy = name == "Finnsp"
+            source = version / ("results" if legacy else aggregator) / "metrics.json"
+            weak = source.parent / "weak_labels.csv"
+            required = [source, weak, version / "lfs.py"]
+            if legacy and aggregator == "simple_vote":
+                required.append(version / "results/lf_votes.csv")
+            if not all(p.is_file() for p in required):
+                continue
+            _, metrics = validate_upstream(task, version, "Snorkel" if legacy else aggregator)
+            if legacy and aggregator == "simple_vote":
+                votes = finnsp_votes(task, version)["valid"]
+                predictions = [votes[r["id"]][0] for r in task["splits"]["valid"]]
+                value = score(gold_labels(task, "valid"), predictions, task["names"])["macro_f1"]
+            else:
+                value = metrics["valid"]["all_samples"]["macro_f1"]
+            if not math.isfinite(value):
+                raise ValueError(f"Invalid validation score: {source}")
+            candidates.append({"version": version.name, "valid_macro_f1": value})
+        if not candidates:
+            raise ValueError(f"No completed LF versions: {name}/{aggregator}/{version_name or 'best'}")
+        best = max(candidates, key=lambda c: c["valid_macro_f1"])
+        selections.append({"task": name, "aggregator": aggregator, **best,
+                           "metric": "explicit --version" if version_name else "valid.all_samples.macro_f1",
+                           "tie_break": "earliest_version", "test_used_for_selection": False,
+                           "candidates": candidates})
+    return selections
+
+
+def model_input(task, row):
+    if task["task"] == "Finnsp":
+        inputs = row["inputs"]
+        inputs = json.loads(inputs) if isinstance(inputs, str) else inputs
+        return "正文：" + row["text"] + "\n候选实体：" + "；".join(inputs["entities"])
+    return row["text"]
+
+
+def prepare(selection):
+    task = load_task()
+    version = task["folder"] / "versions" / selection["version"]
+    aggregator = selection["aggregator"]
+    legacy = task["task"] == "Finnsp"
+    source, upstream = validate_upstream(task, version, "Snorkel" if legacy else aggregator)
+    sources = [source, version / "lfs.py", task["folder"] / "data/split.json",
+               *[task["folder"] / "data" / f"{split}.csv" for split in SPLITS]]
+    generated = legacy and aggregator == "simple_vote"
+    if generated:
+        votes = finnsp_votes(task, version)
+        sources.append(version / "results/lf_votes.csv")
+        weak_rows = []
+        for split in SPLITS:
+            for row in task["splits"][split]:
+                label, probs = votes[split][row["id"]]
+                inputs = row["inputs"]
+                weak_rows.append({"split": split, "id": row["id"], "text": row["text"],
+                                  "inputs": json.dumps(inputs, ensure_ascii=False),
+                                  "weak_label": "abstain" if label == -1 else str(label),
+                                  "p_0": probs[0], "p_1": probs[1]})
+        upstream = {"lf_version": version.name, "aggregator": aggregator,
+                    "data_split": upstream["data_split"],
+                    "label_model": {"library": "simple_vote", "vote_weight": 1,
+                                    "tie_break_policy": "abstain", "all_abstain_policy": "abstain",
+                                    "gold_used_for_fit": False},
+                    "source_lf_votes": relative(version / "results/lf_votes.csv")}
+    else:
+        weak_path = source.parent / "weak_labels.csv"
+        sources.append(weak_path)
+        weak_rows = read_csv(weak_path)
+    by_key = {(r["split"], r["id"]): r for r in weak_rows}
+    expected = {(s, r["id"]) for s in SPLITS for r in task["splits"][s]}
+    if len(by_key) != len(weak_rows) or set(by_key) != expected:
+        raise ValueError(f"Weak-label ID mismatch: {version}/{aggregator}")
+    labels = {"abstain": -1, **{n: i for i, n in enumerate(task["names"])}}
+    for split in SPLITS:
+        for row in task["splits"][split]:
+            weak = by_key[split, row["id"]]
+            if weak["weak_label"] not in labels or weak["text"] != row["text"]:
+                raise ValueError(f"Weak-label text/class mismatch: {row['id']}")
+            if legacy and json.loads(weak["inputs"]) != row["inputs"]:
+                raise ValueError(f"Weak-label candidate entity mismatch: {row['id']}")
+    train = [r for r in task["splits"]["train"]
+             if by_key["train", r["id"]]["weak_label"] != "abstain"]
+    targets = np.array([labels[by_key["train", r["id"]]["weak_label"]] for r in train])
+    if set(targets) != set(range(len(task["names"]))):
+        raise ValueError(f"Missing weak training classes: {version}/{aggregator}")
+    if not generated and len(train) != upstream["train"]["n_labeled"]:
+        raise ValueError(f"Weak training count mismatch: {version}/{aggregator}")
+    manifest = [{"id": r["id"], "weak_label": task["names"][int(y)]}
+                for r, y in zip(train, targets)]
+    seen = {model_input(task, r) for r in train}
+    return {"task": task, "selection": selection, "version": version,
+            "train": train, "targets": targets, "manifest": manifest,
+            "train_summary": {"total": len(task["splits"]["train"]), "used": len(train),
+                              "abstained_removed": len(task["splits"]["train"]) - len(train),
+                              "class_counts": dict(Counter(r["weak_label"] for r in manifest))},
+            "overlap_audit": {s: sum(model_input(task, r) in seen for r in task["splits"][s])
+                              for s in ("valid", "test")},
+            "input_sha256": {relative(p): digest(p) for p in sources},
+            "upstream": upstream, "generated_weak_rows": weak_rows if generated else None}
+
+
+def selection_score(metrics, names):
+    return metrics[names[1]]["f1"] if len(names) == 2 else metrics["macro_f1"]
+
+
+def config_for(job, args):
     import sklearn
+    task = job["task"]
+    config = {"schema_version": SCHEMA, "task": task["task"],
+              "lf_version": job["selection"]["version"], "aggregator": job["selection"]["aggregator"],
+              "model": MODEL, "seed": args.seed, "class_order": task["names"],
+              "class_titles": task["titles"], "train_gold_used": False, "test_used_for_selection": False,
+              "training_target": "non-abstained train hard weak labels",
+              "selection": "valid class-1 F1" if len(task["names"]) == 2 else "valid Macro-F1",
+              "lf_selection_sha256": object_digest(job["selection"]),
+              "input_sha256": job["input_sha256"], "train_manifest_sha256": object_digest(job["manifest"]),
+              "training_script_sha256": digest(Path(__file__)),
+              "sklearn_version": sklearn.__version__}
+    config.update({"c_values": args.c_values, "solver": "liblinear" if len(task["names"]) == 2 else "lbfgs",
+                   "max_iter": 2000, "class_weight": None,
+                   "vectorizer": {"analyzer": "char" if task["task"] == "Finnsp" else "word",
+                                  "ngram_range": [1, 2], "max_features": 100000,
+                                  "sublinear_tf": True, "lowercase": True}})
+
+    return config
+
+
+def train_lr(job, config, output):
+    import joblib
     from sklearn.exceptions import ConvergenceWarning
     from sklearn.feature_extraction.text import TfidfVectorizer
     from sklearn.linear_model import LogisticRegression
     from sklearn.pipeline import Pipeline
-
-    train, valid, test, summary = prepared
-    output = args.output_dir.resolve()
-    if output.exists() and (not output.is_dir() or any(output.iterdir())):
-        raise ValueError(f"输出目录非空，请用 --output-dir 指定新目录：{output}")
-    vectorizer = TfidfVectorizer(analyzer="char", ngram_range=(1, args.ngram_max),
-                                 max_features=args.max_features, sublinear_tf=True, lowercase=True)
-    # TF-IDF 的词表与 IDF 只拟合非弃权训练文本；验证、测试均只 transform。
-    X_train = vectorizer.fit_transform([row["model_input"] for row in train])
-    X_valid = vectorizer.transform([model_input(row) for row in valid])
-    y_train = np.array([row["label_id"] for row in train], dtype=int)
-    y_valid = np.array([int(row["label"]) for row in valid], dtype=int)
-    tuning = []
-    best_model, best_c, best_f1 = None, None, -1.0
-    for c in args.c_values:
-        model = LogisticRegression(C=c, solver="liblinear", max_iter=args.max_iter, random_state=args.seed)
+    task = job["task"]
+    vectorizer_config = {**config["vectorizer"], "ngram_range": tuple(config["vectorizer"]["ngram_range"])}
+    vectorizer = TfidfVectorizer(**vectorizer_config)
+    x_train = vectorizer.fit_transform([model_input(task, r) for r in job["train"]])
+    x_valid = vectorizer.transform([model_input(task, r) for r in task["splits"]["valid"]])
+    best, best_score, history = None, -1.0, []
+    for c in config["c_values"]:
+        model = LogisticRegression(C=c, solver=config["solver"], max_iter=config["max_iter"],
+                                   random_state=config["seed"], class_weight=None)
         with warnings.catch_warnings():
             warnings.simplefilter("error", ConvergenceWarning)
-            model.fit(X_train, y_train)
-        if list(model.classes_) != [0, 1]:
-            raise RuntimeError("Logistic Regression 的概率类别顺序不正确")
-        metrics = classification_metrics(y_valid, model.predict_proba(X_valid))
-        tuning.append({"C": c, "valid_positive_f1": metrics["positive_f1"],
-                       "valid_macro_f1": metrics["macro_f1"], "valid_accuracy": metrics["accuracy"],
-                       "n_iter": model.n_iter_.tolist()})
-        print(f"{args.version} C={c:g}: valid positive F1={metrics['positive_f1']:.4f}, "
-              f"Macro-F1={metrics['macro_f1']:.4f}, accuracy={metrics['accuracy']:.4f}", flush=True)
-        # 同分时采用输入列表中第一个 C，完全沿用 SMS 的选择规则。
-        if metrics["positive_f1"] > best_f1:
-            best_model, best_c, best_f1 = model, c, metrics["positive_f1"]
-    pipeline = Pipeline([("tfidf", vectorizer), ("logreg", best_model)])
-    valid_probs = pipeline.predict_proba([model_input(row) for row in valid])
-    test_probs = pipeline.predict_proba([model_input(row) for row in test])
-    if not (np.isfinite(valid_probs).all() and np.isfinite(test_probs).all()):
-        raise RuntimeError("模型输出存在无效概率")
-    # 测试标签仅在选定 C、完成预测后用于最终评分。
-    y_test = np.array([int(row["label"]) for row in test], dtype=int)
-    result = {
-        "lf_version": args.version, "best_C": best_c, "best_valid_positive_f1": best_f1,
-        "selection_metric": "valid positive F1 (label 1); ties use first C in input order",
-        "prediction_rule": "argmax over [p_0, p_1]; no abstention",
-        "valid": classification_metrics(y_valid, valid_probs),
-        "test": classification_metrics(y_test, test_probs),
-    }
-    output.mkdir(parents=True, exist_ok=True)
-    write_csv(output / "train_cleaned.csv", train)
-    write_csv(output / "valid_predictions.csv", prediction_rows(valid, valid_probs))
-    write_csv(output / "test_predictions.csv", prediction_rows(test, test_probs))
-    write_json(output / "data_summary.json", summary)
-    write_json(output / "run_config.json", {
-        **{key: str(value.resolve()) if isinstance(value, Path) else value for key, value in vars(args).items()},
-        "sklearn_version": sklearn.__version__, "reference": "SMS/versions/v15/train_logistic.py",
-        "vectorizer": {"analyzer": "char", "ngram_range": [1, args.ngram_max],
-                       "max_features": args.max_features, "sublinear_tf": True, "lowercase": True},
-        "logistic_regression": {"solver": "liblinear", "max_iter": args.max_iter, "random_state": args.seed},
-        "model_input_format": INPUT_FORMAT, "vectorizer_vocabulary_size": len(vectorizer.vocabulary_),
-    })
-    write_json(output / "tuning_history.json", tuning)
+            model.fit(x_train, job["targets"])
+        metrics = score(gold_labels(task, "valid"), model.predict(x_valid), task["names"])
+        value = selection_score(metrics, task["names"])
+        history.append({"C": c, "selection_score": value, "valid": metrics})
+        print(f"  C={c:g}: valid selection score={value:.6f}", flush=True)
+        if value > best_score:
+            best, best_score = model, value
+    pipeline = Pipeline([("tfidf", vectorizer), ("logreg", best)])
+    probabilities = {s: pipeline.predict_proba([model_input(task, r) for r in task["splits"][s]])
+                     for s in ("valid", "test")}
+    joblib.dump(pipeline, output / "model.joblib", compress=3)
+    # Verify that the persisted artifact reproduces all probabilities.
+    restored = joblib.load(output / "model.joblib")
+    for split, probs in probabilities.items():
+        actual = restored.predict_proba([model_input(task, r) for r in task["splits"][split]])
+        np.testing.assert_allclose(actual, probs, rtol=0, atol=1e-12)
+    return probabilities, history, {"best_C": best.C, "vocabulary_size": len(vectorizer.vocabulary_)}
+
+
+
+
+
+def finish(job, model, config, output, probabilities, history, extras):
+    task, selection = job["task"], job["selection"]
+    result = {"task": task["task"], "lf_version": selection["version"],
+              "aggregator": selection["aggregator"], "model": model,
+              "train": job["train_summary"], "overlap_audit": job["overlap_audit"],
+              "input_sha256": job["input_sha256"], **extras}
+    for split, probs in probabilities.items():
+        if probs.shape != (len(task["splits"][split]), len(task["names"])):
+            raise ValueError(f"Wrong probability shape: {split}")
+        if not np.isfinite(probs).all() or (probs < 0).any():
+            raise ValueError(f"Invalid probabilities: {split}")
+        np.testing.assert_allclose(probs.sum(axis=1), 1, rtol=1e-5, atol=1e-5)
+        predicted = probs.argmax(axis=1)
+        result[split] = score(gold_labels(task, split), predicted, task["names"])
+        write_csv(output / f"{split}_predictions.csv", [
+            {"id": r["id"], "gold": r["label"], "prediction": task["names"][int(predicted[i])],
+             **{f"p_{n}": float(probs[i, j]) for j, n in enumerate(task["names"])}}
+            for i, r in enumerate(task["splits"][split])])
+    write_csv(output / "train_manifest.csv", job["manifest"])
     write_json(output / "metrics.json", result)
-    joblib.dump(pipeline, output / "model.joblib")
-    lines = [f"# FinNSP {args.version}：TF-IDF + 逻辑回归", "",
-             f"弱标签训练样本 {len(train):,} 条，移除弃权 {summary['train_abstain_removed']:,} 条；最佳 C={best_c:g}。", "",
-             "沿用 SMS：只用训练硬弱标签拟合，验证正类 F1 选 C，最后在完整测试集评价。", "",
-             f"中文适配：正文和候选实体序列化为输入，字符 1–{args.ngram_max} gram；TF-IDF 词表与 IDF 仅在非弃权训练样本上拟合。", "",
-             "| 集合 | 条数 | 准确率 | 正类 F1 | Macro-F1 |", "| --- | ---: | ---: | ---: | ---: |"]
-    for name, title in (("valid", "验证"), ("test", "测试")):
-        values = result[name]
-        lines.append(f"| {title} | {values['n_samples']} | {values['accuracy']:.2%} | {values['positive_f1']:.2%} | {values['macro_f1']:.2%} |")
-    lines.extend(["", f"测试集中有 {summary['overlap_audit']['test_rows_with_exact_text_and_entities_in_cleaned_train']} 条与本版训练输入完全重复，沿用已确认划分，未重分或去重。", "",
-                  "`model.joblib` 包含 TF-IDF 与已选逻辑回归模型；推理输入按 `run_config.json` 的 model_input_format 序列化。", ""])
-    (output / "report.md").write_text("\n".join(lines), encoding="utf-8")
-    print(f"{args.version}: best C={best_c:g}, test accuracy={result['test']['accuracy']:.4f}, "
-          f"positive F1={result['test']['positive_f1']:.4f}, Macro-F1={result['test']['macro_f1']:.4f}", flush=True)
-    print(f"Saved: {output}", flush=True)
+    write_json(output / "run_config.json", config)
+    write_json(output / "selection.json", selection)
+    write_json(output / "upstream_config.json", job["upstream"]["label_model"])
+    write_json(output / "tuning_history.json", history)
+    lines = [f"# {task['task']} / {selection['version']} / {selection['aggregator']} / {model}", "",
+             f"训练 {len(job['train']):,}/{len(task['splits']['train']):,} 条非弃权硬弱标签；seed={config['seed']}。", "",
+             "LF 版本按验证集全量 Macro-F1 选择，同分取较早版本。下游按验证集正类 F1（二分类）或 Macro-F1（多分类）选参；测试集仅作最终评价。", "",
+             "| 集合 | Accuracy | Macro-F1 | " + " | ".join(f"{n} F1" for n in task["titles"]) + " |",
+             "| --- | ---: | ---: | " + " | ".join("---:" for _ in task["names"]) + " |"]
+    for split in ("valid", "test"):
+        m = result[split]
+        lines.append("| " + " | ".join([split, f"{m['accuracy']:.2%}", f"{m['macro_f1']:.2%}",
+                                         *[f"{m[n]['f1']:.2%}" for n in task["names"]]]) + " |")
+    lines.extend(["", f"训练输入与验证/测试完全相同的记录数：{job['overlap_audit']}。沿用冻结划分，不另行去重。", "",
+                  "配置、输入哈希、训练 ID/弱标签、候选版本和逐轮结果见同目录 JSON/CSV。"])
+    (output / "report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    # Written last: this marker denotes a complete, reload-verified run.
+    write_json(output / "completed.json", {
+        "completed_at": now(), "config_sha256": object_digest(config),
+        "artifact_sha256": {p.relative_to(output).as_posix(): digest(p)
+                            for p in sorted(output.rglob("*")) if p.is_file() and p.name != "completed.json"}})
     return result
 
 
-def main(version_dir=None):
-    for stream in (sys.stdout, sys.stderr):
-        if hasattr(stream, "reconfigure"):
-            stream.reconfigure(encoding="utf-8")
-    args = parse_args(version_dir)
-    prepared = prepare_data(args)
-    summary = prepared[-1]
-    print(f"{args.version}: keep {summary['train_rows_after_cleaning']} train rows, "
-          f"remove {summary['train_abstain_removed']} abstentions, "
-          f"valid={summary['valid_rows']}, test={summary['test_rows']}", flush=True)
-    if not args.check_data:
-        train_and_predict(args, prepared)
+def complete_matches(output, config):
+    marker = output / "completed.json"
+    if not marker.is_file():
+        return False
+    try:
+        completed = read_json(marker)
+        artifacts = completed["artifact_sha256"]
+        if completed.get("config_sha256") != object_digest(config) or not artifacts:
+            return False
+        return all((output / name).is_file() and digest(output / name) == value
+                   for name, value in artifacts.items())
+    except (OSError, ValueError, KeyError, TypeError, AttributeError):
+        return False
+
+
+def materialize_finnsp_vote(job):
+    if job["generated_weak_rows"] is None:
+        return
+    output = job["version"] / "simple_vote"
+    output.mkdir(exist_ok=True)
+    write_csv(output / "weak_labels.csv", job["generated_weak_rows"])
+    # Keep generated upstream scores separate from the original Snorkel results.
+    metrics = {**job["upstream"], "train": {"n_samples": job["train_summary"]["total"],
+                                           "n_labeled": job["train_summary"]["used"]}}
+    task = job["task"]
+    by_key = {(r["split"], r["id"]): r for r in job["generated_weak_rows"]}
+    for split in ("valid", "test"):
+        labels = [by_key[split, r["id"]]["weak_label"] for r in task["splits"][split]]
+        predicted = [-1 if label == "abstain" else int(label) for label in labels]
+        metrics[split] = {"all_samples": score(gold_labels(task, split), predicted, task["names"]),
+                          "coverage": float(np.mean(np.array(predicted) != -1))}
+    write_json(output / "metrics.json", metrics)
+
+
+def write_summary(selections):
+    rows = []
+    for selection in selections:
+        task = load_task()
+        for model, dirname in OUTPUTS.items():
+            output = task["folder"] / "versions" / selection["version"] / selection["aggregator"] / dirname
+            if not (output / "completed.json").is_file():
+                continue
+            metrics = read_json(output / "metrics.json")
+            rows.append({"task": selection["task"], "version": selection["version"],
+                         "aggregator": selection["aggregator"], "model": model,
+                         "lf_valid_macro_f1": selection["valid_macro_f1"],
+                         "train_used": metrics["train"]["used"],
+                         "valid_macro_f1": metrics["valid"]["macro_f1"],
+                         "test_accuracy": metrics["test"]["accuracy"],
+                         "test_macro_f1": metrics["test"]["macro_f1"],
+                         "report": relative(output / "report.md")})
+    if not rows:
+        return
+    folder = TASK_DIR
+    # A subset invocation keeps previously summarized tasks/aggregators.
+    previous_path = folder / "tfidf_lr_summary.json"
+    if previous_path.is_file():
+        updated = {(s["task"], s["aggregator"]) for s in selections}
+        previous = read_json(previous_path)["results"]
+        rows.extend(r for r in previous if (r["task"], r["aggregator"]) not in updated
+                    and (TASK_DIR / r["report"]).is_file())
+    rows.sort(key=lambda r: (AGGREGATORS.index(r["aggregator"]),
+                            list(OUTPUTS).index(r["model"])))
+    write_csv(folder / "tfidf_lr_summary.csv", rows)
+    write_json(folder / "tfidf_lr_summary.json", {"generated_at": now(), "results": rows})
+    lines = ["# 最佳 LF 版本的 LR / BERT 下游结果", "", f"更新时间：{now()}。仅列出已完成并保存的模型。", "",
+             "| 任务 | LF 版本 | 聚合器 | 模型 | 训练数 | 验证 Macro-F1 | 测试 Accuracy | 测试 Macro-F1 |",
+             "| --- | --- | --- | --- | ---: | ---: | ---: | ---: |"]
+    for r in rows:
+        link = os.path.relpath(TASK_DIR / r["report"], folder).replace("\\", "/")
+        lines.append(f"| {r['task']} | [{r['version']}]({link}) | {r['aggregator']} | {r['model']} | "
+                     f"{r['train_used']:,} | {r['valid_macro_f1']:.2%} | "
+                     f"{r['test_accuracy']:.2%} | {r['test_macro_f1']:.2%} |")
+    (folder / "tfidf_lr_summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def parse_args(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--version", help="LF version such as v5; default: best validation Macro-F1 per aggregator")
+    parser.add_argument("--aggregator", "--aggregators", dest="aggregators", nargs="+",
+                        choices=AGGREGATORS, default=list(AGGREGATORS))
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--plan", action="store_true", help="Print selected versions without training or writes")
+    mode.add_argument("--check-data", action="store_true", help="Validate data without training or writes")
+    parser.add_argument("--overwrite", action=argparse.BooleanOptionalAction, default=True,
+                        help="Replace existing outputs after successful training; --no-overwrite prevents replacement")
+    parser.add_argument("--resume", action=argparse.BooleanOptionalAction, default=True,
+                        help="Skip verified completed runs; --no-resume forces retraining")
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--c-values", nargs="+", type=float, default=[0.1, 1.0, 10.0])
+    args = parser.parse_args(argv)
+    if args.version is not None and not re.fullmatch(r"v[1-9]\d*", args.version):
+        parser.error("--version must be v1, v5, etc.; omit it to select the best version")
+    if not 0 <= args.seed < 2**32:
+        parser.error("--seed must be in [0, 2**32)")
+    if any(not math.isfinite(c) or c <= 0 for c in args.c_values):
+        parser.error("C values must be finite and positive")
+    args.aggregators = list(dict.fromkeys(args.aggregators))
+    return args
+
+
+def main(version_dir=None, argv=None):
+    # Preserve FinNSP's existing versions/vN/train_logistic.py launcher API.
+    if version_dir is not None:
+        argv = ["--version", Path(version_dir).name, *(sys.argv[1:] if argv is None else argv)]
+    args = parse_args(argv)
+
+    selections = select_versions(args.aggregators, args.version)
+    for selection in selections:
+        print(f"{selection['task']:10s} {selection['aggregator']:12s} {selection['version']:4s} "
+              f"LF valid macro-F1={selection['valid_macro_f1']:.6f}", flush=True)
+    if args.plan:
+        print(f"Plan: {len(selections)} LR model(s); no training or writes.")
+        return
+    jobs = [prepare(selection) for selection in selections]
+    for job in jobs:
+        s = job["selection"]
+        print(f"Checked {s['task']}/{s['version']}/{s['aggregator']}: {job['train_summary']}", flush=True)
+    if args.check_data:
+        print("All selected inputs passed; no training or files written.")
+        return
+    work = []
+    for job in jobs:
+        config = config_for(job, args)
+        output = job["version"] / job["selection"]["aggregator"] / OUTPUTS[MODEL]
+        if args.resume and complete_matches(output, config):
+            print(f"Skip verified completed run: {relative(output)}", flush=True)
+            continue
+        if output.exists() and any(output.iterdir()) and not args.overwrite:
+            raise FileExistsError(f"Existing output: {output}; use --overwrite to replace it.")
+        work.append((job, config, output))
+    for job, config, output in work:
+        print(f"\nTraining {relative(output)}", flush=True)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(prefix=f".{OUTPUTS[MODEL]}-", dir=output.parent) as temp:
+            stage = Path(temp)
+            probabilities, history, extras = train_lr(job, config, stage)
+            result = finish(job, MODEL, config, stage, probabilities, history, extras)
+            materialize_finnsp_vote(job)
+            expected_parent = (job["version"] / job["selection"]["aggregator"]).resolve()
+            if (not output.resolve().is_relative_to(TASK_DIR) or output.resolve().parent != expected_parent
+                    or output.name != OUTPUTS[MODEL]):
+                raise ValueError(f"Unsafe output path: {output}")
+            if output.exists():
+                shutil.rmtree(output)
+            output.mkdir()
+            for artifact in stage.iterdir():
+                shutil.move(str(artifact), output / artifact.name)
+        write_summary(selections)
+        print(f"Saved: {relative(output)}; test macro-F1={result['test']['macro_f1']:.6f}", flush=True)
+        gc.collect()
+    write_summary(selections)
+    print(f"Finished. Summary: {TASK_DIR / 'tfidf_lr_summary.md'}", flush=True)
 
 
 if __name__ == "__main__":
-    main()
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nInterrupted; managed temporary files were cleaned. Completed runs remain available for --resume.", file=sys.stderr)
+        sys.exit(130)

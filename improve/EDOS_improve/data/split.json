@@ -1,0 +1,86 @@
+{
+  "dataset": "EDOS",
+  "scheme": "preserve_local_source_split_v1",
+  "sources": {
+    "train": {
+      "path": "../raw/edos_labelled_aggregated.csv",
+      "split_field": "split",
+      "split_value": "train",
+      "sha256": "607bdbb766e1803a28f0eb8fc21c14b6b9dfa20039f726ba6767438584b47f9b",
+      "n_samples": 14000
+    },
+    "valid": {
+      "path": "../raw/edos_labelled_aggregated.csv",
+      "split_field": "split",
+      "split_value": "dev",
+      "sha256": "607bdbb766e1803a28f0eb8fc21c14b6b9dfa20039f726ba6767438584b47f9b",
+      "n_samples": 2000
+    },
+    "test": {
+      "path": "../raw/edos_labelled_aggregated.csv",
+      "split_field": "split",
+      "split_value": "test",
+      "sha256": "607bdbb766e1803a28f0eb8fc21c14b6b9dfa20039f726ba6767438584b47f9b",
+      "n_samples": 4000
+    }
+  },
+  "raw_files_sha256": {
+    "edos_labelled_aggregated.csv": "607bdbb766e1803a28f0eb8fc21c14b6b9dfa20039f726ba6767438584b47f9b"
+  },
+  "n_samples": 20000,
+  "counts": {
+    "train": 14000,
+    "valid": 2000,
+    "test": 4000
+  },
+  "csv_sha256": {
+    "train": "6ea6598c0c4243666608afbb38036661f84ccf22da348ca7e0dcdeadf63121a5",
+    "valid": "a266f60206e9af6aa8542c90b9fd727b0b9a8e5a82033c2db2fa03d1fd220503",
+    "test": "4a51deadbb3769e5fbede6ce34eefd5c8f362410ef311dc0d0a6118191884871"
+  },
+  "csv_schema": {
+    "train": [
+      "id",
+      "text"
+    ],
+    "valid": [
+      "id",
+      "text",
+      "label"
+    ],
+    "test": [
+      "id",
+      "text",
+      "label"
+    ]
+  },
+  "csv_encoding": "utf-8-sig",
+  "label_mapping": {
+    "0": "not sexist",
+    "1": "sexist"
+  },
+  "class_counts": {
+    "valid": {
+      "not sexist": 1514,
+      "sexist": 486
+    },
+    "test": {
+      "not sexist": 3030,
+      "sexist": 970
+    }
+  },
+  "roles": {
+    "train": "??? id,text?? LF ???????????????????",
+    "valid": "????????????LF ????????????",
+    "test": "??????????????????? agent ???"
+  },
+  "sampling": "???????????????????dev ??? valid?????????????????",
+  "training_source_gold_usage": "excluded_from_training_csv; original labels remain in ../raw only",
+  "raw_directory_role": "??????????????????????????",
+  "source_format": "csv_with_explicit_split_column",
+  "source_text_field": "text",
+  "source_label_field": "label_sexist",
+  "task": "binary_sexism_detection",
+  "id_scheme": "edos_<split>_<original_rewire_id>",
+  "additional_labels": "label_category and label_vector remain in archived source only"
+}
