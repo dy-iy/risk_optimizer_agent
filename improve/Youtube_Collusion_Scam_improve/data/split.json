@@ -1,0 +1,24 @@
+{
+  "dataset": "Youtube_Collusion_Scam",
+  "scheme": "preserve_local_source_split_v1",
+  "n_samples": 2203,
+  "counts": {"train": 1256, "valid": 308, "test": 639},
+  "video_counts": {"train": 66, "valid": 13, "test": 30},
+  "csv_filenames": {
+    "train": "train.csv",
+    "valid": "validation.csv",
+    "test": "test.csv"
+  },
+  "csv_sha256": {
+    "train": "eaa3df77fde1bc5f161f34884f69732f579886333619c7cf001eb5a46cfa71f7",
+    "valid": "acc832c1abd681904c656be2e748441c2f927d87ba856d9b235d371b7ef2f947",
+    "test": "14623d89e761965d0c4c231ac882561a62f0e6e6267fc3dc71ed3d525e7879ea"
+  },
+  "csv_schema": ["id", "youtube_code", "text", "label"],
+  "label_mapping": {"0": "no collusion scam", "1": "collusion scam"},
+  "class_counts": {
+    "train": {"0": 708, "1": 548},
+    "valid": {"0": 173, "1": 135},
+    "test": {"0": 355, "1": 284}
+  }
+}

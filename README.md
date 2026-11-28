@@ -1,104 +1,100 @@
-# Risk Optimizer Agent｜LLM 引导的弱监督规则迭代
+# Risk Optimizer Agent
 
-本仓库通过 LF 投票、弱标签聚合和开发反馈迭代文本分类规则，并保存评估报告、Token 用量和下游模型。`benchmark/` 汇集采用统一候选验收的七个任务，`improve/` 汇集按覆盖率和准确率选择 LF 操作的七个改进任务。
+本仓库用大语言模型迭代文本分类的标签函数（Labeling Function，LF）。每条 LF 输出类别或 `-1`（弃权）。工作流聚合投票生成弱标签，再用训练集的覆盖和冲突统计、验证集的指标与样例指导 Analyzer 和 Patcher。弱标签也可用于训练 TF-IDF + 逻辑回归或 BERT。
 
-## 目录导航
+## 任务入口
 
-| 路径 | 内容 |
-| --- | --- |
-| [benchmark/](benchmark/README.md) | SMS、AGnews、CHECKED、EDOS、IMDb、Yelp、YouTube 的统一迭代流程 |
-| [improve/](improve/README.md) | 七个 `*_improve` 任务及其运行入口 |
-| [tasks/financial_phrasebank](tasks/financial_phrasebank/README.md) | 英文金融情感三分类：negative / neutral / positive，固定 100 条标注预算 |
-| [tasks/Finnsp](tasks/Finnsp/README.md) | 中文金融负面消息二分类，输入正文和候选实体 |
-| [tasks/Youtube_Collusion_Scam](tasks/Youtube_Collusion_Scam/README.md) | YouTube 评论串协同诈骗检测 |
-| [指标笔记.md](指标笔记.md) | 评估指标笔记 |
-| [requirements.txt](requirements.txt) | 当前任务共用依赖，各任务依赖文件引用此文件 |
-| [.env.example](.env.example) | LLM 配置模板 |
+| 数据集与分类目标 | Benchmark | Improve |
+| --- | --- | --- |
+| SMS · 短信垃圾信息 | [SMS](benchmark/SMS/) | [SMS_improve](improve/SMS_improve/) |
+| AGnews · 英文新闻主题四分类 | [AGnews](benchmark/AGnews/) | [AGnews_improve](improve/AGnews_improve/) |
+| CHECKED · 中文新闻真实性 | [CHECKED](benchmark/CHECKED/) | [CHECKED_improve](improve/CHECKED_improve/) |
+| EDOS · 英文性别歧视检测 | [EDOS](benchmark/EDOS/) | [EDOS_improve](improve/EDOS_improve/) |
+| IMDb · 英文影评情感 | [IMDb](benchmark/IMDb/) | [IMDb_improve](improve/IMDb_improve/) |
+| Yelp · 英文商户评论情感 | [Yelp](benchmark/Yelp/) | [Yelp_improve](improve/Yelp_improve/) |
+| YouTube · 单条评论垃圾信息 | [YouTube](benchmark/YouTube/) | [YouTube_improve](improve/YouTube_improve/) |
+| YouTube 评论串 · 多账号协同推广投资诈骗 | [Youtube_Collusion_Scam](benchmark/Youtube_Collusion_Scam/) | [Youtube_Collusion_Scam_improve](improve/Youtube_Collusion_Scam_improve/) |
 
-任务目录通常包含：
+- **FinNSP** 检测中文金融文本是否对候选实体包含负面消息。LF 接收正文和候选实体，固定验证集含 500 条标注。 [任务目录](tasks/Finnsp/) · [逻辑回归结果](tasks/Finnsp/downstream_lr_summary.md)
+- **Financial PhraseBank** 将英文金融文本分为负面、中性和正面。固定用 100 条金标做开发反馈，用未标注集拟合 Snorkel，采用均匀类别先验。 [任务目录](tasks/financial_phrasebank/) · [迭代框架](tasks/financial_phrasebank/迭代框架.md)
 
-```text
-benchmark/<任务>/、improve/<任务>/ 或 tasks/<任务>/
-├── orchestrator.py        # 评价起点、调用 LLM、生成后续版本
-├── requirements.txt       # 引用根目录共用依赖
-├── tools/                 # 数据、LF 执行、聚合、评估、分析与修改
-├── data/                  # 固定 CSV 划分和 split.json
-├── raw/                   # 部分任务保留的来源归档
-├── versions/vN/
-│   ├── lfs.py             # 当前版本的标签函数
-│   ├── results/           # 指标、投票、弱标签、分析、模型和错误记录
-│   └── tfidf_lr_results/  # 下游模型结果（部分版本）
-├── picture/               # 绘图脚本及 PNG / SVG
-├── iterations.csv         # 已完成版本的指标汇总（运行后生成）
-└── tokens.csv / tokens.md # 真实 API 调用用量（运行后生成）
-```
+## 快速开始
 
-`versions/` 由 `.gitignore` 排除，包含 LF 源码和实验产物，交接时需单独保留。Benchmark 版本在 `Snorkel/` 和 `simple_vote/` 下各自保存 `metrics.json`；新候选的验收见 `results/decision.json`。
-
-## 环境与依赖
-
-从项目根目录、已安装 PyTorch / scikit-learn 的 Python 环境中执行：
+在仓库根目录运行下列 PowerShell 命令。安装目标任务的依赖文件，它会引入根目录的公共依赖。Benchmark 和 Improve 的任务依赖还包括 LangGraph。将 `python` 指向实际的实验环境。
 
 ```powershell
-python -m pip install -r requirements.txt
-```
-
-下文的 `python` 必须指向实际实验环境；例如本机可用 `& D:/Miniconda/python.exe` 替换。系统默认 Python 可能属于另一个环境。当前 Snorkel LabelModel 使用 CPU；单独的 BERT 训练脚本可使用 CUDA，不属于核心依赖。
-
-各任务的 `requirements.txt` 引用根目录依赖，也可按任务安装，例如 `python -m pip install -r benchmark/IMDb/requirements.txt`。
-
-## 离线校验与评价
-
-从根目录直接执行脚本，以 IMDb 为例：
-
-```powershell
-# 核验固定数据的哈希、字段、条数和标签，不训练、不调用 LLM。
+python -m pip install -r benchmark/IMDb/requirements.txt
 python -B benchmark/IMDb/tools/data.py
-
-# 评价已有 v1，保存两种聚合器结果并更新 iterations.csv，不调用 LLM。
 python -B benchmark/IMDb/orchestrator.py --version v1 --iterations 0
-
-# 单独评价某版，不更新 iterations.csv。
-python -B benchmark/IMDb/tools/runner.py --version v1
-
-# 从已有结果绘图。
-python -B benchmark/IMDb/picture/plot_metrics.py
 ```
 
-请使用实际存在且包含 `lfs.py` 的版本。重跑评价会更新该版本的评估结果。Benchmark 的新候选使用现有最大版本号加一。
+示例先核验冻结划分，再评估已有的 `v1` 并更新 `iterations.csv`。零轮评估无需 API 密钥。可用其他任务目录替换示例路径。运行前确认所选任务有 `versions/v1/lfs.py`，或把 `v1` 换成已有版本。Git 忽略 `versions/`，从干净检出复现实验时，需从实验归档取得对应的 LF 源码。
 
-各任务 `data/split.json` 固定来源、划分与哈希，正常运行复用现有数据，不因迁移目录重新抽样。数据缺失或变化应先核对清单；部分任务在整套数据均不存在时会触发首次导入。Financial PhraseBank 使用 `labeled / unlabeled / test`，其余任务使用 `train / valid / test`。
+## 调用 LLM 追加迭代
 
-## LLM 自动迭代
-
-首次配置时，将 `.env.example` 复制为根目录 `.env`，填写：
-
-```dotenv
-DEEPSEEK_API_KEY=你的密钥
-DEEPSEEK_BASE_URL=https://api.deepseek.com
-DEEPSEEK_MODEL=实际可用的模型名
-```
-
-已有根目录 `.env` 可直接复用。离线评价不需要 API Key。可以从项目根目录追加迭代。
+首次运行时复制配置模板到根目录的 `.env`。填写 `DEEPSEEK_API_KEY` 和 `DEEPSEEK_MODEL`，`DEEPSEEK_BASE_URL` 默认是 `https://api.deepseek.com`。已有配置可直接使用。 [.env.example](.env.example)
 
 ```powershell
-# 不带参数时交互询问起点和轮数。
-python -B benchmark/IMDb/orchestrator.py
+Copy-Item .env.example .env
+```
 
-# 从已有 v1 追加一轮，调用配置的 API 并产生费用。
+配置完成后指定起始版本和追加轮数。此命令会调用 API 并记录 Token 用量。直接运行 `orchestrator.py` 可交互选择参数。
+
+```powershell
 python -B benchmark/IMDb/orchestrator.py --version v1 --iterations 1
 ```
 
-Analyzer 根据开发反馈选择增、改、删 LF，Patcher 输出候选规则并经过本地 AST 和执行校验。部分任务另有 JSON 格式检查 Agent。每轮操作数、反馈预算、类别先验和错误处理存在任务差异，以各任务 README 和 `orchestrator.py` 为准。
+### Benchmark
 
-## 报告与下游模型
+同一批 LF 投票分别由 Snorkel 和简单投票（`simple_vote`）聚合。Analyzer 根据简单投票的验证统计、验证样例和无金标训练样例，在新增、修改和删除中选择一种操作，每轮最多涉及 5 条 LF。Patcher 生成目标函数，代码通过本地校验后运行。
 
-- Benchmark 的单版指标、弱标签和模型位于 `benchmark/<任务>/versions/vN/`，按聚合器分目录保存，共用记录在 `results/`。
-- [Finnsp 下游模型汇总](tasks/Finnsp/downstream_lr_summary.md) 保存该任务已有的逻辑回归结果。
-- 下游模型用非弃权训练硬弱标签拟合 TF-IDF + Logistic Regression，验证金标选 C，测试集仅作最终评价。训练命令和输出位置见各任务 README。
+候选验收使用简单投票（`simple_vote`）在验证集上的净收益。对每个真实类别计算 `(正确数 − 误标数) / 真实样本数`，再对类别等权平均。弃权仅计入分母。候选得分相对保留版的提升必须严格大于 `--acceptance-epsilon`，默认 0.01。拒绝后从保留版继续，连续拒绝 3 个有效候选时停止。候选使用当前最大版本号加一，验证集得分、验收结果及聚合器写入候选的 `results/decision.json`。
 
-测试样本和测试指标不进入 Analyzer / Patcher。Benchmark 的 Snorkel 类别先验来自各自的固定验证集，Financial PhraseBank 使用固定均匀先验。全量指标包含弃权，与仅已覆盖样本的准确率应分别解读。冻结划分保留的正文重叠及其他实验限制见各任务报告。
+### Improve
 
-## 维护约定
+用训练和验证集的简单投票**输出覆盖率**取较小值，覆盖率低于 0.80 视为低覆盖。验证集**已覆盖准确率**达到任务阈值时视为高准确率，IMDb 的阈值是 0.80，其余任务为 0.90。
 
-保留任务目录的实际大小写，尤其是 `YouTube`、`IMDb`、`Finnsp` 和 `AGnews`。迁移任务时同步检查根目录 `.env` 定位、文档命令及汇总脚本路径。历史结果中的绝对路径是运行时审计记录，不应为了迁移而改写输入哈希或实验配置。每次工作结束清理本次产生的临时文件、测试文件和缓存；实验数据、模型与正式报告按需保留。
+| 输出覆盖率 | 验证集已覆盖准确率 | 本轮操作 |
+| --- | --- | --- |
+| 低 | 高 | 新增 LF，扩大正确覆盖 |
+| 低或高 | 低 | 修改 LF，优先减少误标 |
+| 高 | 高 | 有覆盖缺口时新增 LF，完全覆盖后修改 LF |
+| 验证集全部弃权 | 无 | 保守新增 LF |
+
+新增时提供验证弃权和训练未覆盖样例。修改时提供验证错例、验证正确样例和训练投票冲突样例。通过执行校验的版本直接进入下一轮。Improve 按起始版本递增编号，从旧版本追加前应确认后续同名版本是否需要保留。
+
+## 单版评估、训练与绘图
+
+```powershell
+python -B benchmark/IMDb/tools/runner.py --version v1
+python -B benchmark/IMDb/tools/impact.py --old-version v1 --new-version v2
+python -B benchmark/IMDb/picture/plot_metrics.py
+python -B benchmark/IMDb/tools/train_logistic.py --version v1
+```
+
+`runner.py` 更新单版结果，`iterations.csv` 由总控更新。影响分析需要两个已评估版本，比较训练和验证集上的投票与预测变化。绘图读取已有评估结果。下游训练使用非弃权训练硬弱标签，验证集用于选参或选择检查点，测试集用于最终评价。
+
+对提供 `requirements-bert.txt` 的任务，可先校验训练输入，再用 CUDA 微调。默认读取本地预训练权重，也可用 `--model-path` 指定权重目录，或用 `--allow-download` 下载。
+
+```powershell
+python -m pip install -r improve/IMDb_improve/requirements-bert.txt
+python -B improve/IMDb_improve/tools/train_bert.py --version v1 --check-data
+python -B improve/IMDb_improve/tools/train_bert.py --version v1 --device cuda
+```
+
+## 数据与结果
+
+每个任务的 `data/split.json` 记录冻结划分、样本数和校验哈希。弱标签模型在训练集或未标注集的 LF 投票上拟合，验证集或固定标注集用于开发反馈，测试样本和指标只用于评估。报告中的全量指标将弃权计为漏判，已覆盖准确率仅以有预测的样本为分母。 [指标笔记](指标笔记.md)
+
+| 路径 | 内容 |
+| --- | --- |
+| `tools/task.py`（多数任务） | 标签映射、输入契约和任务说明 |
+| `versions/vN/lfs.py` | 该版本的 LF 源码 |
+| `versions/vN/Snorkel/`、`versions/vN/simple_vote/` | Benchmark 和 Improve 的聚合指标、弱标签、下游模型与影响记录 |
+| `versions/vN/results/` | 共享投票与质量统计、反馈、分析、改动和错误记录。FinNSP 和 Financial PhraseBank 的聚合结果也保存在这里 |
+| `iterations.csv`、`tokens.csv`、`tokens.md` | 版本指标及 API 用量。部分任务另有 `timing.csv` 记录运行耗时 |
+| [output/](output/) | 汇总图表 |
+
+AGnews、IMDb 和 Yelp 的上游标签与规则说明以 `source_notes.txt` 保存，冻结清单中的 `readme.txt` 是这些附件的原始文件名。 [AGnews 来源说明](benchmark/AGnews/raw/source_notes.txt) · [IMDb 来源说明](benchmark/IMDb/raw/source_notes.txt) · [Yelp 来源说明](benchmark/Yelp/raw/source_notes.txt)
+
+Financial PhraseBank 的原始处理记录标明 CC BY-NC-SA 3.0。引用 Malo 等人（2014），*Good debt or bad debt: Detecting semantic orientations in economic texts*。

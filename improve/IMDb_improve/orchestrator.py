@@ -21,7 +21,7 @@ FEEDBACK_SEED = 42
 # Q = 验证集已输出样本的准确率；
 # C < 0.80 为低覆盖，Q >= 0.90 为高准确率。
 LOW_COVERAGE_THRESHOLD = 0.80
-HIGH_COVERED_ACCURACY_THRESHOLD = 0.90
+HIGH_COVERED_ACCURACY_THRESHOLD = 0.80
 # C 低、Q 高：仅 add，扩大正确覆盖。
 # C 低、Q 低：仅 modify，先修高影响误标。
 # C 高、Q 低：仅 modify，减少误标。

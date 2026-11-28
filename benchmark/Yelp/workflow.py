@@ -225,8 +225,9 @@ def persist_iteration(state: WorkflowState):
     for item in result["aggregators"].values():
         update_iterations(folder, item["metrics"])
         show_result(item["metrics"])
-    current_valid = state["current"]["aggregators"]["Snorkel"]["metrics"]["valid"]
-    candidate_valid = result["aggregators"]["Snorkel"]["metrics"]["valid"]
+    acceptance_aggregator = "simple_vote"
+    current_valid = state["current"]["aggregators"][acceptance_aggregator]["metrics"]["valid"]
+    candidate_valid = result["aggregators"][acceptance_aggregator]["metrics"]["valid"]
     current_score = weak_label_quality(current_valid["confusion"])
     candidate_score = weak_label_quality(candidate_valid["confusion"])
     gain = candidate_score - current_score
@@ -237,7 +238,7 @@ def persist_iteration(state: WorkflowState):
         "round": state["round_index"],
         "parent_version": state["current_version"],
         "candidate_version": state["next_version"],
-        "aggregator": "Snorkel",
+        "aggregator": acceptance_aggregator,
         "split": "valid",
         "alpha": 1,
         "epsilon": epsilon,
@@ -250,7 +251,8 @@ def persist_iteration(state: WorkflowState):
         json.dumps(decision, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     status = "接受" if accepted else "拒绝"
-    print(f"{status} {state['next_version']}：验证集 ΔQ={float(gain):+.6f}，要求严格大于 {epsilon:g}。", flush=True)
+    print(f"{status} {state['next_version']}：{acceptance_aggregator} 验证集 ΔQ={float(gain):+.6f}，"
+          f"要求严格大于 {epsilon:g}。", flush=True)
     if accepted:
         return {"current_version": state["next_version"], "current": result, "rejected_candidates": []}
     rejection = {

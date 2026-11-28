@@ -37,7 +37,7 @@ def main():
     parser.add_argument("--version", help="起始版本；不填写时交互询问")
     parser.add_argument("--iterations", type=int, help="追加轮数；0 表示只评价；不填写时交互询问")
     parser.add_argument("--acceptance-epsilon", type=float, default=DEFAULT_ACCEPTANCE_EPSILON,
-                        help="验收要求验证集 ΔQ 严格大于此值（默认 %(default)s）")
+                        help="验收要求简单投票在验证集上的 ΔQ 严格大于此值（默认 %(default)s）")
     args = parser.parse_args()
     try:
         current_version = args.version if args.version is not None else input("当前版本（例如 v1）：").strip()

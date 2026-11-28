@@ -1,4 +1,0 @@
-# Shared task dependencies plus the benchmark workflow.
--r ../requirements.txt
-langgraph==1.1.10
-sentence-transformers==5.7.0
